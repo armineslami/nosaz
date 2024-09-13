@@ -82,7 +82,7 @@
         --accent-200: #f4a4c3;
         --accent-300: #ef76a4;
         --accent-400: #eb568f; /* Main */
-        --accent-500: #000000;
+        --accent-500: #e41b68;
         --accent-600: #b71553;
         --accent-700: #89103e;
         --accent-800: #5b0b2a;
@@ -143,8 +143,8 @@
         --accent-100: #2e0515;
         --accent-200: #5b0b2a;
         --accent-300: #89103e;
-        --accent-400: #b71553; /* Main */
-        --accent-500: #e41b68;
+        --accent-400: #b71553;
+        --accent-500: #e41b68; /* Main */
         --accent-600: #ea4886;
         --accent-700: #ef76a4;
         --accent-800: #f4a4c3;
