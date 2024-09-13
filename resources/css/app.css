@@ -1,3 +1,277 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*@layer base {*/
+/*    :root {*/
+/*        --text: #101413;*/
+/*        --background: #f9fbfa;*/
+/*        --primary: #51bd92;*/
+/*        --secondary: #97e7c7;*/
+/*        !*--accent: #56ebb0;*!*/
+/*        --accent: #eb568f;*/
+/*    }*/
+/*    .dark {*/
+/*        --text: #ebefee;*/
+/*        --background: #040605;*/
+/*        --primary: #42ae83;*/
+/*        --secondary: #186748;*/
+/*        !*--accent: #14a96d;*!*/
+/*        --accent: #a9144d;*/
+/*    }*/
+/*}*/
+
+
+/**
+    Theme setup
+    It's created by: https://www.realtimecolors.com
+ */
+
+@layer base {
+    :root {
+        --text-50: #f1f4f3;
+        --text-100: #e3e8e7;
+        --text-200: #c6d2cf;
+        --text-300: #aabbb7;
+        --text-400: #8ea49f;
+        --text-500: #718e87;
+        --text-600: #5b716c;
+        --text-700: #445551;
+        --text-800: #2d3936;
+        --text-900: #171c1b;
+        --text-950: #0b0e0d; /* Main */
+
+        --background-50: #f0f5f2; /* Main */
+        --background-100: #e0ebe6;
+        --background-200: #c2d6cc;
+        --background-300: #a3c2b3;
+        --background-400: #85ad99;
+        --background-500: #669980;
+        --background-600: #527a66;
+        --background-700: #3d5c4d;
+        --background-800: #293d33;
+        --background-900: #141f1a;
+        --background-950: #0a0f0d;
+
+        --primary-50: #edf8f3;
+        --primary-100: #daf1e8;
+        --primary-200: #b5e3d1;
+        --primary-300: #90d5b9;
+        --primary-400: #6bc7a2;
+        --primary-500: #46b98b; /* Main */
+        --primary-600: #38946f;
+        --primary-700: #2a6f53;
+        --primary-800: #1c4a38;
+        --primary-900: #0e251c;
+        --primary-950: #07120e;
+
+        --secondary-50: #eafaf4;
+        --secondary-100: #d6f5e9;
+        --secondary-200: #acecd2;
+        --secondary-300: #83e2bc; /* Main */
+        --secondary-400: #5ad8a6;
+        --secondary-500: #30cf8f;
+        --secondary-600: #27a573;
+        --secondary-700: #1d7c56;
+        --secondary-800: #135339;
+        --secondary-900: #0a291d;
+        --secondary-950: #05150e;
+
+        --accent-50: #fce8f0;
+        --accent-100: #fad1e1;
+        --accent-200: #f4a4c3;
+        --accent-300: #ef76a4;
+        --accent-400: #eb568f; /* Main */
+        --accent-500: #000000;
+        --accent-600: #b71553;
+        --accent-700: #89103e;
+        --accent-800: #5b0b2a;
+        --accent-900: #2e0515;
+        --accent-950: #17030a;
+    }
+
+    .dark {
+        --text-50: #0b0e0d;
+        --text-100: #171c1b;
+        --text-200: #2d3936;
+        --text-300: #445551;
+        --text-400: #5b716c;
+        --text-500: #718e87;
+        --text-600: #8ea49f;
+        --text-700: #aabbb7;
+        --text-800: #c6d2cf;
+        --text-900: #e3e8e7;
+        --text-950: #f1f4f3; /* Main */
+
+        --background-50: #0a0f0d; /* Main */
+        --background-100: #141f1a;
+        --background-200: #293d33;
+        --background-300: #3d5c4d;
+        --background-400: #527a66;
+        --background-500: #669980;
+        --background-600: #85ad99;
+        --background-700: #a3c2b3;
+        --background-800: #c2d6cc;
+        --background-900: #e0ebe6;
+        --background-950: #f0f5f2;
+
+        --primary-50: #07120e;
+        --primary-100: #0e251c;
+        --primary-200: #1c4a38;
+        --primary-300: #2a6f53;
+        --primary-400: #38946f;
+        --primary-500: #46b98b; /* Main */
+        --primary-600: #6bc7a2;
+        --primary-700: #90d5b9;
+        --primary-800: #b5e3d1;
+        --primary-900: #daf1e8;
+        --primary-950: #edf8f3;
+
+        --secondary-50: #05150e;
+        --secondary-100: #0a291d;
+        --secondary-200: #135339;
+        --secondary-300: #1d7c56; /* Main */
+        --secondary-400: #27a573;
+        --secondary-500: #30cf8f;
+        --secondary-600: #5ad8a6;
+        --secondary-700: #83e2bc;
+        --secondary-800: #acecd2;
+        --secondary-900: #d6f5e9;
+        --secondary-950: #eafaf4;
+
+        --accent-50: #17030a;
+        --accent-100: #2e0515;
+        --accent-200: #5b0b2a;
+        --accent-300: #89103e;
+        --accent-400: #b71553; /* Main */
+        --accent-500: #e41b68;
+        --accent-600: #ea4886;
+        --accent-700: #ef76a4;
+        --accent-800: #f4a4c3;
+        --accent-900: #fad1e1;
+        --accent-950: #fce8f0;
+    }
+}
+
+/**
+    Font setup
+ */
+
+@font-face {
+    font-family: IRANSansX;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/IRANSansX-Regular.woff2") format('woff2');
+}
+
+@font-face {
+    font-family: IRANSansX;
+    font-style: normal;
+    font-weight: 700;
+    src: url("../fonts/IRANSansX-Bold.woff2") format('woff2');
+}
+
+body {
+    font-family: IRANSansX, sans-serif !important;
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6,input, textarea {
+    font-family: IRANSansX, sans-serif !important;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.ltr {
+    direction: ltr;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-small {
+    font-size: 0.8em;
+}
+
+.text-xsmall {
+    font-size: 0.6em;
+}
+
+.text-large {
+    font-size: 1.2em;
+}
+
+.text-xlarge {
+    font-size: 1.4em;
+}
+
+.text-underline {
+    text-decoration:underline;
+}
+
+.text-thin {
+    font-weight: 100;
+}
+
+.text-UltraLight {
+    font-weight: 200;
+}
+
+.text-light {
+    font-weight: 300;
+}
+
+.text-regular {
+    font-weight: 400;
+}
+
+.text-medium {
+    font-weight: 500;
+}
+
+.text-demibold {
+    font-weight: 600;
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
+.text-extrabold {
+    font-weight: 800;
+}
+
+.text-black {
+    font-weight: 900;
+}
+
+blockquote {
+    font-weight: 700;
+    padding: 10px;
+    border: 1px dashed #666666;
+}
+
+/*.primary-button:hover {*/
+/*    transform: translate(0, -3px);*/
+/*    box-shadow: 0 20px 80px -10px theme('colors.primary.DEFAULT');*/
+/*}*/
+
+/*.dark .primary-button:hover {*/
+/*    box-shadow: 0 20px 80px -10px theme('colors.primary.dark');*/
+/*}*/
