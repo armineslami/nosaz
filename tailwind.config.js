@@ -14,6 +14,7 @@ export default {
         extend: {
             colors: {
                 text: {
+                    DEFAULT: 'var(--text)',
                     50: 'var(--text-50)',
                     100: 'var(--text-100)',
                     200: 'var(--text-200)',
@@ -27,6 +28,7 @@ export default {
                     950: 'var(--text-950)',
                 },
                 background: {
+                    DEFAULT: 'var(--background)',
                     50: 'var(--background-50)',
                     100: 'var(--background-100)',
                     200: 'var(--background-200)',
@@ -40,6 +42,7 @@ export default {
                     950: 'var(--background-950)',
                 },
                 primary: {
+                    DEFAULT: 'var(--primary)',
                     50: 'var(--primary-50)',
                     100: 'var(--primary-100)',
                     200: 'var(--primary-200)',
@@ -53,6 +56,7 @@ export default {
                     950: 'var(--primary-950)',
                 },
                 secondary: {
+                    DEFAULT: 'var(--secondary)',
                     50: 'var(--secondary-50)',
                     100: 'var(--secondary-100)',
                     200: 'var(--secondary-200)',
@@ -66,6 +70,7 @@ export default {
                     950: 'var(--secondary-950)',
                 },
                 accent: {
+                    DEFAULT: 'var(--accent)',
                     50: 'var(--accent-50)',
                     100: 'var(--accent-100)',
                     200: 'var(--accent-200)',
@@ -78,35 +83,6 @@ export default {
                     900: 'var(--accent-900)',
                     950: 'var(--accent-950)',
                 },
-                // primary: {
-                //     DEFAULT: "#f4be6a",  // Default primary color
-                //     light: "#efaa3f",    // Optional: Lighter shade
-                //     dark: "#f1c37c",     // Optional: Darker shade
-                // },
-                // secondary: {
-                //     DEFAULT: "#fbf4df",  // Default secondary color
-                //     light: "#fbf4df",    // Optional: Lighter shade
-                //     dark: "#546669",     // Optional: Darker shade
-                // },
-                // text: {
-                //     primary: "#3d392b",
-                //     secondary: "#534e3a",
-                //     trinary: "#858484"
-                // },
-                // button: {
-                //     primary: {
-                //         DEFAULT: "#fbf4df",
-                //         light: "#fbf4df",
-                //         dark: "#fbf4df",
-                //         hover: "#534e3a",
-                //     },
-                //     secondary: {
-                //         DEFAULT: "#fbf4df",
-                //         light: "#fbf4df",
-                //         dark: "#fbf4df",
-                //         hover: "#534e3a",
-                //     },
-                // }
             },
             // fontFamily: {
             //     sans: ['Figtree', ...defaultTheme.fontFamily.sans],
