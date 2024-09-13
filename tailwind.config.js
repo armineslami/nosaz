@@ -9,7 +9,7 @@ export default {
         './resources/views/**/*.blade.php',
         './node_modules/flowbite/**/*.js',
     ],
-
+    darkMode: 'media', // For Flowbite use 'media' to automatically apply dark mode based on the user's system preferences
     theme: {
         extend: {
             colors: {
