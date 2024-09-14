@@ -20,7 +20,7 @@
                     <div class="text-justify p-8 w-full">
                         <div class="flex justify-center">
                             <a href="/">
-                                <x-application-logo class="w-24 h-24 fill-current text-black" />
+                                <x-application-logo class="w-48 h-48 fill-current text-black" />
                             </a>
                         </div>
                         <div class="mt-8 text-center">
