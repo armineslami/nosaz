@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="rtl"  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="dark:dark" dir="rtl"  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,16 +10,33 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
-
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
+    <body class="text-text-950 dark:text-text-50 antialiased bg-background">
+        <div class="flex min-h-screen">
+            <div class="grid grid-cols-1 lg:grid-cols-2 w-full">
+                <div class="col-span-1">
+                    {{ $slot }}
+                </div>
+                <div class="col-span-1 bg-primary hidden lg:flex items-center">
+                    <div class="text-justify p-8 w-full">
+                        <div class="flex justify-center">
+                            <a href="/">
+                                <x-application-logo class="w-24 h-24 fill-current text-black" />
+                            </a>
+                        </div>
+                        <div class="mt-8 text-center">
+                            <h1 class="font-bold text-4xl text-text dark:text-text-50 leading-relaxed">
+                                {{ __('محاسبه هزینه‌ پروژه‌های خود را آسان کنید.') }}
+                            </h1>
+                            <p class="text-justify mt-6 font-normal text-sm text-text-700 dark:text-text-200">
+                                {{ __('هزینه و سود هر پروژه را محاسبه و با سایر پروژهای خود مقایسه کنید تا بهترین پروژه از نظر سود دهی را انتخاب کنید.') }}
+                                {{ __('لیست پروژه‌ها را همیشه به همراه خود داشته باشید تا در هر زمان و مکان به آن‌ها دسترسی داشته باشید و یا با همکاران خود به اشتراک بگذارید.') }}
+                            </p>
+                            <p class="text-center mt-12 font-normal text-xs text-text-700 dark:text-text-200">
+                                {{ __('نسخه') }}<span class="ms-2 font-bold text-md text-text-950 dark:text-text-50">{{ __(config('app.version')) }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
