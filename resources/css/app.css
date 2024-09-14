@@ -2,26 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*@layer base {*/
-/*    :root {*/
-/*        --text: #101413;*/
-/*        --background: #f9fbfa;*/
-/*        --primary: #51bd92;*/
-/*        --secondary: #97e7c7;*/
-/*        !*--accent: #56ebb0;*!*/
-/*        --accent: #eb568f;*/
-/*    }*/
-/*    .dark {*/
-/*        --text: #ebefee;*/
-/*        --background: #040605;*/
-/*        --primary: #42ae83;*/
-/*        --secondary: #186748;*/
-/*        !*--accent: #14a96d;*!*/
-/*        --accent: #a9144d;*/
-/*    }*/
-/*}*/
-
-
 /**
     Theme setup
     It's created by: https://www.realtimecolors.com/?colors=101413-f9fbfa-51bd92-98e7c7-eb568f&fonts=IRANSansX%20-IRANSansX
@@ -29,6 +9,12 @@
 
 @layer base {
     :root {
+        --text: #101413;
+        --background: #ededed;
+        --primary: #51bd92;
+        --secondary: #97e7c7;
+        --accent: #eb568f;
+
         --text-50: #f1f4f3;
         --text-100: #e3e8e7;
         --text-200: #c6d2cf;
@@ -39,26 +25,26 @@
         --text-700: #445551;
         --text-800: #2d3936;
         --text-900: #171c1b;
-        --text-950: #0b0e0d; /* Main */
+        --text-950: #0b0e0d;
 
-        --background-50: #f0f5f2; /* Main */
-        --background-100: #e0ebe6;
-        --background-200: #c2d6cc;
-        --background-300: #a3c2b3;
-        --background-400: #85ad99;
-        --background-500: #669980;
-        --background-600: #527a66;
-        --background-700: #3d5c4d;
-        --background-800: #293d33;
-        --background-900: #141f1a;
-        --background-950: #0a0f0d;
+        --background-50: #f2f2f2;
+        --background-100: #e6e6e6;
+        --background-200: #cccccc;
+        --background-300: #b3b3b3;
+        --background-400: #999999;
+        --background-500: #808080;
+        --background-600: #666666;
+        --background-700: #4d4d4d;
+        --background-800: #333333;
+        --background-900: #1a1a1a;
+        --background-950: #0d0d0d;
 
         --primary-50: #edf8f3;
         --primary-100: #daf1e8;
         --primary-200: #b5e3d1;
         --primary-300: #90d5b9;
         --primary-400: #6bc7a2;
-        --primary-500: #46b98b; /* Main */
+        --primary-500: #46b98b;
         --primary-600: #38946f;
         --primary-700: #2a6f53;
         --primary-800: #1c4a38;
@@ -68,7 +54,7 @@
         --secondary-50: #eafaf4;
         --secondary-100: #d6f5e9;
         --secondary-200: #acecd2;
-        --secondary-300: #83e2bc; /* Main */
+        --secondary-300: #83e2bc;
         --secondary-400: #5ad8a6;
         --secondary-500: #30cf8f;
         --secondary-600: #27a573;
@@ -81,7 +67,7 @@
         --accent-100: #fad1e1;
         --accent-200: #f4a4c3;
         --accent-300: #ef76a4;
-        --accent-400: #eb568f; /* Main */
+        --accent-400: #eb568f;
         --accent-500: #e41b68;
         --accent-600: #b71553;
         --accent-700: #89103e;
@@ -91,6 +77,12 @@
     }
 
     .dark {
+        --text: #ebefee;
+        --background: #111111;
+        --primary: #42ae83;
+        --secondary: #186748;
+        --accent: #e41b68;
+
         --text-50: #0b0e0d;
         --text-100: #171c1b;
         --text-200: #2d3936;
@@ -101,26 +93,26 @@
         --text-700: #aabbb7;
         --text-800: #c6d2cf;
         --text-900: #e3e8e7;
-        --text-950: #f1f4f3; /* Main */
+        --text-950: #f1f4f3;
 
-        --background-50: #0a0f0d; /* Main */
-        --background-100: #141f1a;
-        --background-200: #293d33;
-        --background-300: #3d5c4d;
-        --background-400: #527a66;
-        --background-500: #669980;
-        --background-600: #85ad99;
-        --background-700: #a3c2b3;
-        --background-800: #c2d6cc;
-        --background-900: #e0ebe6;
-        --background-950: #f0f5f2;
+        --background-50: #0d0d0d;
+        --background-100: #1a1a1a;
+        --background-200: #333333;
+        --background-300: #4d4d4d;
+        --background-400: #666666;
+        --background-500: #808080;
+        --background-600: #999999;
+        --background-700: #b3b3b3;
+        --background-800: #cccccc;
+        --background-900: #e6e6e6;
+        --background-950: #f2f2f2;
 
         --primary-50: #07120e;
         --primary-100: #0e251c;
         --primary-200: #1c4a38;
         --primary-300: #2a6f53;
         --primary-400: #38946f;
-        --primary-500: #46b98b; /* Main */
+        --primary-500: #46b98b;
         --primary-600: #6bc7a2;
         --primary-700: #90d5b9;
         --primary-800: #b5e3d1;
@@ -130,7 +122,7 @@
         --secondary-50: #05150e;
         --secondary-100: #0a291d;
         --secondary-200: #135339;
-        --secondary-300: #1d7c56; /* Main */
+        --secondary-300: #1d7c56;
         --secondary-400: #27a573;
         --secondary-500: #30cf8f;
         --secondary-600: #5ad8a6;
@@ -144,7 +136,7 @@
         --accent-200: #5b0b2a;
         --accent-300: #89103e;
         --accent-400: #b71553;
-        --accent-500: #e41b68; /* Main */
+        --accent-500: #e41b68;
         --accent-600: #ea4886;
         --accent-700: #ef76a4;
         --accent-800: #f4a4c3;
@@ -267,11 +259,12 @@ blockquote {
     border: 1px dashed #666666;
 }
 
-/*.primary-button:hover {*/
-/*    transform: translate(0, -3px);*/
-/*    box-shadow: 0 20px 80px -10px theme('colors.primary.DEFAULT');*/
-/*}*/
+.primary-button:hover {
+    transform: translate(0, -3px);
+    box-shadow: 0 20px 80px -10px theme('colors.primary.DEFAULT');
+}
 
-/*.dark .primary-button:hover {*/
-/*    box-shadow: 0 20px 80px -10px theme('colors.primary.dark');*/
-/*}*/
+.secondary-button:hover {
+    transform: translate(0, -3px);
+    /*box-shadow: 0 20px 80px -10px theme('colors.secondary.DEFAULT');*/
+}
