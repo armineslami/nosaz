@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\OAuth\OAuthController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -33,6 +34,18 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.store');
+
+    # Google OAuth routes
+    Route::get('/oauth/google/redirect', [OAuthController::class, 'redirectToGoogle'])
+        ->name("google.redirect");
+    Route::get('/oauth/google/callback', [OAuthController::class, 'callbackFromGoogle'])
+        ->name("google.callback");
+
+    # Twitter OAuth routes
+    Route::get('/oauth/twitter/redirect', [OAuthController::class, 'redirectToTwitter'])
+        ->name("twitter.redirect");
+    Route::get('/oauth/twitter/callback', [OAuthController::class, 'callbackFromTwitter'])
+        ->name("twitter.callback");
 });
 
 Route::middleware('auth')->group(function () {

@@ -20,6 +20,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'google_id',
+        'twitter_id',
+        'twitter_token',
+        'twitter_refresh_token',
     ];
 
     /**
@@ -42,6 +46,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'twitter_token' => 'encrypted',
+            'twitter_refresh_token' => 'encrypted',
         ];
     }
 }
