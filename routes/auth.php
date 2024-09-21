@@ -35,17 +35,17 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.store');
 
-    # Google OAuth routes
+    // Google OAuth routes
     Route::get('/oauth/google/redirect', [OAuthController::class, 'redirectToGoogle'])
         ->name("google.redirect");
     Route::get('/oauth/google/callback', [OAuthController::class, 'callbackFromGoogle'])
-        ->name("google.callback");
+        ->name('google.callback');
 
-    # Twitter OAuth routes
+    // Twitter OAuth routes
     Route::get('/oauth/twitter/redirect', [OAuthController::class, 'redirectToTwitter'])
-        ->name("twitter.redirect");
+        ->name('twitter.redirect');
     Route::get('/oauth/twitter/callback', [OAuthController::class, 'callbackFromTwitter'])
-        ->name("twitter.callback");
+        ->name('twitter.callback');
 });
 
 Route::middleware('auth')->group(function () {
@@ -70,3 +70,13 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 });
+
+// Terms of service
+Route::get('/terms-of-service', function () {
+    return view('auth.terms-of-service');
+})->name('terms');
+
+// Privacy policy
+Route::get('/privacy-policy', function () {
+    return view('auth.privacy-policy');
+})->name('policy');

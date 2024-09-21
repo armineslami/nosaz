@@ -95,9 +95,13 @@
                         <input id="terms_and_policy" type="checkbox" name="terms" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-accent shadow-sm focus:ring-accent dark:focus:ring-accent dark:focus:ring-offset-gray-800">
                         <span class="ms-2 mt-0.5 text-xs text-text-600 dark:text-text-600">
                             {{ __('پذیرش') }}
-                            <a class="mx-2 text-accent font-bold" href="#">{{ __('قوانین استفاده از سرویس') }}</a>
+                            <a class="mx-2 text-accent font-bold" href="{{ route('terms') }}" target="_blank">
+                                {{ __('قوانین استفاده از سرویس') }}
+                            </a>
                             {{ __('و') }}
-                            <a class="mx-2 text-accent font-bold" href="#">{{ __('سیاست حفظ حریم شخصی') }}</a>
+                            <a class="mx-2 text-accent font-bold" href="{{ route('policy') }}" target="_blank">
+                                {{ __('سیاست حفظ حریم شخصی') }}
+                            </a>
                         </span>
                     </label>
                 </div>
