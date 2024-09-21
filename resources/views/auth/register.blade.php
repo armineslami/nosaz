@@ -10,7 +10,7 @@
 {{--            <x-auth-session-status class="my-8" :status="session('status')" />--}}
 
             <!-- oAuth Login -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-12">
+            <div class="grid grid-cols-12 gap-4 mt-12">
                 <!-- Google -->
                 <a class="col-span-6" href="{{ route("google.redirect") }}">
                     <x-secondary-button class="w-full items-center !bg-transparent !border-primary">
