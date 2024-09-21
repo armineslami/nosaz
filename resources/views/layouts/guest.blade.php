@@ -12,11 +12,11 @@
     </head>
     <body class="text-text-950 dark:text-text-50 antialiased bg-background">
         <div class="flex min-h-screen">
-            <div class="grid grid-cols-1 lg:grid-cols-2 w-full">
-                <div class="col-span-1">
+            <div class="grid grid-cols-1 lg:grid-cols-12 w-full">
+                <div class="col-span-1 lg:col-span-5">
                     {{ $slot }}
                 </div>
-                <div class="col-span-1 bg-primary hidden lg:flex items-center">
+                <div class="col-span-1 lg:col-span-7 bg-primary hidden lg:flex items-center">
                     <div class="text-justify p-8 w-full">
                         <div class="flex justify-center">
                             <a href="/">
@@ -27,7 +27,7 @@
                             <h1 class="font-bold text-4xl text-text dark:text-text-50 leading-relaxed">
                                 {{ __('محاسبه هزینه‌ پروژه‌های خود را آسان کنید.') }}
                             </h1>
-                            <p class="text-justify mt-6 font-normal text-sm text-text-700 dark:text-text-200">
+                            <p class="text-center mt-6 font-normal text-sm text-text-700 dark:text-text-200">
                                 {{ __('هزینه و سود هر پروژه را محاسبه و با سایر پروژهای خود مقایسه کنید تا بهترین پروژه از نظر سود دهی را انتخاب کنید.') }}
                                 {{ __('لیست پروژه‌ها را همیشه به همراه خود داشته باشید تا در هر زمان و مکان به آن‌ها دسترسی داشته باشید و یا با همکاران خود به اشتراک بگذارید.') }}
                             </p>
