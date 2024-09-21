@@ -1,7 +1,10 @@
 <x-basic-layout>
+    <div class="bg-primary p-16 text-center">
+        <p class="text-text text-4xl font-bold">{{ __('terms.terms_of_service') }}</p>
+    </div>
+
     <div class="flex items-center w-full">
         <div class="w-full p-8">
-            <p class="text-text text-2xl font-bold">{{ __('terms.terms_of_service') }}</p>
             <div class="mt-8">
                 <p class="text-text text-lg font-bold mb-4">{{ __('terms.terms') }}</p>
                 <p class="text-text text-base font-normal text-justify">{{ __('terms.terms_description') }}</p>

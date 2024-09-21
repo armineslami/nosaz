@@ -1,7 +1,10 @@
 <x-basic-layout>
+    <div class="bg-primary p-16 text-center">
+        <p class="text-text text-4xl font-bold">{{ __('privacy.privacy_policy') }}</p>
+    </div>
+
     <div class="flex items-center w-full">
         <div class="w-full p-8">
-            <p class="text-text text-2xl font-bold">{{ __('privacy.privacy_policy') }}</p>
             <div class="mt-8">
                 <p class="text-text text-base font-normal text-justify">{{ __('privacy.privacy_policy_description') }}</p>
             </div>
