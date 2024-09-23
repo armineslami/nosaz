@@ -45,5 +45,66 @@
             </svg>
             <span class="ms-4 text-sm">{{ __('گزارشات') }}</span>
         </a>
+                <div id="effect-area" class="relative text-gray-500 dark:text-gray-600 text-center text-xs mb-2 cursor-pointer">
+                    <div class="relative text-center inline-flex">
+                        <span>✨</span>
+                        <span class="font-bold mx-1" >Armin</span>
+                        <span>Crafted with caffeine by</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-600 text-center text-xs">
+                        {{ config('app.version') }}
+                    </p>
+                </div>
+
+            </div>
+        </div>
     </div>
 </aside>
+
+<script>
+    let sparkleInterval;
+    const mainArea = document.getElementById('effect-area');
+
+    mainArea.addEventListener('mouseenter', function () {
+        let delay = 300;
+
+        // Start generating sparkles repeatedly while hovering
+        sparkleInterval = setInterval(() => {
+            createSparkle(this);
+        }, delay); // Generate a sparkle every 300ms
+    });
+
+    mainArea.addEventListener('mouseleave', function () {
+        // Stop generating sparkles when the mouse leaves
+        clearInterval(sparkleInterval);
+    });
+
+    function createSparkle(element) {
+        const emojis = ['✨'];
+        const sparkle = document.createElement('span');
+        sparkle.classList.add('sparkle');
+        // sparkle.textContent = '✨';
+        sparkle.textContent = emojis[Math.round(Math.random() * emojis.length -1)];
+
+        // Get the position of the "✨" emoji and place the new sparkles near it
+        const sparkleX = mainArea.getBoundingClientRect();  // Keep it near the right of the text
+        const sparkleY = Math.random() * 20 - 20; // Small random vertical offset
+
+        // Set the position of the sparkle relative to the main star
+        sparkle.style.left = `${sparkleX}px`;
+        sparkle.style.top = `${sparkleY}px`;
+
+        // Append the sparkle to the container
+        element.appendChild(sparkle);
+
+        // Trigger the animation
+        setTimeout(() => {
+            sparkle.classList.add('sparkle-fade-up');
+        }, 100); // Delay the fade effect slightly
+
+        // Remove the sparkle after the animation ends
+        setTimeout(() => {
+            sparkle.remove();
+        }, 1500); // 1.5 seconds to disappear
+    }
+</script>
