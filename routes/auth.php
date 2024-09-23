@@ -70,13 +70,3 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 });
-
-// Terms of service
-Route::get('/terms-of-service', function () {
-    return view('auth.terms-of-service');
-})->name('terms');
-
-// Privacy policy
-Route::get('/privacy-policy', function () {
-    return view('auth.privacy-policy');
-})->name('policy');

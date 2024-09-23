@@ -24,4 +24,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Terms of service
+Route::get('/terms-of-service', function () {
+    return view('auth.terms-of-service');
+})->name('terms');
+
+// Privacy policy
+Route::get('/privacy-policy', function () {
+    return view('auth.privacy-policy');
+})->name('policy');
+
 require __DIR__.'/auth.php';
