@@ -31,7 +31,7 @@
             <!-- User Icon (sm) -->
             <button
                 type="button"
-                class="md:hidden flex mx-3 mr-0 text-sm p-2 me-0 md:me-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                class="md:hidden flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                 aria-expanded="false"
                 data-dropdown-toggle="sm-dropdown"
             >
@@ -106,12 +106,12 @@
                 </svg>
             </button>
 
-            <div class="hidden md:block bg-gray-200 dark:bg-gray-700 w-0.5 h-8 ms-0 me-6"></div>
+            <div class="hidden md:block bg-gray-200 dark:bg-gray-700 w-0.5 h-8 ms-0 me-2"></div>
 
             <!-- User Icon (md) -->
             <button
                 type="button"
-                class="hidden md:flex mx-3 mr-0 text-sm p-2 me-0 md:me-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                class="hidden md:flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                 aria-expanded="false"
                 data-dropdown-toggle="md-dropdown"
             >
