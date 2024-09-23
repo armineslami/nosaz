@@ -5,12 +5,10 @@ use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return redirect('dashboard');
-});
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () { return redirect('dashboard'); });
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::get('/formula', [FormulaController::class, 'edit'])->name('formula.edit');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
