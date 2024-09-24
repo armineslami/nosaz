@@ -1,4 +1,4 @@
-<nav class="bg-background border-b-4 border-gray-200 dark:border-gray-700 px-8 py-3.5 fixed right-0 md:right-[16rem] left-0 z-50 w-full md:w-[calc(100%-16rem)]">
+<nav class="bg-background border-b-4 border-gray-200 dark:border-gray-700 px-8 py-3.5 fixed right-0 md:right-[16rem] left-0 z-20 w-full md:w-[calc(100%-16rem)]">
     <div class="flex flex-wrap flex-row items-center">
         <div class="flex basis-3/4 items-center">
             <!-- Hamburger Button -->
@@ -51,7 +51,8 @@
                 <label for="top-bar-search" class="sr-only">Search</label>
                 <div class="relative">
                     <div
-                        class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                        class="flex absolute inset-y-0 left-0 items-center px-3 cursor-pointer"
+                        onclick="event.preventDefault(); this.closest('form').submit();"
                     >
                         <svg
                             class="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -66,13 +67,12 @@
                             ></path>
                         </svg>
                     </div>
-                    <input
-                        type="text"
-                        name="email"
-                        id="topbar-search"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Search"
-                    />
+
+                    <x-text-input id="search" class="block w-full"
+                                  placeholder="{{ __('navigation.search_for_project') }}"
+                                  type="text"
+                                  name="query"
+                                  required />
                 </div>
             </form>
         </div>
