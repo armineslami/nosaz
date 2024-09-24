@@ -35,6 +35,9 @@
         @include('layouts.bottom-navigation')
     </div>
 
+    <!-- Social modal -->
+    @include('layouts.social-modal')
+
 </div>
 </body>
 </html>
