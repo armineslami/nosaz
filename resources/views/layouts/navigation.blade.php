@@ -29,25 +29,25 @@
             {{--            </a>--}}
 
             <!-- User Icon (sm) -->
-            <button
-                type="button"
-                class="md:hidden flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                aria-expanded="false"
-                data-dropdown-toggle="sm-dropdown"
-            >
-                <span class="sr-only">Open user menu</span>
+{{--            <button--}}
+{{--                type="button"--}}
+{{--                class="md:hidden flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"--}}
+{{--                aria-expanded="false"--}}
+{{--                data-dropdown-toggle="sm-dropdown"--}}
+{{--            >--}}
+{{--                <span class="sr-only">Open user menu</span>--}}
 {{--                <img--}}
 {{--                    class="w-8 h-8 rounded-full"--}}
 {{--                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"--}}
 {{--                    alt="user photo"--}}
 {{--                />--}}
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                </svg>
-            </button>
+{{--                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">--}}
+{{--                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />--}}
+{{--                </svg>--}}
+{{--            </button>--}}
 
             <!-- Search -->
-            <form action="#" method="GET" class="hidden w-full md:block">
+            <form action="#" method="GET" class=" w-full block">
                 <label for="top-bar-search" class="sr-only">Search</label>
                 <div class="relative">
                     <div
@@ -97,7 +97,7 @@
             <button
                 type="button"
                 data-dropdown-toggle="apps-dropdown"
-                class="p-2 me-0 md:me-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                class="p-2 me-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
             >
                 <span class="sr-only">Settings</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -106,12 +106,12 @@
                 </svg>
             </button>
 
-            <div class="hidden md:block bg-gray-200 dark:bg-gray-700 w-0.5 h-8 ms-0 me-2"></div>
+            <div class="block bg-gray-200 dark:bg-gray-700 w-0.5 h-8 ms-0 me-2"></div>
 
-            <!-- User Icon (md) -->
+            <!-- User Icon -->
             <button
                 type="button"
-                class="hidden md:flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                class="flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                 aria-expanded="false"
                 data-dropdown-toggle="md-dropdown"
             >
