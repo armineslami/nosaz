@@ -9,7 +9,12 @@
     </div>
     <a href="{{ route('profile.edit') }}" class="py-1 text-gray-500 dark:text-gray-400" aria-labelledby="dropdown">
         <x-dropdown-link :href="route('profile.edit')">
-            {{ __('Profile') }}
+            {{ __('پروفایل') }}
+        </x-dropdown-link>
+    </a>
+    <a href="{{ route('profile.edit') }}" class="py-1 text-gray-500 dark:text-gray-400" aria-labelledby="dropdown">
+        <x-dropdown-link :href="route('profile.edit')">
+            {{ __('تنظیمات') }}
         </x-dropdown-link>
     </a>
     <a class="py-1 text-gray-500 dark:text-gray-400" aria-labelledby="dropdown">
@@ -18,7 +23,7 @@
 
             <x-dropdown-link
                 :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                {{ __('Log Out') }}
+                {{ __('خروج') }}
             </x-dropdown-link>
         </form>
     </a>
