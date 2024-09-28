@@ -18,7 +18,7 @@
             </svg>
             <div class="flex items-center">
                 <span class="text-xs {{ Route::is('formula.edit') ? 'text-text-900 dark:text-text-100' : 'text-gray-900 dark:text-gray-100 group-hover:text-text-900 dark:group-hover:text-text-100' }}">{{ __('فرمول‌ها') }}</span>
-                <span class="bg-accent rounded border-0 text-xsmall px-0.5 ms-1">{{ __('آزمایشی') }}</span>
+                <span class="bg-accent rounded border-0 text-xsmall px-0.5 ms-1 text-white font-bold">{{ __('آزمایشی') }}</span>
             </div>
         </a>
         <a href="{{ route('reports') }}" type="button" class="inline-flex flex-col items-center justify-center px-5 group {{ Route::is('reports') ? 'bg-primary' : 'hover:bg-primary' }}">
