@@ -35,9 +35,11 @@
         <div>
             <p class="text-text text-sm font-bold mb-2">{{ __('فرمول خود را برای محاسبه بسازید') }}</p>
             <p class="text-text-600 dark:text-gray-400 text-sm justify-center">{{ __('اگر می‌خواهید روش محاسبات خود را داشته باشید، می‌توانید فرمول خود را ساخته و از آن برای محاسبات پروژه استفاده کنید') }}</p>
-            <x-primary-button class="mt-4">
-                {{ __('ساخت فرمول') }}
-            </x-primary-button>
+            <a href="{{ route('formula.create') }}">
+                <x-primary-button class="mt-4">
+                    {{ __('ساخت فرمول') }}
+                </x-primary-button>
+            </a>
         </div>
     </div>
 </div>

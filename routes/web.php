@@ -9,7 +9,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () { return redirect('dashboard'); });
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-    Route::get('/formula', [FormulaController::class, 'edit'])->name('formula.edit');
+    Route::get('/formula/create', [FormulaController::class, 'create'])->name('formula.create');
+    Route::get('/formula/{id?}', [FormulaController::class, 'index'])->name('formula.index');
+//    Route::post('/formula', [FormulaController::class, 'store'])->name('formula.store');
+//    Route::patch('/formula/{id}', [FormulaController::class, 'update'])->name('formula.update');
+//    Route::delete('/formula/{id}', [FormulaController::class, 'destroy'])->name('formula.destroy');
+
+//    Route::get('/formula', [FormulaController::class, 'index'])->name('formula.index');
+//    Route::get('/formula/create', [FormulaController::class, 'edit'])->name('formula.edit');
 
     Route::get('/projects', function () {
         return redirect('dashboard');
