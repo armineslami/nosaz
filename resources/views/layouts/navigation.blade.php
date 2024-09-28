@@ -97,7 +97,7 @@
             <button
                 type="button"
                 data-dropdown-toggle="apps-dropdown"
-                class="p-2 me-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                class="hidden md:block p-2 me-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
             >
                 <span class="sr-only">Settings</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -106,7 +106,7 @@
                 </svg>
             </button>
 
-            <div class="block bg-gray-200 dark:bg-gray-700 w-0.5 h-8 ms-0 me-2"></div>
+            <div class="hidden md:block bg-gray-200 dark:bg-gray-700 w-0.5 h-8 ms-0 me-2"></div>
 
             <!-- User Icon -->
             <button
@@ -415,9 +415,9 @@
             {{--            </div>--}}
 
             <!-- User dropdown menu -->
-            <div id="sm-dropdown" class="hidden">
-                <x-user-dropdown />
-            </div>
+{{--            <div id="sm-dropdown" class="hidden">--}}
+{{--                <x-user-dropdown />--}}
+{{--            </div>--}}
             <div id="md-dropdown" class="hidden">
                 <x-user-dropdown />
             </div>
