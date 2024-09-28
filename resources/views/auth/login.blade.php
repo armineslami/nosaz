@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <div class="flex items-center min-h-screen">
+    <div class="flex lg:items-center min-h-screen">
         <div class="p-8 w-full">
             <h1 class="text-start text-2xl font-bold text-text">
                 {{ __('ورود') }}
@@ -78,7 +78,7 @@
 
                     @if (Route::has('password.request'))
                         <a class="text-xs font-bold text-accent hover:text-accent-500 dark:hover:text-accent-700" href="{{ route('password.request') }}">
-                            {{ __('پسورد را فراموش کردید؟') }}
+                            {{ __('پسورد را فراموش کرده‌اید؟') }}
                         </a>
                     @endif
                 </div>

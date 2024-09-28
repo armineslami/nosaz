@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <div class="flex items-center min-h-screen">
+    <div class="flex lg:items-center min-h-screen">
         <div class="p-8 w-full">
             <h1 class="text-start text-2xl font-bold text-text">
                 {{ __('ثبت نام') }}
