@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VariableController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -11,12 +12,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/formula/create', [FormulaController::class, 'create'])->name('formula.create');
     Route::get('/formula/{id?}', [FormulaController::class, 'index'])->name('formula.index');
-//    Route::post('/formula', [FormulaController::class, 'store'])->name('formula.store');
+    Route::post('/formula', [FormulaController::class, 'store'])->name('formula.store');
 //    Route::patch('/formula/{id}', [FormulaController::class, 'update'])->name('formula.update');
 //    Route::delete('/formula/{id}', [FormulaController::class, 'destroy'])->name('formula.destroy');
 
-//    Route::get('/formula', [FormulaController::class, 'index'])->name('formula.index');
-//    Route::get('/formula/create', [FormulaController::class, 'edit'])->name('formula.edit');
+    Route::get('/formula/variable/create', [VariableController::class, 'create'])->name('formula.variable.create');
+    Route::post('/formula/variable', [VariableController::class, 'store'])->name('formula.variable.store');
+    Route::delete('/formula/variable/{id}', [VariableController::class, 'destroy'])->name('formula.variable.destroy');
 
     Route::get('/projects', function () {
         return redirect('dashboard');
