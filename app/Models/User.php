@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -49,5 +50,15 @@ class User extends Authenticatable implements MustVerifyEmail
             'twitter_token' => 'encrypted',
             'twitter_refresh_token' => 'encrypted',
         ];
+    }
+
+    public function formulas(): HasMany
+    {
+        return $this->hasMany(Formula::class);
+    }
+
+    public function variables(): HasMany
+    {
+        return $this->hasMany(Variable::class);
     }
 }

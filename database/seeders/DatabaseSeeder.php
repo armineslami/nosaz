@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Operand;
+use App\Models\Variable;
 use App\Models\Setting;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         self::createUsers();
         self::createSettings();
-        self::createOperands();
+        self::createVariables();
     }
 
     static function createUsers(): void
@@ -47,23 +47,23 @@ class DatabaseSeeder extends Seeder
 //        Operation::create(['symbol' => '=']);
 //    }
 
-    static function createOperands(): void
+    static function createVariables(): void
     {
-        Operand::create(['name' => __('operands.land_area')]);
-        Operand::create(['name' => __('operands.density_percentage')]);
-        Operand::create(['name' => __('operands.number_of_floor')]);
-        Operand::create(['name' => __('operands.number_of_units_per_floor')]);
-        Operand::create(['name' => __('operands.number_of_warehouses')]);
-        Operand::create(['name' => __('operands.area_of_warehouse')]);
-        Operand::create(['name' => __('operands.cost_per_meter')]);
-        Operand::create(['name' => __('operands.selling_price_per_meter')]);
-        Operand::create(['name' => __('operands.illegal_area_of_each_floor')]);
-        Operand::create(['name' => __('operands.cost_per_illegal_meter')]);
-        Operand::create(['name' => __('operands.constructor_share_percentage')]);
-        Operand::create(['name' => __('operands.over')]);
-        Operand::create(['name' => __('operands.land_purchase_price_per_meter')]);
-        Operand::create(['name' => __('operands.land_price')]);
-        Operand::create(['name' => __('operands.real_estate_commission_fee')]);
-        Operand::create(['name' => __('operands.other_expenses')]);
+        Variable::create(['name' => __('variables.land_area')]);
+        Variable::create(['name' => __('variables.density_percentage')]);
+        Variable::create(['name' => __('variables.number_of_floor')]);
+        Variable::create(['name' => __('variables.number_of_units_per_floor')]);
+        Variable::create(['name' => __('variables.number_of_warehouses')]);
+        Variable::create(['name' => __('variables.area_of_warehouse')]);
+        Variable::create(['name' => __('variables.cost_per_meter')]);
+        Variable::create(['name' => __('variables.selling_price_per_meter')]);
+        Variable::create(['name' => __('variables.illegal_area_of_each_floor')]);
+        Variable::create(['name' => __('variables.cost_per_illegal_meter')]);
+        Variable::create(['name' => __('variables.constructor_share_percentage')]);
+        Variable::create(['name' => __('variables.over')]);
+        Variable::create(['name' => __('variables.land_purchase_price_per_meter')]);
+        Variable::create(['name' => __('variables.land_price')]);
+        Variable::create(['name' => __('variables.real_estate_commission_fee')]);
+        Variable::create(['name' => __('variables.other_expenses')]);
     }
 }
