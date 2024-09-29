@@ -44,18 +44,18 @@
                 </div>
                 <ul id="formula-dropdown" class="{{ Route::is('formula.*') ? '' : 'hidden' }} py-2 space-y-2 mt-2">
                     <li>
-                        <a href="{{ route('formula.index') }}" class="flex text-sm w-full ms-4 px-4 py-2 text-gray-500 dark:text-gray-400 transition duration-75 rounded-md pl-11 group hover:bg-gray-100 dark:hover:bg-gray-700">
-                            {{ __('لیست فرمول‌ها') }}
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ route('formula.create') }}" class="flex text-sm w-full ms-4 px-4 py-2 text-gray-500 dark:text-gray-400 transition duration-75 rounded-md pl-11 group hover:bg-gray-100 dark:hover:bg-gray-700">
                             {{ __('ساخت فرمول') }}
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('formula.index') }}" class="flex text-sm w-full ms-4 px-4 py-2 text-gray-500 dark:text-gray-400 transition duration-75 rounded-md pl-11 group hover:bg-gray-100 dark:hover:bg-gray-700">
+                            {{ __('فرمول‌ها') }}
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('formula.variable.create') }}" class="flex text-sm w-full ms-4 px-4 py-2 text-gray-500 dark:text-gray-400 transition duration-75 rounded-md pl-11 group hover:bg-gray-100 dark:hover:bg-gray-700">
-                            {{ __('ایجاد متغیر') }}
+                            {{ __('متغیرها') }}
                         </a>
                     </li>
                 </ul>
