@@ -31,8 +31,12 @@
 
             <x-card id="variablesCard" class="min-h-28 {{ empty($variables) ? 'flex justify-center' : ''}}">
                 <div id="variablesEmptyState" class="{{ empty($variables) ? 'flex' : 'hidden'}} items-center">
-                    <p class="text-text-600 dark:text-gray-400 text-center text-xs">
-                        {{ __('متغیری نساخته‌اید') }}
+                    <p class="text-text-600 dark:text-gray-400 text-xs justify-center">
+                        {{ __('متغیری نساخته‌اید! یک متغیر جدید ') }}
+                        <a href="{{ route('formula.variable.create') }}" class="text-primary text-bold">
+                            {{ __('ایجاد') }}
+                        </a>
+                        {{ __('کنید') }}
                     </p>
                 </div>
                 @if(!empty($variables))
