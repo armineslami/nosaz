@@ -96,7 +96,6 @@
             <!-- Settings -->
             <button
                 type="button"
-                data-dropdown-toggle="apps-dropdown"
                 class="hidden md:block p-2 me-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
             >
                 <span class="sr-only">Settings</span>
