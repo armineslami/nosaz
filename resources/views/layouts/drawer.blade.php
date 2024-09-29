@@ -7,8 +7,8 @@
         <div class="flex items-center">
             <x-application-logo class="w-12 h-12 bg-primary rounded-lg px-1 " />
             <div class="relative ms-4">
-                <span class="absolute left-0 right-0 m-auto w-[fit-content] bottom-2">🏗‍</span>
-                <p class="text-text font-bold text-xl tracking-tight">{{ __('نوســـــــــــــــــاز') }}</p>
+                <span class="absolute left-[0.55rem] m-auto w-[fit-content] bottom-2">🏗‍</span>
+                <p class="text-text font-bold text-xl tracking-tight">{{ __('نوســـــــــــــــــ ز') }}</p>
             </div>
         </div>
 
