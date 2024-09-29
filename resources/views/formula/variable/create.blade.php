@@ -79,7 +79,6 @@
 
             function showEmptyStateIfThereIsNoVariablesLeft() {
                 const variablesContainer = document.getElementById('variablesContainer');
-                console.log("Childs count ", variablesContainer.children.length);
                 if (variablesContainer.children.length === 0) {
                     const variablesEmptyState = document.getElementById('variablesEmptyState');
                     variablesEmptyState.classList.remove('hidden');
