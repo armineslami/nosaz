@@ -67,6 +67,85 @@
                 textarea.selectionStart = textarea.selectionEnd = start + text.length;
                 textarea.focus(); // Refocus the textarea
             }
+
+            function updateFormula(data, length = 1, isDeletion = false) {
+                const builderContent = formulaBuilder.textContent;
+
+                let position = null;
+
+                // Determine the minimum length to compare both strings
+                const minLength = Math.min(builderContent.length, builderContentShadow.length);
+                console.log('builderContent', builderContent);
+                console.log(builderContent.length, builderContentShadow.length, 'minLength', minLength);
+
+                if (minLength === 0) {
+                    position = minLength;
+                }
+                else {
+                    // Loop through the strings to find the position where they differ
+                    for (let i = 0; i <= minLength; i++) {
+                        if (builderContentShadow[i] === undefined || builderContent[i] !== builderContentShadow[i]) {
+                            position = i;
+                            break;
+                        }
+                    }
+                }
+
+                console.log('Position', position);
+
+                // Update shadow to latest content
+                builderContentShadow = builderContent;
+
+                console.warn("Deletion", isDeletion);
+                if (isDeletion) {
+                    if (builderContent === '') {
+                        formulaPayload = '';
+                        formulaPayloadShadow = [];
+                    }
+                    else {
+                        formulaPayload = '';
+                        let length = 0;
+                        for (let i = 0; i < formulaPayloadShadow.length; i++) {
+                            if (formulaPayloadShadow[i].position === position) {
+                                console.log('i is', i, 'TO delete:', formulaPayloadShadow[i]);
+                                length = formulaPayloadShadow[i].length;
+                                formulaPayloadShadow.splice(i, 1);
+                            }
+                        }
+                        for (let i = 0; i < formulaPayloadShadow.length; i++) {
+                            if (formulaPayloadShadow[i].position > position) {
+                                let newPosition = formulaPayloadShadow[i].position - length;
+                                formulaPayloadShadow[i].position = newPosition < 0 ? 0 : newPosition;
+                            }
+                        }
+                        for (let i = 0; i < formulaPayloadShadow.length; i++) {
+                            formulaPayload += formulaPayloadShadow[i].name;
+                        }
+                    }
+                }
+                else {
+                    // Break the formula into array indexes
+                    const formulaArray = breakStringIntoArray(formulaPayload);
+                    console.log('Array', formulaArray);
+
+                    // Insert data at calculated position
+                    formulaArray.splice(position, 0, data);
+
+                    // Update formula payload shadow
+                    formulaPayloadShadow.splice(position, 0, {name: data, position, length})
+                    // for (let i = position; i < formulaPayloadShadow.length; i++) {
+                    //     formulaPayloadShadow[i].position = formulaPayloadShadow[i].position;// + length;
+                    // }
+
+                    // Create a string from the array
+                    formulaPayload = formulaArray.join('');
+                }
+
+                console.log('formulaPayload:', formulaPayload);
+                console.log('formulaPayloadShadow:', formulaPayloadShadow);
+                console.log('--------------------------');
+            }
+
         });
     </script>
 </x-app-layout>
