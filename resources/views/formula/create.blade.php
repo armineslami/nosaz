@@ -7,7 +7,7 @@
         <x-card>
             <div class="flex justify-end mb-2">
                 <a href="{{ route('formula.variable.create') }}">
-                    <x-secondary-button class="!bg-transparent !border-primary">
+                    <x-secondary-button class="inline-block md:hidden">
                         {{ __('متغیر جدید') }}
                     </x-secondary-button>
                     <x-primary-button>
@@ -17,13 +17,14 @@
             </div>
             <form method="POST" action="{{ route('formula.store') }}">
                 @csrf
-                <label for="formulaTextarea" class="block mb-2 text-sm text-text">اطلاعات فرمول</label>
-                <textarea id="formulaTextarea" rows="4" class="ltr block p-2.5 w-full text-sm text-text bg-gray-50 rounded-md shadow-sm border border-gray-300 dark:border-gray-700 focus:ring-accent focus:border-accent dark:bg-gray-900" placeholder="{{ __('فرمول خود را با استفاده از متغیر‌ها بسازید') }}"></textarea>
-{{--                <div class="flex justify-end mt-4"></div>--}}
+                <label class="block mb-2 text-sm text-text">{{ __('بدنه فرمول') }}</label>
+
+                <!-- Formula Building Area (contenteditable) -->
+                <div  id="formulaBuilder" contenteditable="true" dir="ltr" spellcheck="false" class="formula-builder !ltr leading-10 min-h-24 p-2.5 w-full text-sm text-text bg-gray-50 rounded-md shadow-sm outline-none border-2 border-gray-300 dark:border-gray-700 focus:ring-accent focus:border-accent dark:bg-gray-800"></div>
             </form>
 
             @if(empty($variables))
-                <div class="mt-8 text-center">
+                <div class="mt:4 md:mt-8 text-center">
                     <p class="text-text text-sm font-bold mb-2">{{ __('متغیری وجود ندارد') }}</p>
                     <p class="text-text-600 dark:text-gray-400 text-xs justify-center">
                         {{ __('متغیرهای خود را از طریق گزینه ') }}
@@ -34,38 +35,334 @@
                     </p>
                 </div>
             @else
-                <div id="variables" class="flex gap-4 mt-8">
+                <!-- Operation Buttons -->
+                <div id="operationButtons" class="flex flex-wrap mt-2 md:mt-4">
+                    <button class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-4 py-2 cursor-pointer" data-operation="+">+</button>
+                    <button class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-4 py-2 cursor-pointer" data-operation="-">-</button>
+                    <button class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-4 py-2 cursor-pointer" data-operation="/">/</button>
+                    <button class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-4 py-2 cursor-pointer" data-operation="*">*</button>
+                    <button class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-4 py-2 cursor-pointer" data-operation="^">^</button>
+                    <button class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-4 py-2 cursor-pointer" data-operation="%">%</button>
+                    <button class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-4 py-2 cursor-pointer" data-operation="=">=</button>
+                    <button class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-4 py-2 cursor-pointer" data-operation=")">(</button>
+                    <button class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-4 py-2 cursor-pointer" data-operation="(">)</button>
+                </div>
+
+                <!-- Variables -->
+                <div id="variablesArea" class="flex flex-wrap gap-2 mt-2 md:mt-4">
                     @foreach($variables as $variable)
-                        <div data-name="{{ $variable->name }}" class="bg-secondary py-2 px-3 min-w-24 rounded-md text-text text-sm cursor-grab">
+                        <div data-name="{{ $variable->name }}" data-id="{{ $variable->id }}" class="clickableVariable secondary-button shadow-md bg-primary py-2 px-3 min-w-12 rounded-md text-text text-sm cursor-pointer">
                             <p class="w-full text-center">{{ $variable->name }}</p>
                         </div>
                     @endforeach
                 </div>
+
+                <div class="flex flex-wrap gap-2 mt-2 md:mt-4">
+                    <div
+                        data-modal-target="storage-name-modal" data-modal-toggle="storage-name-modal"
+                        data-name="storage"
+                        class="clickableVariable secondary-button shadow-md bg-accent py-2 px-3 min-w-12 rounded-md text-white text-sm cursor-pointer">
+                        <p class="w-full text-center">{{ __('ذخیره ‌ساز جدید') }}</p>
+                    </div>
+                    <div id="storageArea" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <div>
+                    <p class="text-text text-sm font-bold mt-4 md:mt-8 mb-2">{{ __('راهنمایی') }}</p>
+                    <p class="text-text-600 dark:text-gray-400 text-sm">
+                        {{ __('برای نوشتن فرمول موارد زیر را رعایت کنید:') }}
+                    </p>
+
+                    <ul class="mt-4 p-4 text-text text-xs space-y-1 list-disc leading-6 lg:leading-5">
+                        <li>{{ __('تنها مجاز به استفاده از متغیرها، عملگرهای ریاضی و اعداد هستید. استفاده از هر کاراکتر دیگری منجر به محاسبه اشتباه می‌گردد.') }}</li>
+                        <li>{{ __('می‌توانید فرمول خود را در چند خط جدا بنویسید.') }}</li>
+                        <li>{{ __('برای اضافه کردن هریک از متغیرها و یا عملگرها کافیست روی آن ضربه بزنید.') }}</li>
+                        <li>{{ __('استفاده از دو متغیر یا عملگر پشت سر هم، مجاز نمی‌باشد.') }}</li>
+                        <li>
+                            {{ 'زمانی که می‌خواهید نتیجه یک عملیات ریاضی را ذخیره کنید کافیست از ' }}
+                            <span class="bg-background-100 border border-primary rounded-md text-text px-3 py-1">{{ '=' }}</span>
+                            {{ ' و به دنبال آن یک ' }}
+                            <span class="text-white bg-accent px-1.5 py-1 rounded-md">{{ 'ذخیره ساز' }}</span>
+                            {{ ' برای ذخیره سازی استفاده کنید.' }}
+                        </li>
+                        <li>{{ __('به صورت خودکار هر عبارت ریاضی پس از علامت = و ذخیره ساز، به پایان می‌رسد.') }}</li>
+                        <li>{{ __('نمونه‌ای از فرمول:') }}</li>
+                    </ul>
+
+                    <div class="ltr mt-4">
+                        <div class="flex items-center gap-1 text-sm">
+                            <p class="text-text">(</p>
+                            <div class="shadow-md bg-primary py-1 px-1.5 rounded-md text-text text-xs select-none">
+                                {{ __('متراژ زمین') }}
+                            </div>
+                            <p class="text-text"> * 60 ) / 100 = </p>
+                            <div class="shadow-md bg-accent py-1 px-1.5 rounded-md text-white text-xs select-none">
+                                {{ __('متراژ هر سقف') }}
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1 text-sm mt-2">
+                            <div class="shadow-md bg-accent py-1 px-1.5 rounded-md text-white text-xs select-none">
+                                {{ __('متراژ هر سقف') }}
+                            </div>
+                            <p class="text-text"> * </p>
+                            <div class="shadow-md bg-primary py-1 px-1.5 rounded-md text-text text-xs select-none">
+                                {{ __('تعداد سقف') }}
+                            </div>
+                            <p class="text-text"> = </p>
+                            <div class="shadow-md bg-accent py-1 px-1.5 rounded-md text-white text-xs select-none">
+                                {{ __('متراژ کل طبقات') }}
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1 text-sm mt-2">
+                            <div class="shadow-md bg-accent py-1 px-1.5 rounded-md text-white text-xs select-none">
+                                {{ __('متراژ کل طبقات') }}
+                            </div>
+                            <p class="text-text"> * </p>
+                            <div class="shadow-md bg-primary py-1 px-1.5 rounded-md text-text text-xs select-none">
+                                {{ __('قیمت ساخت هر متر') }}
+                            </div>
+                            <p class="text-text"> = </p>
+                            <div class="shadow-md bg-primary py-1 px-1.5 rounded-md text-text text-xs select-none">
+                                {{ __('هزینه ساخت') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endif
         </x-card>
+
+        @include('formula.storage-name-modal')
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const textarea = document.getElementById('formulaTextarea');
-            const element = document.getElementById('variables');
-            window.Sortable.create(element, {
-                sort: false,
-                onEnd: function(event) {
-                    // Get the variable name and insert it into the textarea
-                    const variableName = event.item.getAttribute('data-name');
-                    insertAtCursor(textarea, variableName);
-                }});
+            const formulaBuilder = document.getElementById('formulaBuilder');
+            let savedRange = null; // Save cursor position (range)
+            let modal = null;
+            let builderContentShadow = ''; // To be compared with formula builder content text
+            let formulaPayload = '';
+            let formulaPayloadShadow = [];
 
-            function insertAtCursor(textarea, text) {
-                const start = textarea.selectionStart;
-                const end = textarea.selectionEnd;
-                const beforeText = textarea.value.substring(0, start);
-                const afterText = textarea.value.substring(end);
-                textarea.value = beforeText + text + afterText;
-                // Move the cursor to the end of the inserted text
-                textarea.selectionStart = textarea.selectionEnd = start + text.length;
-                textarea.focus(); // Refocus the textarea
+            // Save the current cursor position in the contenteditable area
+            formulaBuilder.addEventListener('mouseup', saveSelection);
+            formulaBuilder.addEventListener('keydown', onFormulaBuilderKeyDown);
+            formulaBuilder.addEventListener('keyup', saveSelection);
+            formulaBuilder.addEventListener('input', onFormulaBuilderInput);
+
+            function saveSelection(disableTextSelection = true) {
+                const selection = window.getSelection();
+                if (selection.rangeCount > 0) {
+                    savedRange = selection.getRangeAt(0);
+                    if (disableTextSelection && savedRange.endOffset - savedRange.startOffset > 1) {
+                        selection.removeAllRanges();
+                        moveCursorToEnd(formulaBuilder);
+                    }
+                }
+            }
+
+            // Set onClick for operations
+            const operationButtons = document.querySelectorAll('.operationBtn');
+            operationButtons.forEach(function (operation) {
+                operation.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const operation = this.getAttribute('data-operation');
+                    insertVariable(formulaBuilder, operation, null, false, true);
+                });
+            });
+
+            // Set onClick for variables
+            const clickableVariables = document.querySelectorAll('.clickableVariable');
+            clickableVariables.forEach(function(variable) {
+                variable.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const variableName  = this.getAttribute('data-name');
+                    const variableId    = this.getAttribute('data-id');
+                    if (variableName === 'storage') {
+                        showStorageNameModal();
+                    }
+                    else {
+                        insertVariable(formulaBuilder, variableName, variableId);
+                    }
+                });
+            });
+
+            // Set key down for modal input
+            const storageNameInput = document.getElementById('storage-name');
+            storageNameInput.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    submitStorageNameModal();
+                }
+            });
+
+            // Set onClick for modal cancel button
+            const storageNameModalCancelButton = document.getElementById('storage-name-modal-cancel-button');
+            storageNameModalCancelButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                try {
+                    modal.hide();
+                }
+                catch (e) {}
+            });
+
+            // Set onClick for modal confirm button
+            const storageNameModalConfirmButton = document.getElementById('storage-name-modal-confirm-button');
+            storageNameModalConfirmButton.addEventListener('click', function (e) {
+                submitStorageNameModal();
+            });
+
+            // Insert data into contenteditable at the saved cursor position
+            function insertVariable(builder, data, id = null, isStorage = false, isRawText = false) {
+                let dataToInsert;
+
+                if (!isRawText) {
+                    const span = document.createElement('span');
+                    span.className = isStorage ? 'formula-storage-variable' : 'formula-variable';
+                    span.innerText = data;
+                    span.setAttribute('contenteditable', 'false'); // Make variable non-editable
+                    span.setAttribute('dir', 'ltr');
+                    dataToInsert = span;
+                }
+                else {
+                    dataToInsert = document.createTextNode(data);
+                }
+
+                // Check if we have a saved cursor position
+                if (savedRange) {
+                    const selection = window.getSelection();
+                    selection.removeAllRanges();
+                    selection.addRange(savedRange); // Restore the saved range
+
+                    const range = selection.getRangeAt(0);
+                    range.deleteContents(); // Remove any selected text
+                    range.insertNode(dataToInsert); // Insert variable at saved position
+
+                    // Move cursor after inserted variable
+                    range.setStartAfter(dataToInsert);
+                    range.setEndAfter(dataToInsert);
+                    selection.removeAllRanges();
+                    selection.addRange(range); // Set updated cursor range
+                } else {
+                    // If no valid selection, append to the end of contenteditable
+                    builder.appendChild(dataToInsert);
+                }
+
+                builder.focus(); // Refocus on the contenteditable area
+                // moveCursorToEnd(builder);
+                moveCursorForward(builder, dataToInsert)
+
+                /**
+                 * Send raw text as it is, but for storage variables send them wrapped between <>
+                 * and for variables wrap their ids between two #
+                 */
+                updateFormula(
+                    isRawText ? data : (isStorage ? '<'+data+'>' : '#'+id+'#'),
+                    data.length,
+                    false
+                );
+            }
+
+            function moveCursorToEnd(contentEditableElement)
+            {
+                let range,selection;
+                try {
+                    if(document.createRange)//Firefox, Chrome, Opera, Safari, IE 9+
+                    {
+                        range = document.createRange();//Create a range (a range is a like the selection but invisible)
+                        range.selectNodeContents(contentEditableElement);//Select the entire contents of the element with the range
+                        range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
+                        selection = window.getSelection();//get the selection object (allows you to change selection)
+                        selection.removeAllRanges();//remove any selections already made
+                        selection.addRange(range);//make the range you have just created the visible selection
+                    }
+                    else if(document.selection)//IE 8 and lower
+                    {
+                        range = document.body.createTextRange();//Create a range (a range is a like the selection but invisible)
+                        range.moveToElementText(contentEditableElement);//Select the entire contents of the element with the range
+                        range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
+                        range.select();//Select the range (make it the visible selection
+                    }
+                }
+                catch (e) {}
+            }
+
+            function moveCursorForward(contentEditableElement, node)
+            {
+                let range,selection;
+                try {
+                    if(document.createRange)//Firefox, Chrome, Opera, Safari, IE 9+
+                    {
+                        range = document.createRange();//Create a range (a range is a like the selection but invisible)
+                        range.selectNode(node);//Select the entire contents of the element with the range
+                        range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
+                        selection = window.getSelection();//get the selection object (allows you to change selection)
+                        selection.removeAllRanges();//remove any selections already made
+                        selection.addRange(range);//make the range you have just created the visible selection
+                    }
+                    else if(document.selection)//IE 8 and lower
+                    {
+                        range = document.body.createTextRange();//Create a range (a range is a like the selection but invisible)
+                        range.moveToElementText(contentEditableElement);//Select the entire contents of the element with the range
+                        range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
+                        range.select();//Select the range (make it the visible selection
+                    }
+                }
+                catch (e) {}
+            }
+
+            function showStorageNameModal()
+            {
+                const modalElement = document.getElementById('storage-name-modal');
+                const options = {
+                    closable: true,
+                    onHide: () => {
+                        // console.log('modal is hidden');
+                    },
+                    onShow: () => {
+                        // console.log('modal is shown');
+                    },
+                    onToggle: () => {
+                        // console.log('modal has been toggled');
+                    },
+                };
+
+                modal = new Modal(modalElement, options);
+                modal.show();
+
+                const modalCloseButton = document.getElementById('storage-name-modal-close-button');
+                modalCloseButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.hide();
+                });
+            }
+
+            function submitStorageNameModal() {
+                const storageNameInput = document.getElementById('storage-name');
+                try {
+                    if (storageNameInput.value.trim() !== '') {
+                        const storageName = storageNameInput.value;
+                        modal.hide();
+                        storageNameInput.value = '';
+                        insertVariable(formulaBuilder, storageName, null, true, false);
+                        createDraggableStorageVariable(storageName)
+                    }
+                } catch (e) {}
+            }
+
+            function createDraggableStorageVariable(name) {
+                const storageContainer = document.getElementById('storageArea');
+                const span = document.createElement('span');
+                span.className = 'formula-storage-variable draggableVariable';
+                span.innerText = name;
+                span.setAttribute('contenteditable', 'false'); // Make variable non-editable
+                span.setAttribute('dir', 'ltr');
+                span.setAttribute('data-name', name);
+                storageContainer.append(span);
+
+                span.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    insertVariable(formulaBuilder, name, null, true, false);
+                });
             }
 
             function onFormulaBuilderKeyDown(e) {
@@ -83,39 +380,12 @@
                 }
             }
 
-            function onFormulaBuilderKeyUp(e) {
-                const key = e.key;
-
-                const validKeys = [
-                    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-                    '(', ')', '=', '%', '^', '*', '/', '-', '+',
-                ];
-
-                const validActions = [
-                    'Backspace', 'Meta', 'Control', 'Alt', 'Shift', 'Enter',
-                    'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'
-                ]
-
-                if (validKeys.includes(key)) {
-                    updateFormula(key);
-                    saveSelection();
-                }
-                else if (validActions.includes(key)) {
-                    if (key === 'Backspace') {
-                        updateFormula(null, 0, true);
-                        saveSelection();
-                    }
-                }
-                else {
-                    e.preventDefault();
-                }
-            }
-
             function onFormulaBuilderInput(e) {
                 console.log('Data', e);
                 console.log('payload', formulaPayload);
                 console.log('text content', formulaBuilder.textContent)
                 if (e.inputType === 'deleteContentBackward') {
+                    console.log("RANGE", savedRange.endOffset, savedRange.startOffset)
                     updateFormula(null, 0, true);
                 }
                 else if (e.data !== null) {
@@ -190,9 +460,6 @@
 
                     // Update formula payload shadow
                     formulaPayloadShadow.splice(position, 0, {name: data, position, length})
-                    // for (let i = position; i < formulaPayloadShadow.length; i++) {
-                    //     formulaPayloadShadow[i].position = formulaPayloadShadow[i].position;// + length;
-                    // }
 
                     // Create a string from the array
                     formulaPayload = formulaArray.join('');
