@@ -34,19 +34,6 @@ class DatabaseSeeder extends Seeder
         Setting::factory(1)->create();
     }
 
-//    static function createOperations(): void
-//    {
-//        Operation::create(['symbol' => '+']);
-//        Operation::create(['symbol' => '/']);
-//        Operation::create(['symbol' => '-']);
-//        Operation::create(['symbol' => '*']);
-//        Operation::create(['symbol' => '(']);
-//        Operation::create(['symbol' => ')']);
-//        Operation::create(['symbol' => '^']);
-//        Operation::create(['symbol' => '%']);
-//        Operation::create(['symbol' => '=']);
-//    }
-
     static function createVariables(): void
     {
         Variable::create(['name' => __('variables.land_area')]);
