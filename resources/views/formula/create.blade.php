@@ -68,6 +68,63 @@
                 textarea.focus(); // Refocus the textarea
             }
 
+            function onFormulaBuilderKeyDown(e) {
+                const key = e.key;
+
+                const validKeys = [
+                    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+                    '(', ')', '=', '%', '^', '*', '/', '-', '+',
+                    'Backspace', 'Meta', 'Control', 'Alt', 'Shift', 'Enter',
+                    'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'
+                ];
+
+                if (!validKeys.includes(key)) {
+                    e.preventDefault();
+                }
+            }
+
+            function onFormulaBuilderKeyUp(e) {
+                const key = e.key;
+
+                const validKeys = [
+                    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+                    '(', ')', '=', '%', '^', '*', '/', '-', '+',
+                ];
+
+                const validActions = [
+                    'Backspace', 'Meta', 'Control', 'Alt', 'Shift', 'Enter',
+                    'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'
+                ]
+
+                if (validKeys.includes(key)) {
+                    updateFormula(key);
+                    saveSelection();
+                }
+                else if (validActions.includes(key)) {
+                    if (key === 'Backspace') {
+                        updateFormula(null, 0, true);
+                        saveSelection();
+                    }
+                }
+                else {
+                    e.preventDefault();
+                }
+            }
+
+            function onFormulaBuilderInput(e) {
+                console.log('Data', e);
+                console.log('payload', formulaPayload);
+                console.log('text content', formulaBuilder.textContent)
+                if (e.inputType === 'deleteContentBackward') {
+                    updateFormula(null, 0, true);
+                }
+                else if (e.data !== null) {
+                    updateFormula(e.data);
+                }
+
+                saveSelection();
+            }
+
             function updateFormula(data, length = 1, isDeletion = false) {
                 const builderContent = formulaBuilder.textContent;
 
@@ -146,6 +203,55 @@
                 console.log('--------------------------');
             }
 
+            function breakStringIntoArray(str) {
+                const result = [];
+                let temp = '';
+                let isHashSequence = false;
+                let isAngleBracketSequence = false;
+
+                for (let i = 0; i < str.length; i++) {
+                    let char = str[i];
+
+                    if (char === '#') {
+                        // Start or end of hash sequence
+                        if (isHashSequence) {
+                            temp += char; // Close sequence
+                            result.push(temp);
+                            temp = '';
+                            isHashSequence = false;
+                        } else {
+                            if (temp) result.push(temp);
+                            temp = char; // Start sequence
+                            isHashSequence = true;
+                        }
+                    } else if (char === '<') {
+                        // Start of angle bracket sequence
+                        if (temp) result.push(temp);
+                        temp = char;
+                        isAngleBracketSequence = true;
+                    } else if (char === '>' && isAngleBracketSequence) {
+                        // End of angle bracket sequence
+                        temp += char;
+                        result.push(temp);
+                        temp = '';
+                        isAngleBracketSequence = false;
+                    } else {
+                        temp += char;
+
+                        if (!isHashSequence && !isAngleBracketSequence) {
+                            // Normal character, just push to result
+                            result.push(temp);
+                            temp = '';
+                        }
+                    }
+                }
+
+                if (temp) {
+                    result.push(temp); // Push remaining temp
+                }
+
+                return result;
+            }
         });
     </script>
 </x-app-layout>
