@@ -23,13 +23,20 @@
                 <div  id="formulaBuilder" contenteditable="true" dir="ltr" spellcheck="false" class="formula-builder !ltr leading-10 min-h-24 p-2.5 w-full text-sm text-text bg-gray-50 rounded-md shadow-sm outline-none border-2 border-gray-300 dark:border-gray-700 focus:ring-accent focus:border-accent dark:bg-gray-800"></div>
             </form>
 
-            @if(empty($variables))
-                <div class="mt:4 md:mt-8 text-center">
+            @if(count($variables) === 0)
+                <div class="mt-6 md:mt-8 text-center">
                     <p class="text-text text-sm font-bold mb-2">{{ __('متغیری وجود ندارد') }}</p>
-                    <p class="text-text-600 dark:text-gray-400 text-xs justify-center">
+                    <p class="block md:hidden text-text-600 dark:text-gray-400 text-xs justify-center">
                         {{ __('متغیرهای خود را از طریق گزینه ') }}
                         <a href="{{ route('formula.variable.create') }}" class="text-primary text-bold">
                             {{ __('متغیر جدید') }}
+                        </a>
+                        {{ __('بسازید') }}
+                    </p>
+                    <p class="hidden md:block text-text-600 dark:text-gray-400 text-xs justify-center">
+                        {{ __('متغیرهای خود را از طریق بخش ') }}
+                        <a href="{{ route('formula.variable.create') }}" class="text-primary text-bold">
+                            {{ __('متغیرها') }}
                         </a>
                         {{ __('بسازید') }}
                     </p>
