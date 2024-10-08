@@ -5,22 +5,27 @@
             {{ __('برای محاسبه سود و هزینه پروژه‌های خود می‌توانید روش محاسباتی خود را ساخته و از آن استفاده کنید.') }}
         </p>
         <x-card>
-            <div class="flex justify-end mb-2">
-                <a href="{{ route('formula.variable.create') }}">
-                    <x-secondary-button class="inline-block md:hidden">
-                        {{ __('متغیر جدید') }}
-                    </x-secondary-button>
-                    <x-primary-button>
-                        {{ __('تایید فرمول') }}
-                    </x-primary-button>
-                </a>
-            </div>
-            <form method="POST" action="{{ route('formula.store') }}">
+            <form id="formulaForm" method="POST" action="{{ route('formula.store') }}">
                 @csrf
-                <label class="block mb-2 text-sm text-text">{{ __('بدنه فرمول') }}</label>
+                <div class="flex justify-end mb-2">
+                    <a href="{{ route('formula.variable.create') }}">
+                        <x-secondary-button class="inline-block md:hidden">
+                            {{ __('متغیر جدید') }}
+                        </x-secondary-button>
+                        <x-primary-button>
+                            {{ __('تایید فرمول') }}
+                        </x-primary-button>
+                    </a>
+                </div>
+
+                <label class="block mb-2 text-sm text-text">{{ __('فرمول') }}</label>
 
                 <!-- Formula Building Area (contenteditable) -->
-                <div  id="formulaBuilder" contenteditable="true" dir="ltr" spellcheck="false" class="formula-builder !ltr leading-10 min-h-24 p-2.5 w-full text-sm text-text bg-gray-50 rounded-md shadow-sm outline-none border-2 border-gray-300 dark:border-gray-700 focus:ring-accent focus:border-accent dark:bg-gray-800"></div>
+                <div id="formulaBuilder" contenteditable="true" dir="ltr" spellcheck="false" class="formula-builder !ltr leading-10 min-h-24 p-2.5 w-full text-sm text-text bg-gray-50 rounded-md shadow-sm outline-none border-2 border-gray-300 dark:border-gray-700 focus:ring-accent focus:border-accent dark:bg-gray-800"></div>
+
+                <x-input-error :messages="$errors->get('formula')" class="mt-2" />
+
+                <textarea id="formulaBuilderTextArea" name="formula" class="hidden"></textarea>
             </form>
 
             @if(count($variables) === 0)
@@ -143,6 +148,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const formulaForm = document.getElementById('formulaForm');
+            const formulaBuilderTextArea = document.getElementById('formulaBuilderTextArea');
             const formulaBuilder = document.getElementById('formulaBuilder');
             let savedRange = null; // Save cursor position (range)
             let modal = null;
@@ -150,7 +157,15 @@
             let formulaPayload = '';
             let formulaPayloadShadow = [];
 
-            // Save the current cursor position in the contenteditable area
+
+            /**
+             * Before submitting the form, the content of formulaPayload is set to hidden textarea
+             * and then this text area is submitted with the form.
+             */
+            formulaForm.onsubmit = function () {
+                formulaBuilderTextArea.value = formulaPayload;
+            }
+
             formulaBuilder.addEventListener('mouseup', saveSelection);
             formulaBuilder.addEventListener('keydown', onFormulaBuilderKeyDown);
             formulaBuilder.addEventListener('keyup', saveSelection);
