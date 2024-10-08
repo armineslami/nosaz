@@ -11,7 +11,6 @@ class Formula extends Model
 
     protected $fillable = [
         'name',
-        'private',
         'payload',
         'user_id',
     ];
