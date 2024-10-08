@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateFormulaRequest;
 use App\Repositories\FormulaRepository;
 use App\Repositories\VariableRepository;
 use App\Repositories\SettingRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -33,8 +35,13 @@ class FormulaController extends Controller
         return view('formula.create', ['variables' => $variables]);
     }
 
-    public function store(Request $request)
+    public function store(CreateFormulaRequest $request): JsonResponse
     {
-
+        $formula = FormulaRepository::create(
+            name: $request->name,
+            payload: $request->formula,
+            user_id: Auth::user()->id
+        );
+        return response()->json(['stored' => isset($formula)]);
     }
 }
