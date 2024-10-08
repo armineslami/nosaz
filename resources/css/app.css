@@ -269,6 +269,11 @@ blockquote {
     /*box-shadow: 0 20px 80px -10px theme('colors.secondary.DEFAULT');*/
 }
 
+.danger-button:hover {
+    transform: translate(0, -3px);
+    box-shadow: 0 0 80px -10px theme('colors.red.500');
+}
+
 /**
     Spark Transition
  */
