@@ -38,8 +38,12 @@ class FormulaRepository implements FormulaRepositoryInterface
         return Formula::findOrFail($id)->update($formula);
     }
 
-    public static function deleteById(int $id): int
+    public static function destroyById(int $id, int $user_id): bool
     {
-        return Formula::destroy($id);
+        $formula = self::byId($id);
+        if ($formula->user_id === $user_id) {
+            return Formula::destroy($id);
+        }
+        return false;
     }
 }
