@@ -11,11 +11,11 @@
     <body class="antialiased ">
         <div class="relative flex items-top justify-center min-h-screen bg-background items-center sm:pt-0">
             <div class="">
-                <div class="px-4 text-5xl md:text-7xl lg:text-[6rem] text-center text-text {{ app()->getLocale() === 'en' ? 'tracking-wider': ''}}">
+                <div class="px-4 text-5xl md:text-[5rem] lg:text-[6rem] text-center text-text {{ app()->getLocale() === 'en' ? 'tracking-wider': ''}}">
                     @yield('code')
                 </div>
 
-                <div class="text-sm lg:text-md text-center text-gray-500 {{ app()->getLocale() === 'en' ? 'tracking-wider': ''}}">
+                <div class="text-xs lg:text-md text-center text-gray-500 {{ app()->getLocale() === 'en' ? 'tracking-wider': ''}}">
                     @yield('message')
                 </div>
 
