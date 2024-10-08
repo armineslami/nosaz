@@ -25,14 +25,28 @@
                     </x-primary-button>
                 </div>
 
-                <label class="block mb-2 text-sm text-text">{{ __('فرمول') }}</label>
+                <x-input-label for="formulaName" :value="__('نام فرمول')" />
+
+                <x-text-input id="formulaName" class="block my-4 w-full xl:w-1/2"
+                              placeholder="{{ __('یک نام دلخواه برای فرمول خود انتخاب کنید') }}"
+                              type="text"
+                              name="name"
+                              :value="old('name')"
+                              required />
+
+                {{--<x-input-error :messages="$errors->get('name')" class="mt-2" />--}}
+                <p id="formulaNameError" class="text-xs text-red-600 dark:text-red-400 space-y-1 mt-2"></p>
+
+                <label class="block mt-2 mb-2 text-sm text-text">{{ __('فرمول') }}</label>
 
                 <!-- Formula Building Area (contenteditable) -->
-                <div id="formulaBuilder" contenteditable="true" dir="ltr" spellcheck="false" class="formula-builder !ltr leading-10 min-h-24 p-2.5 w-full text-sm text-text bg-gray-50 rounded-md shadow-sm outline-none border-2 border-gray-300 dark:border-gray-700 focus:ring-accent focus:border-accent dark:bg-gray-800"></div>
+                <div id="formulaBuilder" contenteditable="true" dir="ltr" spellcheck="false" class="formula-builder !ltr leading-10 min-h-24 p-2.5 w-full text-sm text-text bg-white rounded-md shadow-sm outline-none border-2 border-gray-300 dark:border-gray-700 focus:ring-accent focus:border-accent dark:bg-gray-800">
+                </div>
 
-                <x-input-error :messages="$errors->get('formula')" class="mt-2" />
+                {{--<x-input-error :messages="$errors->get('formula')" class="mt-2"/>--}}
+                <p id="formulaBuilderError" class="text-xs text-red-600 dark:text-red-400 space-y-1 mt-2"></p>
 
-                <textarea id="formulaBuilderTextArea" name="formula" class="hidden"></textarea>
+{{--                <textarea id="formulaBuilderTextArea" name="formula" class="hidden"></textarea>--}}
             </form>
 
             @if(count($variables) === 0)
