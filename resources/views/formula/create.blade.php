@@ -177,7 +177,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const formulaForm = document.getElementById('formulaForm');
-            const formulaBuilderTextArea = document.getElementById('formulaBuilderTextArea');
+            // const formulaBuilderTextArea = document.getElementById('formulaBuilderTextArea');
             const formulaBuilder = document.getElementById('formulaBuilder');
             let savedRange = null; // Save cursor position (range)
             let modal = null;
@@ -190,8 +190,10 @@
              * Before submitting the form, the content of formulaPayload is set to hidden textarea
              * and then this text area is submitted with the form.
              */
-            formulaForm.onsubmit = function () {
-                formulaBuilderTextArea.value = formulaPayload;
+            formulaForm.onsubmit = function (e) {
+                e.preventDefault();
+                // formulaBuilderTextArea.value = formulaPayload;
+                submitFormulaForm(formulaPayload);
             }
 
             formulaBuilder.addEventListener('mouseup', saveSelection);
@@ -568,6 +570,86 @@
                 }
 
                 return result;
+            }
+
+            function submitFormulaForm(formula) {
+                const formulaNameElement = document.getElementById('formulaName');
+                const formulaNameErrorLabel = document.getElementById('formulaNameError');
+                const formulaBuilderErrorLabel = document.getElementById('formulaBuilderError');
+                const buttonLabel = document.getElementById('formulaFormSubmitButtonLabel');
+                const buttonSpinner = document.getElementById('formulaFormSubmitButtonSpinner');
+
+                // Don't send another request if one is already sent
+                if (buttonLabel.classList.contains('hidden')) return;
+
+                formulaNameErrorLabel.innerText = '';
+                formulaBuilderErrorLabel.innerText = '';
+                buttonLabel.classList.add('hidden');
+                buttonSpinner.classList.remove('hidden');
+
+                axios.post("/formula", {name:formulaNameElement.value, formula})
+                    .then(response => {
+                        // console.log(response);
+                        if (response && response.status === 200) {
+                            if (response.data.stored) {
+                                showSuccessToast();
+                                clearFormulaForm();
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        // console.log(error);
+                        if (error && error.response) {
+                            const response = error.response;
+                            if (response.status === 422) {
+                                if (response.data.errors.name) {
+                                    formulaNameErrorLabel.innerText = response.data.errors.name[0] ?? response.data.message;
+                                }
+                                if (response.data.errors.formula) {
+                                    formulaBuilderErrorLabel.innerText = response.data.errors.formula[0] ?? response.data.message;
+                                }
+                            }
+                        }
+                    })
+                    .finally( () => {
+                        buttonLabel.classList.remove('hidden');
+                        buttonSpinner.classList.add('hidden');
+                    });
+            }
+
+            function showSuccessToast() {
+                const toast = document.getElementById('toast');
+
+                toast.classList.add('toast-transition-in');
+                toast.classList.remove('hidden');
+
+                setTimeout(() => {
+                    toast.classList.remove('toast-transition-in');
+                    toast.classList.add('toast-transition-out');
+                    setTimeout(() => {
+                        toast.classList.add('hidden');
+                        toast.classList.remove('toast-transition-out');
+                    }, 1000);
+                }, 5000);
+            }
+
+            function clearFormulaForm() {
+                const formulaNameElement = document.getElementById('formulaName');
+                const formulaNameErrorLabel = document.getElementById('formulaNameError');
+                const formulaBuilderErrorLabel = document.getElementById('formulaBuilderError');
+                const storageArea = document.getElementById('storageArea');
+
+                formulaNameElement.value = '';
+                formulaNameErrorLabel.innerText = '';
+
+                formulaBuilder.textContent = '';
+                formulaBuilderErrorLabel.innerText = '';
+
+                builderContentShadow = '';
+                formulaPayload = '';
+                formulaPayloadShadow = [];
+
+                storageArea.innerHTML = '';
             }
         });
     </script>
