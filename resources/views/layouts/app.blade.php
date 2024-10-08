@@ -28,7 +28,7 @@
 
         @include('layouts.navigation')
 
-        <main class="p-2 md:p-8 pb-20 md:pb-8 pt-24">
+        <main class="p-2 pt-24 pb-20 md:p-4 md:pt-24">
             {{ $slot }}
         </main>
 
