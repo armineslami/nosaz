@@ -3,6 +3,7 @@
 namespace App\Services\Formula;
 
 use App\Models\Variable;
+use App\Repositories\FormulaRepository;
 use App\Repositories\VariableRepository;
 
 class FormulaService
@@ -15,5 +16,10 @@ class FormulaService
     public static function destroyVariable(int $id, int $user_id = null): bool
     {
         return VariableRepository::destroy($id, $user_id);
+    }
+
+    public static function destroyFormula(int $id, int $user_id = null): bool
+    {
+        return FormulaRepository::destroyById($id, $user_id);
     }
 }
