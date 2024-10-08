@@ -395,13 +395,13 @@
                         const storageName = storageNameInput.value;
                         modal.hide();
                         storageNameInput.value = '';
-                        insertVariable(formulaBuilder, storageName, null, true, false);
-                        createDraggableStorageVariable(storageName)
+                        // insertVariable(formulaBuilder, storageName, null, true, false);
+                        createStorageVariable(storageName)
                     }
                 } catch (e) {}
             }
 
-            function createDraggableStorageVariable(name) {
+            function createStorageVariable(name) {
                 const storageContainer = document.getElementById('storageArea');
                 const span = document.createElement('span');
                 span.className = 'formula-storage-variable draggableVariable';
