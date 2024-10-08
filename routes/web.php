@@ -14,7 +14,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/formula/{id?}', [FormulaController::class, 'index'])->name('formula.index');
     Route::post('/formula', [FormulaController::class, 'store'])->name('formula.store');
 //    Route::patch('/formula/{id}', [FormulaController::class, 'update'])->name('formula.update');
-//    Route::delete('/formula/{id}', [FormulaController::class, 'destroy'])->name('formula.destroy');
+    Route::delete('/formula/{id}', [FormulaController::class, 'destroy'])->name('formula.destroy');
 
     Route::get('/formula/variable/create', [VariableController::class, 'create'])->name('formula.variable.create');
     Route::post('/formula/variable', [VariableController::class, 'store'])->name('formula.variable.store');
