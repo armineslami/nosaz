@@ -24,13 +24,12 @@ class FormulaRepository implements FormulaRepositoryInterface
         return Formula::paginate($count);
     }
 
-    public static function create(string $name, string $payload, int $user_id, bool $private = false): Formula
+    public static function create(string $name, string $payload, int $user_id): Formula
     {
         return Formula::create([
             'name' => $name,
             'payload' => $payload,
-            'user_id' => $user_id,
-            'private' => $private
+            'user_id' => $user_id
         ]);
     }
 
