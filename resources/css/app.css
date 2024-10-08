@@ -286,6 +286,10 @@ blockquote {
     opacity: 0; /* Fade out */
 }
 
+/**
+    Formula Variables
+ */
+
 .formula-variable {
     color: var(--text);
     background-color: var(--primary);
@@ -304,4 +308,39 @@ blockquote {
     border-radius: 0.375rem;
     cursor: pointer;
     user-select: none;
+}
+
+/**
+    Toast Animation
+ */
+
+@keyframes slide-in {
+    from {
+        /* Start from the below of screen */
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100%);
+        opacity: 0
+    }
+}
+
+.toast-transition-in {
+    animation: slide-in 1s forwards;
+}
+
+.toast-transition-out {
+    animation: slide-out 1s forwards;
 }
