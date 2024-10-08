@@ -1,4 +1,4 @@
-<nav class="bg-background border-b-4 border-gray-200 dark:border-gray-700 px-8 py-3.5 fixed right-0 md:right-[16rem] left-0 z-20 w-full md:w-[calc(100%-16rem)]">
+<nav class="bg-background border-b-4 border-gray-200 dark:border-gray-700 px-2 md:px-8 py-3.5 fixed right-0 md:right-[16rem] left-0 z-20 w-full md:w-[calc(100%-16rem)]">
     <div class="flex flex-wrap flex-row items-center">
         <div class="flex basis-3/4 items-center">
             <!-- Hamburger Button -->
