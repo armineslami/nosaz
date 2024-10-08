@@ -40,7 +40,7 @@
                     </p>
                 </div>
                 @if(!empty($variables))
-                    <div id="variablesContainer"  class="flex gap-4">
+                    <div id="variablesContainer"  class="flex gap-2">
                         @foreach($variables as $variable)
                             <div class="flex justify-between items-center bg-primary py-2 px-3 min-w-24 rounded-md text-text text-sm cursor-default">
                                 <p class="pe-4">{{ $variable->name }}</p>
