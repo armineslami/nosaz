@@ -8,11 +8,6 @@
             <form id="formulaForm" method="POST" action="{{ route('formula.store') }}">
                 @csrf
                 <div class="flex justify-end mb-2">
-                    <a href="{{ route('formula.variable.create') }}" class="inline-block md:hidden me-2">
-                        <x-secondary-button>
-                            {{ __('متغیر جدید') }}
-                        </x-secondary-button>
-                    </a>
                     <x-primary-button>
                         <span id="formulaFormSubmitButtonLabel">{{ __('تایید فرمول') }}</span>
                         <div id="formulaFormSubmitButtonSpinner" role="status" class="hidden">
