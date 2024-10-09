@@ -48,6 +48,19 @@ class FormulaController extends Controller
         return response()->json(['stored' => isset($formula)]);
     }
 
+    public function update(CreateFormulaRequest $request): JsonResponse
+    {
+        $formula = FormulaService::update(
+            $request->id,
+            [
+                'name' => $request->name,
+                'payload' => $request->formula,
+                'user_id' =>  Auth::user()->id
+            ]
+        );
+        return response()->json(['updated' => isset($formula)]);
+    }
+
     public function destroy(Request $request): RedirectResponse
     {
         $destroyed = FormulaService::destroyFormula($request->id, Auth::user()->id);
