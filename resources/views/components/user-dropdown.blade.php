@@ -7,24 +7,21 @@
             {{ Auth::user()->email }}
         </span>
     </div>
-    <a href="{{ route('profile.edit') }}" class="py-1 text-gray-500 dark:text-gray-400" aria-labelledby="dropdown">
-        <x-dropdown-link :href="route('profile.edit')">
-            {{ __('پروفایل') }}
-        </x-dropdown-link>
-    </a>
-    <a href="{{ route('profile.edit') }}" class="py-1 text-gray-500 dark:text-gray-400" aria-labelledby="dropdown">
-        <x-dropdown-link :href="route('profile.edit')">
-            {{ __('تنظیمات') }}
-        </x-dropdown-link>
-    </a>
-    <a class="py-1 text-gray-500 dark:text-gray-400" aria-labelledby="dropdown">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
 
-            <x-dropdown-link
-                :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                {{ __('خروج') }}
-            </x-dropdown-link>
-        </form>
-    </a>
+    <x-dropdown-link :href="route('profile.edit')">
+        {{ __('پروفایل') }}
+    </x-dropdown-link>
+
+    <x-dropdown-link :href="route('profile.edit')" class="block md:hidden">
+        {{ __('تنظیمات') }}
+    </x-dropdown-link>
+
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+
+        <x-dropdown-link
+            :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+            {{ __('خروج') }}
+        </x-dropdown-link>
+    </form>
 </div>
