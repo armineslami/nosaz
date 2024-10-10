@@ -349,3 +349,30 @@ blockquote {
 .toast-transition-out {
     animation: slide-out 1s forwards;
 }
+
+/**
+    Project Empty State Animation
+ */
+
+@keyframes slide-in-out {
+    0% {
+        transform: translateX(100%); /* Start off-screen to the right */
+        opacity: 0;
+    }
+    20% {
+        transform: translateX(0); /* Move to the center */
+        opacity: 1;
+    }
+    60% {
+        transform: translateX(0); /* Stay in the center for a while */
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%); /* Move off-screen to the left */
+        opacity: 0;
+    }
+}
+
+.slide-in-out {
+    animation: slide-in-out 3s ease-in-out forwards;
+}
