@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\VariableController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/formula/variable', [VariableController::class, 'store'])->name('formula.variable.store');
     Route::delete('/formula/variable/{id}', [VariableController::class, 'destroy'])->name('formula.variable.destroy');
 
-    Route::get('/projects', function () {
-        return redirect('dashboard');
-    })->name('projects.edit');
+    Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
+    Route::get('/project/{id?}', [ProjectController::class, 'index'])->name('project.index');
+    Route::post('/project', [ProjectController::class, 'store'])->name('project.store');
+    Route::patch('/project/{id}', [ProjectController::class, 'update'])->name('project.update');
+    Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
     Route::get('/reports', function () {
         return redirect('dashboard');
