@@ -15,12 +15,12 @@
         <div data-popover id="project-menu-popover" role="tooltip" class="absolute z-11 invisible inline-block w-[fit-content] transition-opacity duration-300 bg-white dark:bg-gray-700  border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm opacity-0">
             <ul class="mb-2">
                 <li>
-                    <a href="{{ route('project.create') }}" class="flex text-sm w-ful px-4 py-2 text-gray-500 dark:text-gray-400 transition duration-75 rounded-md pl-11 group hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <a href="{{ route('project.create') }}" class="flex text-sm w-ful px-4 py-2 {{ Route::is('project.create') ? 'bg-primary text-text-900 dark:text-text-100 border-b border-b-primary-400': 'text-text hover:text-text-900 hover:dark:text-text-100' }} transition duration-75 pl-11 group hover:bg-primary">
                         {{ __('ساخت پروژه') }}
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('project.index') }}" class="flex text-sm w-full px-4 py-2 text-gray-500 dark:text-gray-400 transition duration-75 rounded-md pl-11 group hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <a href="{{ route('project.index') }}" class="flex text-sm w-full px-4 py-2 {{ Route::is('project.index') ? 'bg-primary text-text-900 dark:text-text-100 border-b border-b-primary-400': 'text-text hover:text-text-900 hover:dark:text-text-100' }} transition duration-75 pl-11 group hover:bg-primary">
                         {{ __('پروژه‌ها') }}
                     </a>
                 </li>
@@ -39,17 +39,17 @@
         <div data-popover id="formula-menu-popover" role="tooltip" class="absolute z-11 invisible inline-block w-[fit-content] transition-opacity duration-300 bg-white dark:bg-gray-700  border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm opacity-0">
             <ul class="mb-2">
                 <li>
-                    <a href="{{ route('formula.create') }}" class="flex text-sm w-ful px-4 py-2 text-gray-500 dark:text-gray-400 transition duration-75 rounded-md pl-11 group hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <a href="{{ route('formula.create') }}" class="flex text-sm w-ful px-4 py-2 {{ Route::is('formula.create') ? 'bg-primary text-text-900 dark:text-text-100 border-b border-b-primary-400': 'text-text hover:text-text-900 hover:dark:text-text-100' }} transition duration-75 pl-11 group hover:bg-primary">
                         {{ __('ساخت فرمول') }}
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('formula.index') }}" class="flex text-sm w-full px-4 py-2 text-gray-500 dark:text-gray-400 transition duration-75 rounded-md pl-11 group hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <a href="{{ route('formula.index') }}" class="flex text-sm w-full px-4 py-2 {{ Route::is('formula.index') ? 'bg-primary text-text-900 dark:text-text-100 border-b border-b-primary-400': 'text-text hover:text-text-900 hover:dark:text-text-100' }} transition duration-75 pl-11 group hover:bg-primary">
                         {{ __('فرمول‌ها') }}
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('formula.variable.create') }}" class="flex text-sm w-full px-4 py-2 text-gray-500 dark:text-gray-400 transition duration-75 rounded-md pl-11 group hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <a href="{{ route('formula.variable.create') }}" class="flex text-sm w-full px-4 py-2 {{ Route::is('formula.variable.create') ? 'bg-primary text-text-900 dark:text-text-100 border-b border-b-primary-400': 'text-text hover:text-text-900 hover:dark:text-text-100' }} transition duration-75 pl-11 group hover:bg-primary">
                         {{ __('متغیرها') }}
                     </a>
                 </li>
