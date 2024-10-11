@@ -21,7 +21,7 @@ class VariableController extends Controller
 
     public function store(CreateVariableRequest $request)
     {
-        FormulaService::CreateVariable($request->name, Auth::user()->id);
+        FormulaService::createVariable($request->name, Auth::user()->id);
         return Redirect::route('formula.variable.create')->with('status', 'variable_created');
     }
 

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FormulaService
 {
-    public static function CreateVariable(string $name, int $user_id = null): Variable
+    public static function createVariable(string $name, int $user_id = null): Variable
     {
         return VariableRepository::create($name, $user_id);
     }
