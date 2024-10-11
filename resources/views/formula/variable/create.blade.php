@@ -33,9 +33,9 @@
                 <div id="variablesEmptyState" class="{{ empty($variables) ? 'flex' : 'hidden'}} items-center">
                     <p class="text-text-600 dark:text-gray-400 text-xs justify-center">
                         {{ __('متغیری نساخته‌اید! یک متغیر جدید ') }}
-                        <a href="{{ route('formula.variable.create') }}" class="text-primary text-bold">
+                        <span class="text-primary text-bold">
                             {{ __('ایجاد') }}
-                        </a>
+                        </span>
                         {{ __('کنید') }}
                     </p>
                 </div>
