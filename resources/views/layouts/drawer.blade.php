@@ -13,7 +13,7 @@
         </div>
 
         <div class="mt-8">
-           <div class="overflow-y-scroll">
+           <div>
                <a
                        class="flex items-center px-4 py-2 mt-0 rounded-md {{ Route::is('dashboard') ? 'bg-primary text-text-900 dark:text-text-100' : 'primary-button text-gray-900 dark:text-gray-100 hover:bg-primary dark:hover:text-text-100 dark:hover:bg-primary' }}"
                        href="{{ route('dashboard') }}">
@@ -22,15 +22,6 @@
                    </svg>
                    <span class="ms-4 text-sm">{{ __('داشبورد') }}</span>
                </a>
-               {{--            <a--}}
-               {{--                class="flex items-center px-4 py-2 mt-4 rounded-md {{ Route::is('project.*') ? 'primary-button bg-primary text-text-900 dark:text-text-100' : 'primary-button text-gray-900 dark:text-gray-100 hover:bg-primary dark:hover:text-text-100 dark:hover:bg-primary' }}"--}}
-               {{--                href="{{ route('project.index') }}">--}}
-               {{--                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">--}}
-               {{--                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />--}}
-               {{--                </svg>--}}
-               {{--                <span class="ms-4 text-sm">{{ __('پروژه‌ها') }}</span>--}}
-               {{--            </a>--}}
-
                <div>
                    <div
                            aria-controls="project-dropdown" data-collapse-toggle="project-dropdown"
