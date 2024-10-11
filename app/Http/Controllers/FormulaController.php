@@ -40,9 +40,9 @@ class FormulaController extends Controller
 
     public function store(CreateFormulaRequest $request): JsonResponse
     {
-        $formula = FormulaRepository::create(
+        $formula = FormulaService::createFormula(
             name: $request->name,
-            payload: $request->formula,
+            formula: $request->formula,
             user_id: Auth::user()->id
         );
         return response()->json(['stored' => isset($formula)]);
@@ -50,7 +50,7 @@ class FormulaController extends Controller
 
     public function update(CreateFormulaRequest $request): JsonResponse
     {
-        $formula = FormulaService::update(
+        $formula = FormulaService::updateFormula(
             $request->id,
             [
                 'name' => $request->name,
