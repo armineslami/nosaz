@@ -25,7 +25,8 @@ class CreateFormulaRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'formula' => ['required', 'string', new FormulaPayload()]
+            'formula' => ['required', 'string', new FormulaPayload()],
+            'storages' => 'string'
         ];
     }
 }
