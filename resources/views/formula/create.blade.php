@@ -90,7 +90,7 @@
                         data-modal-target="storage-name-modal" data-modal-toggle="storage-name-modal"
                         data-name="storage"
                         class="clickableVariable secondary-button shadow-md bg-accent py-2 px-3 min-w-12 rounded-md text-white text-sm cursor-pointer">
-                        <p class="w-full text-center">{{ __('ذخیره ‌ساز جدید') }}</p>
+                        <p class="w-full text-center">{{ __('برچسب جدید') }}</p>
                     </div>
                     <div id="storageArea" class="flex flex-wrap gap-2"></div>
                 </div>
@@ -107,54 +107,18 @@
                         <li>{{ __('برای اضافه کردن هریک از متغیرها و یا عملگرها کافیست روی آن ضربه بزنید.') }}</li>
                         <li>{{ __('استفاده از دو متغیر یا عملگر پشت سر هم، مجاز نمی‌باشد.') }}</li>
                         <li>
-                            {{ 'زمانی که می‌خواهید نتیجه یک عملیات ریاضی را ذخیره کنید کافیست از ' }}
+                            {{ __('زمانی که می‌خواهید نتیجه یک عملیات ریاضی را ذخیره کنید کافیست از ') }}
                             <span class="bg-background-100 border border-primary rounded-md text-text px-3 py-1">{{ '=' }}</span>
-                            {{ ' و به دنبال آن یک ' }}
-                            <span class="text-white bg-accent px-1.5 py-1 rounded-md">{{ 'ذخیره ساز' }}</span>
-                            {{ ' برای ذخیره سازی استفاده کنید.' }}
+                            {{ __(' و به دنبال آن یک ') }}
+                            <span class="text-white bg-accent px-1.5 py-1 rounded-md">{{ __('برچسب') }}</span>
+                            {{ __(' برای ذخیره سازی استفاده کنید. این برچسب‌ها اطلاعاتی هستند که می‌خواهید محاسبه شده و نمایش داده شوند.') }}
                         </li>
-                        <li>{{ __('به صورت خودکار هر عبارت ریاضی پس از علامت = و ذخیره ساز، به پایان می‌رسد.') }}</li>
+                        <li>{{ __('در زمان محاسبه پروژه تمامی متغیرها به شما نمایش داده می‌شوند تا مقادیر آن‌ها را وارد کنید و سپس نتیجه محاسبه برای هر یک از برچسب‌ها نمایش داده می‌شود.') }}</li>
+                        <li>{{ __('به صورت خودکار هر عبارت ریاضی پس از علامت = و برچسب، به پایان می‌رسد.') }}</li>
                         <li>{{ __('نمونه‌ای از فرمول:') }}</li>
                     </ul>
 
-                    <div class="ltr mt-4">
-                        <div class="flex items-center gap-1 text-sm">
-                            <p class="text-text">(</p>
-                            <div class="shadow-md bg-primary py-1 px-1.5 rounded-md text-text text-xs select-none">
-                                {{ __('متراژ زمین') }}
-                            </div>
-                            <p class="text-text"> * 60 ) / 100 = </p>
-                            <div class="shadow-md bg-accent py-1 px-1.5 rounded-md text-white text-xs select-none">
-                                {{ __('متراژ هر سقف') }}
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-1 text-sm mt-2">
-                            <div class="shadow-md bg-accent py-1 px-1.5 rounded-md text-white text-xs select-none">
-                                {{ __('متراژ هر سقف') }}
-                            </div>
-                            <p class="text-text"> * </p>
-                            <div class="shadow-md bg-primary py-1 px-1.5 rounded-md text-text text-xs select-none">
-                                {{ __('تعداد سقف') }}
-                            </div>
-                            <p class="text-text"> = </p>
-                            <div class="shadow-md bg-accent py-1 px-1.5 rounded-md text-white text-xs select-none">
-                                {{ __('متراژ کل طبقات') }}
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-1 text-sm mt-2">
-                            <div class="shadow-md bg-accent py-1 px-1.5 rounded-md text-white text-xs select-none">
-                                {{ __('متراژ کل طبقات') }}
-                            </div>
-                            <p class="text-text"> * </p>
-                            <div class="shadow-md bg-primary py-1 px-1.5 rounded-md text-text text-xs select-none">
-                                {{ __('قیمت ساخت هر متر') }}
-                            </div>
-                            <p class="text-text"> = </p>
-                            <div class="shadow-md bg-primary py-1 px-1.5 rounded-md text-text text-xs select-none">
-                                {{ __('هزینه ساخت') }}
-                            </div>
-                        </div>
-                    </div>
+                    @include('formula.default-formula')
                 </div>
             @endif
         </x-card>
