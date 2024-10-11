@@ -76,6 +76,11 @@
                                {{ __('متغیرها') }}
                            </a>
                        </li>
+                       <li>
+                           <a href="{{ route('formula.label.create') }}" class="flex text-xs w-full ms-4 px-4 py-2 text-gray-500 dark:text-gray-400 transition duration-75 rounded-md pl-11 group hover:bg-gray-100 dark:hover:bg-gray-700">
+                               {{ __('برچسب‌ها') }}
+                           </a>
+                       </li>
                    </ul>
                </div>
                <a

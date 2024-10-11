@@ -48,6 +48,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('formulas');
         Schema::dropIfExists('variables');
+        Schema::dropIfExists('labels');
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');

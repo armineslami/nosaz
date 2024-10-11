@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormulaController;
+use App\Http\Controllers\LabelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\VariableController;
@@ -20,6 +21,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/formula/variable/create', [VariableController::class, 'create'])->name('formula.variable.create');
     Route::post('/formula/variable', [VariableController::class, 'store'])->name('formula.variable.store');
     Route::delete('/formula/variable/{id}', [VariableController::class, 'destroy'])->name('formula.variable.destroy');
+
+    Route::get('/formula/label/create', [LabelController::class, 'create'])->name('formula.label.create');
+    Route::post('/formula/label', [LabelController::class, 'store'])->name('formula.label.store');
+    Route::delete('/formula/label/{id}', [LabelController::class, 'destroy'])->name('formula.label.destroy');
 
     Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
     Route::get('/project/{id?}', [ProjectController::class, 'index'])->name('project.index');
