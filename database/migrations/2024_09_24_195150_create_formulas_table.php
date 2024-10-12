@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('payload');
-            $table->text('storages');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
