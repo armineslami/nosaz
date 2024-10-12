@@ -72,29 +72,32 @@
                     const parent = this.parentElement;
                     const spinner = document.getElementById(`spinner-${variableId}`);
                     if (spinner.classList.contains('hidden')) {
-                        deleteVariable(variableId, parent, this, spinner);
+                        this.classList.add('hidden');
+                        spinner.classList.remove('hidden');
+                        deleteVariable(variableId)
+                            .then((deleted) => {
+                                if (deleted) {
+                                    parent.remove();
+                                    showEmptyStateIfThereIsNoVariablesLeft();
+                                }
+                            })
+                            .finally(() => {
+                                this.classList.remove('hidden');
+                                spinner.classList.add('hidden');
+                            });
                     }
                 });
             });
 
-            function deleteVariable(id, parentElement, deleteButton, spinner) {
-                deleteButton.classList.add('hidden');
-                spinner.classList.remove('hidden');
-
-                axios.delete(`/formula/variable/${id}`)
+            async function deleteVariable(id) {
+                return axios.delete(`/formula/variable/${id}`)
                     .then(response => {
                         const deleted = response.data.deleted;
-                        if (deleted) {
-                            parentElement.remove();
-                            showEmptyStateIfThereIsNoVariablesLeft();
-                        }
+                        return !!(deleted && deleted === true);
                     })
                     .catch(error => {
-                        // console.error('Error deleting the resource:', error);
-                    })
-                    .finally(() => {
-                        deleteButton.classList.remove('hidden');
-                        spinner.classList.add('hidden');
+                        // throw error;
+                        return false;
                     });
             }
 
