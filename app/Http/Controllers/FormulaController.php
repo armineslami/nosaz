@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateFormulaRequest;
 use App\Repositories\FormulaRepository;
+use App\Repositories\LabelRepository;
 use App\Repositories\VariableRepository;
 use App\Repositories\SettingRepository;
 use App\Services\Formula\FormulaService;
@@ -35,7 +36,8 @@ class FormulaController extends Controller
     public function create(): View
     {
         $variables = VariableRepository::all();
-        return view('formula.create', ['variables' => $variables]);
+        $labels = LabelRepository::all();
+        return view('formula.create', ['variables' => $variables, 'labels' => $labels]);
     }
 
     public function store(CreateFormulaRequest $request): JsonResponse
