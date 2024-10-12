@@ -36,7 +36,7 @@ class FormulaService
         return LabelRepository::destroy($id, $user_id);
     }
 
-    public static function createFormula(int $name, string $formula, int $user_id): Formula
+    public static function createFormula(string $name, string $formula, int $user_id): Formula
     {
         return FormulaRepository::create(
             name: $name,
