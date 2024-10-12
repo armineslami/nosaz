@@ -22,7 +22,10 @@ class LabelController extends Controller
     public function store(CreateLabelRequest $request)
     {
         FormulaService::createLabel(
-            name:$request->name, is_parent: false, parent_id: null, user_id:  Auth::user()->id
+            name:$request->name,
+            is_parent: $request->type,
+            parent_id: isset($request->parent) ? $request->parent : null,
+            user_id:  Auth::user()->id
         );
         return Redirect::route('formula.label.create')->with('status', 'label_created');
     }

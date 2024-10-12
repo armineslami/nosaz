@@ -24,8 +24,8 @@ class CreateLabelRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:50',
-            'is_parent' => 'nullable|boolean',
-            'parent_id' => 'nullable|integer|exists:labels,id',
+            'type' => 'in:1,0',
+            'parent' => 'integer|exists:labels,id',
         ];
     }
 }

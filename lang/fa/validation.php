@@ -231,6 +231,8 @@ return [
         "sheba_number" => "شماره شبا",
         "iban" => "شماره شبا",
         "accountـnumber" => "شماره حساب",
-        "formula" => "فرمول"
+        "formula" => "فرمول",
+        'type' => 'نوع',
+        'parent' => 'سردسته'
     ],
 ];
