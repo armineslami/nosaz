@@ -305,7 +305,7 @@ blockquote {
     user-select: none;
 }
 
-.formula-storage-variable {
+.formula-label {
     color: white;
     background-color: var(--accent);
     padding: 0.3rem 0.75rem ;

@@ -17,7 +17,8 @@ use Illuminate\View\View;
 
 class FormulaController extends Controller
 {
-    public function index($id = null): View|RedirectResponse {
+    public function index($id = null): View|RedirectResponse
+    {
         if ($id) {
             $formula = FormulaRepository::byId($id);
 
@@ -26,7 +27,8 @@ class FormulaController extends Controller
             }
 
             $variables = VariableRepository::all();
-            return view('formula.update', ['formula' => $formula, 'variables' => $variables]);
+            $labels = LabelRepository::all();
+            return view('formula.update', ['formula' => $formula, 'variables' => $variables, 'labels' => $labels]);
         }
 
         $formulas = FormulaRepository::paginate(SettingRepository::first()->app_paginate_number);
@@ -57,7 +59,7 @@ class FormulaController extends Controller
             [
                 'name' => $request->name,
                 'payload' => $request->formula,
-                'user_id' =>  Auth::user()->id
+                'user_id' => Auth::user()->id
             ]
         );
         return response()->json(['updated' => isset($formula)]);
@@ -68,8 +70,7 @@ class FormulaController extends Controller
         $destroyed = FormulaService::destroyFormula($request->id, Auth::user()->id);
         if ($destroyed) {
             return Redirect::route('formula.index')->with("status", "formula-deleted");
-        }
-        else {
+        } else {
             return Redirect::route('formula.update')->with("status", "formula-not-deleted");
         }
     }
