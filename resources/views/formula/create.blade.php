@@ -832,7 +832,7 @@
                 buttonLabel.classList.add('hidden');
                 buttonSpinner.classList.remove('hidden');
 
-                axios.post("/formula", {
+                axios.post("{{ route('formula.store') }}", {
                         name: formulaNameElement.value,
                         formula
                     })
