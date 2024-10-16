@@ -25,6 +25,7 @@ class LabelController extends Controller
         $label = FormulaService::createLabel(
             name: $request->name,
             is_parent: $request->type,
+            unit: $request->unit,
             parent_id: isset($request->parent) ? $request->parent : null,
             user_id: Auth::user()->id
         );
@@ -37,7 +38,7 @@ class LabelController extends Controller
             ], 201);
         }
 
-        return Redirect::route('formula.label.create')->with('status', 'label_created');
+        return Redirect::route('formula.label.create')->with('status', 'label-created');
     }
 
     public function destroy(Request $request): JsonResponse

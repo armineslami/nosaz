@@ -14,6 +14,7 @@ class Label extends Model
     protected $fillable = [
         'name',
         'is_parent',
+        'unit',
         'parent_id',
         'user_id'
     ];
