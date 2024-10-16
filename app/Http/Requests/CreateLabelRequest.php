@@ -26,7 +26,7 @@ class CreateLabelRequest extends FormRequest
             'name' => 'required|string|max:50',
             'type' => 'in:1,0',
             'parent' => 'integer|exists:labels,id',
-            'unit' => 'nullable|in:meter,number'
+            'unit' => 'nullable|in:meter,number,percent,toman,rial'
         ];
     }
 }
