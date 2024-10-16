@@ -32,7 +32,7 @@ class VariableController extends Controller
             ], 201);
         }
 
-        return Redirect::route('formula.variable.create')->with('status', 'variable_created');
+        return Redirect::route('formula.variable.create')->with('status', isset($variable) ? 'variable-created' : 'variable-not-created');
     }
 
     public function destroy(Request $request): JsonResponse
