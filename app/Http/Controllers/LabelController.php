@@ -38,7 +38,7 @@ class LabelController extends Controller
             ], 201);
         }
 
-        return Redirect::route('formula.label.create')->with('status', 'label-created');
+        return Redirect::route('formula.label.create')->with('status', isset($label) ? 'label-created' : 'label-not-created');
     }
 
     public function destroy(Request $request): JsonResponse
