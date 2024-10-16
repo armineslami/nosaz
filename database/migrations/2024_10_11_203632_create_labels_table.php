@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->boolean('is_parent')->default(true);
-            $table->enum('unit', ['meter', 'number'])->nullable();
+            $table->enum('unit', ['meter', 'number', 'percent', 'toman', 'rial'])->nullable();
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();

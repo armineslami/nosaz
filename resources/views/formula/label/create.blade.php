@@ -53,6 +53,12 @@
                                 {{ __('متر') }}</option>
                             <option value="number" {{ old('unit') && old('unit') === 'number' ? 'selected' : '' }}>
                                 {{ __('عدد') }}</option>
+                            <option value="percent" {{ old('unit') && old('unit') === 'percent' ? 'selected' : '' }}>
+                                {{ __('درصد') }}</option>
+                            <option value="toman" {{ old('unit') && old('unit') === 'toman' ? 'selected' : '' }}>
+                                {{ __('تومان') }}</option>
+                            <option value="rial" {{ old('unit') && old('unit') === 'rial' ? 'selected' : '' }}>
+                                {{ __('ریال') }}</option>
                         </x-select>
                         <x-input-error :messages="$errors->get('unit')" class="mt-2" />
                     </div>
