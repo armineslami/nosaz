@@ -7,7 +7,7 @@
             </p>
         </div>
         <x-card>
-            <form id="formulaForm" method="POST" action="{{ route('formula.store') }}">
+            <form id="formulaForm" method="POST" action="{{ route('formula.update', $formula->id) }}">
                 @csrf
 
                 <div class="flex justify-end mb-2 gap-2">
@@ -1003,14 +1003,14 @@
                 buttonLabel.classList.add('hidden');
                 buttonSpinner.classList.remove('hidden');
 
-                axios.post("/formula", {
+                axios.patch("{{ route('formula.update', $formula->id) }}", {
                         name: formulaNameElement.value,
                         formula
                     })
                     .then(response => {
                         runIfDebug(DEBUG, console.log, 'Submit Formula Response', response);
                         if (response && response.status === 200) {
-                            if (response.data.stored === true) {
+                            if (response.data.updated === true) {
                                 showToastById('successToast');
                                 clearFormulaForm();
                             } else {
