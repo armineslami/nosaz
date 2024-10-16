@@ -21,11 +21,12 @@ class FormulaService
         return VariableRepository::destroy($id, $user_id);
     }
 
-    public static function createLabel(string $name, bool $is_parent, int $parent_id = null, int $user_id = null): Label
+    public static function createLabel(string $name, bool $is_parent, string $unit = null, int $parent_id = null, int $user_id = null): Label
     {
         return LabelRepository::create(
             name: $name,
             is_parent: $is_parent,
+            unit: $unit,
             parent_id: $parent_id,
             user_id: $user_id
         );
