@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Interfaces\FormulaRepositoryInterface;
 use App\Models\Formula;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -18,6 +19,11 @@ class FormulaRepository implements FormulaRepositoryInterface
     public static function all(): Collection
     {
         return Auth::user()->formulas()->get();
+    }
+
+    public static function defaults(): Collection
+    {
+        return Formula::where(['user_id' => null, 'created_at' => Carbon::create(1990, 1, 1)])->get();
     }
 
     public static function paginate($count = 20): LengthAwarePaginator
