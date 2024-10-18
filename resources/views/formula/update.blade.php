@@ -68,19 +68,8 @@
             @if (count($variables) === 0)
                 <div class="mt-6 md:mt-8 text-center">
                     <p class="text-text text-sm font-bold mb-2">{{ __('متغیری وجود ندارد') }}</p>
-                    <p class="block md:hidden text-text-600 dark:text-gray-400 text-xs justify-center">
-                        {{ __('متغیرهای خود را از طریق گزینه ') }}
-                        <a href="{{ route('formula.variable.create') }}" class="text-primary text-bold">
-                            {{ __('متغیر جدید') }}
-                        </a>
-                        {{ __('بسازید') }}
-                    </p>
-                    <p class="hidden md:block text-text-600 dark:text-gray-400 text-xs justify-center">
-                        {{ __('متغیرهای خود را از طریق بخش ') }}
-                        <a href="{{ route('formula.variable.create') }}" class="text-primary text-bold">
-                            {{ __('متغیرها') }}
-                        </a>
-                        {{ __('بسازید') }}
+                    <p class="text-text-600 dark:text-gray-400 text-xs justify-center">
+                        {{ __('برای ساخت فرمول، ابتدا متغیرها و برچسب‌ها را ایجاد کنید') }}
                     </p>
                 </div>
             @else
