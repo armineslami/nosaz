@@ -54,7 +54,7 @@ class FormulaController extends Controller
 
     public function update(CreateFormulaRequest $request): JsonResponse
     {
-        $formula = FormulaService::updateFormula(
+        $updated = FormulaService::updateFormula(
             $request->id,
             [
                 'name' => $request->name,
@@ -62,7 +62,7 @@ class FormulaController extends Controller
                 'user_id' => Auth::user()->id
             ]
         );
-        return response()->json(['updated' => isset($formula)]);
+        return response()->json(['updated' => $updated]);
     }
 
     public function destroy(Request $request): RedirectResponse
