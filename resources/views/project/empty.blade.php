@@ -92,7 +92,7 @@
             }, delay); // Total time of animation (slide-in, pause, and slide-out)
         }
 
-        setTimeout(loadKute, 500);
+        setTimeout(loadKute, 0);
 
         function loadKute() {
             window.KUTE.fromTo(

@@ -99,7 +99,7 @@
             }, 1500); // 1.5 seconds to disappear
         }
 
-        setTimeout(loadKute, 500);
+        setTimeout(loadKute, 0);
 
         function loadKute() {
             window.KUTE.fromTo(
