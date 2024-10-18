@@ -25,9 +25,9 @@ class VariableRepository implements VariableRepositoryInterface
         return Variable::where(['user_id' => null, 'created_at' => Carbon::create(1990, 1, 1)])->get();
     }
 
-    public static function idIn(array $ids): Collection
+    public static function idIn(array $ids, bool $includeDefaults = false): Collection
     {
-        return Auth::user()->variables()->whereIn('id', $ids)->get();
+        return $includeDefaults ? Variable::whereIn('id', $ids)->get() : Auth::user()->variables()->whereIn('id', $ids)->get();
     }
 
     public static function create(string $name, int $user_id = null): Variable
