@@ -61,8 +61,9 @@
                                         class="block text-sm truncate mb-2 {{ $loop->index === 0 ? 'mt-4' : '' }} font-medium text-gray-900 dark:text-white">
                                         {{ $variable->name }}
                                     </label>
-                                    <x-text-input type="number" name="var_{{ $variable->id }}" class="w-full"
-                                        placeholder="{{ $variable->name }}" :value="old('var_' . $variable->id)">
+                                    <x-text-input type="number" name="var_{{ $variable->id }}"
+                                        class="w-full numeric-input" placeholder="{{ $variable->name }}"
+                                        :value="old('var_' . $variable->id)">
                                     </x-text-input>
                                     <x-input-error :messages="$errors->get('var_' . $variable->id)" class="mt-2" />
                                 </div>
@@ -104,5 +105,27 @@
             const url = "{{ route('project.create') }}" + formulaId !== 0 ? `?formulaId=${formulaId}` : '';
             window.location.href = url; // Redirect to the new URL
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const numericInputs = document.querySelectorAll('.numeric-input');
+            numericInputs.forEach(function(input) {
+                input.addEventListener('keydown', function(e) {
+                    const key = e.key;
+                    const isNumberKey = key >= '0' && key <= '9';
+                    const validKeys = [
+                        'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp',
+                        'ArrowDown', 'Tab'
+                    ];
+
+                    // Allow Ctrl/Command key combinations
+                    const isCtrlCmdCombo = (e.ctrlKey || e.metaKey) && ['a', 'c', 'v', 'x', 'z']
+                        .includes(key.toLowerCase());
+
+                    if (!isNumberKey && !validKeys.includes(key) && !isCtrlCmdCombo) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        });
     </script>
 </x-app-layout>
