@@ -8,7 +8,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 interface FormulaRepositoryInterface
 {
-    public static function byId($id): ?Formula;
+    public static function byId($id, bool $includeDefaults = false): ?Formula;
     public static function all(): Collection;
     public static function defaults(): Collection;
     public static function paginate($count = 20): LengthAwarePaginator;

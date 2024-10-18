@@ -11,9 +11,9 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class FormulaRepository implements FormulaRepositoryInterface
 {
-    public static function byId($id): ?Formula
+    public static function byId($id, bool $includeDefaults = false): ?Formula
     {
-        return Auth::user()->formulas()->where('id', $id)->first();
+        return $includeDefaults ? Formula::find($id)->first() : Auth::user()->formulas()->where('id', $id)->first();
     }
 
     public static function all(): Collection
