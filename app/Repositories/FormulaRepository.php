@@ -13,7 +13,7 @@ class FormulaRepository implements FormulaRepositoryInterface
 {
     public static function byId($id, bool $includeDefaults = false): ?Formula
     {
-        return $includeDefaults ? Formula::find($id)->first() : Auth::user()->formulas()->where('id', $id)->first();
+        return $includeDefaults ? Formula::where('id', $id)->first() : Auth::user()->formulas()->where('id', $id)->first();
     }
 
     public static function all(): Collection
