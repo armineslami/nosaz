@@ -71,7 +71,7 @@ class FormulaController extends Controller
         if ($destroyed) {
             return Redirect::route('formula.index')->with("status", "formula-deleted");
         } else {
-            return Redirect::route('formula.update')->with("status", "formula-not-deleted");
+            return Redirect::route('formula.update', $request->id)->with("status", "formula-not-deleted");
         }
     }
 }
