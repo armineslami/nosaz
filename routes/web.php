@@ -9,7 +9,9 @@ use App\Http\Controllers\VariableController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', function () { return redirect('dashboard'); });
+    Route::get('/', function () {
+        return redirect('dashboard');
+    });
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     Route::get('/formula/create', [FormulaController::class, 'create'])->name('formula.create');
@@ -29,6 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
     Route::get('/project/{id?}', [ProjectController::class, 'index'])->name('project.index');
     Route::post('/project', [ProjectController::class, 'store'])->name('project.store');
+    Route::post('/project/calculate', [ProjectController::class, 'calculate'])->name('project.calculate');
     Route::patch('/project/{id}', [ProjectController::class, 'update'])->name('project.update');
     Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
@@ -51,4 +54,4 @@ Route::get('/privacy-policy', function () {
     return view('auth.privacy-policy');
 })->name('policy');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

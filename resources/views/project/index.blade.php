@@ -1,0 +1,68 @@
+<x-app-layout>
+    <div>
+        @if (count($projects) > 0)
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
+                <div class="p-4 md:p-6 overflow-x-auto">
+                    <table class="border-collapse table-auto w-full text-sm">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="border-b dark:border-slate-600 font-medium text-start p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-500">
+                                    #</th>
+                                <th
+                                    class="border-b dark:border-slate-600 font-medium text-start p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-500">
+                                    {{ __('نام') }}</th>
+                                <th
+                                    class="border-b dark:border-slate-600 font-medium text-start p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-500">
+                                    {{ __('فرمول') }}</th>
+                                <th
+                                    class="border-b dark:border-slate-600 font-medium text-start p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-500">
+                                    {{ __('تاریخ بروز رسانی') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white dark:bg-slate-800 text-start">
+                            @foreach ($projects as $project)
+                                <tr class="md:hover:bg-gray-100 md:dark:hover:bg-gray-700 cursor-pointer"
+                                    onclick="location.href='{{ route('project.index', ['id' => $project->id]) }}'">
+                                    <td
+                                        class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                        {{ $loop->index + 1 + ($projects->currentPage() - 1) * $projects->perPage() }}
+                                    </td>
+                                    <td
+                                        class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                        {{ $project->name }}
+                                    </td>
+                                    <td
+                                        class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                        {{ $project->formula !== null ? $project->formula->name : __('پیشفرض') }}
+                                    </td>
+                                    <td
+                                        class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                        {{ $project->updated_at }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class="table-nav mt-4 text-slate-400 dark:text-slate-200">
+                        {{ $projects->links() }}
+                    </div>
+                </div>
+            </div>
+        @else
+            @include('project.empty')
+        @endif
+        @if (session('status') === 'project-destroyed')
+            <x-toast x-data="{ show: true }" x-show="show" x-transition x-init="$el.classList.add('toast-transition-in');
+            $el.classList.remove('hidden');
+            setTimeout(() => {
+                $el.classList.remove('toast-transition-in');
+                $el.classList.add('toast-transition-out');
+                show = false;
+            }, 5000)" class="hidden"
+                id="toast"
+                icon='<svg class="w-5 h-5 text-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" /></svg>'
+                message="{{ __('پروژه با موفقیت حذف شد') }}" />
+        @endif
+    </div>
+</x-app-layout>
