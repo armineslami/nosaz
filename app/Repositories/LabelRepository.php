@@ -19,6 +19,11 @@ class LabelRepository implements LabelRepositoryInterface
         return Auth::user()->labels()->get();
     }
 
+    public static function idIn(array $ids, bool $includeDefaults = false): Collection
+    {
+        return $includeDefaults ? Label::whereIn('id', $ids)->get() : Auth::user()->labels()->whereIn('id', $ids)->get();
+    }
+
     public static function create(string $name, bool $is_parent, string $unit = null, int $parent_id = null, int $user_id = null): Label
     {
         return Label::create([
