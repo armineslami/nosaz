@@ -22,13 +22,8 @@ class CalculateProjectRequest extends FormRequest
      */
     public function rules(): array
     {
-
-        $rules = [
-            'formula' => 'required|integer|exists:formulas,id'
-        ];
-
         // Exclude specific fields like _token and formula
-        $data = $this->except(['_token', 'formula']);
+        $data = $this->except(['_token', 'name', 'description', 'formula']);
 
         // Define validation rules dynamically for each key
         foreach ($data as $key => $value) {
