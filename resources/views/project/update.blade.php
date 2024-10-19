@@ -46,7 +46,7 @@
 
             <div class="flex justify-end gap-2 mt-8">
                 <x-secondary-button class="w-1/2 md:w-1/6" type="button"
-                    @click.prevent="formAction = '{{ route('project.calculate', $project->id) }}'; $nextTick(() => $el.closest('form').submit())">
+                    @click.prevent="formAction = '{{ route('project.calculate') }}'; $nextTick(() => $el.closest('form').submit())">
                     {{ __('محاسبه') }}
                 </x-secondary-button>
                 <x-primary-button class="w-1/2 md:w-1/6" type="button" x-data=""
