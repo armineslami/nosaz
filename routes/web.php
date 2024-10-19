@@ -31,8 +31,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
     Route::get('/project/{id?}', [ProjectController::class, 'index'])->name('project.index');
     Route::post('/project', [ProjectController::class, 'store'])->name('project.store');
-    Route::post('/project/calculate', [ProjectController::class, 'calculate'])->name('project.calculate');
-    Route::patch('/project/{id}', [ProjectController::class, 'update'])->name('project.update');
+    Route::post('/project/{id}/calculate', [ProjectController::class, 'calculate'])->name('project.calculate');
+    Route::post('/project/{id}/update', [ProjectController::class, 'update'])->name('project.update');
     Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
     Route::get('/reports', function () {
