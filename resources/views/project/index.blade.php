@@ -38,7 +38,19 @@
                                     </td>
                                     <td
                                         class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
-                                        {{ $project->updated_at }}
+                                        @if ($project->updated_at->isToday())
+                                            {{ __('app.today') }}
+                                        @elseif ($project->updated_at->isYesterday())
+                                            {{ __('app.yesterday') }}
+                                        @elseif (now()->diffInDays($project->updated_at) <= 7)
+                                            {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInDays($project->updated_at, false)) : (int) now()->diffInDays($project->updated_at)) . ' ' . __('app.day_ago') }}
+                                        @elseif (now()->diffInWeeks($project->updated_at) <= 4)
+                                            {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInWeeks($project->updated_at)) : (int) now()->diffInWeeks($project->updated_at)) . ' ' . __('app.week_ago') }}
+                                        @elseif (now()->diffInMonths($project->updated_at) <= 12)
+                                            {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInMonths($project->updated_at)) : (int) now()->diffInMonths($project->updated_at)) . ' ' . __('app.month_ago') }}
+                                        @else
+                                            {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInYears($project->updated_at)) : (int) now()->diffInYears($project->updated_at)) . ' ' . __('app.year_ago') }}
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
