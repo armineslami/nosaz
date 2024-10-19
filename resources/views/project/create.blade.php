@@ -11,54 +11,32 @@
                 @csrf
 
                 <div class="space-y-4 md:space-y-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                {{ __('نام') }}
-                            </label>
-                            <x-text-input type="text" name="name" class="w-full" value="{{ old('name') }}"
-                                placeholder="{{ __('نام پروژه') }}">
-                            </x-text-input>
-                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                        </div>
-
-                        <div class="mt-4 md:mt-0">
-                            <label for="formula" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                {{ __('فرمول') }}
-                            </label>
-                            <x-select class="w-full" name="formula" onchange="changeFormula(this.value)">
-                                @foreach ($data->formulas->defaults as $formula)
-                                    <option value="{{ $formula->id }}"
-                                        {{ (old('formula') !== null && old('formula') == $formula->id) || $formula->id == $formulaId ? 'selected' : '' }}>
-                                        {{ $formula->name }}</option>
-                                @endforeach
-                                @foreach ($data->formulas->user as $formula)
-                                    <option value="{{ $formula->id }}"
-                                        {{ (old('formula') !== null && old('formula') == $formula->id) || $formula->id == $formulaId ? 'selected' : '' }}>
-                                        {{ $formula->name }}</option>
-                                @endforeach
-                            </x-select>
-                            <x-input-error :messages="$errors->get('formula')" class="mt-2" />
-                        </div>
-                    </div>
 
                     <div>
-                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            {{ __('توضیحات') }}
+                        <label for="formula" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            {{ __('فرمول') }}
                         </label>
-                        <x-text-input type="text" name="description" class="w-full" value="{{ old('description') }}"
-                            placeholder="{{ __('توضیحات پروژه') }}">
-                        </x-text-input>
-                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                        <x-select class="w-full" name="formula" onchange="changeFormula(this.value)">
+                            @foreach ($data->formulas->defaults as $formula)
+                                <option value="{{ $formula->id }}"
+                                    {{ (old('formula') !== null && old('formula') == $formula->id) || $formula->id == $formulaId ? 'selected' : '' }}>
+                                    {{ $formula->name }}</option>
+                            @endforeach
+                            @foreach ($data->formulas->user as $formula)
+                                <option value="{{ $formula->id }}"
+                                    {{ (old('formula') !== null && old('formula') == $formula->id) || $formula->id == $formulaId ? 'selected' : '' }}>
+                                    {{ $formula->name }}</option>
+                            @endforeach
+                        </x-select>
+                        <x-input-error :messages="$errors->get('formula')" class="mt-2" />
                     </div>
 
                     <div>
-                        <div
-                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4">
                             @foreach ($data->variables as $variable)
-                                <div>
+                                <div class="mb-4">
                                     <label for="var_{{ $variable->id }}"
-                                        class="block text-sm truncate mb-2 {{ $loop->index === 0 ? 'mt-4' : '' }} font-medium text-gray-900 dark:text-white">
+                                        class="block text-sm truncate mb-2 font-medium text-gray-900 dark:text-white">
                                         {{ $variable->name }}
                                     </label>
                                     <x-text-input type="number" name="var_{{ $variable->id }}"
@@ -75,30 +53,88 @@
 
                 <div class="flex justify-end gap-2 mt-8">
                     <x-secondary-button class="w-1/2 md:w-1/6" type="button"
-                        @click.prevent="formAction = '{{ route('project.calculate') }}'; $nextTick(() => $el.closest('form').submit())">
+                        @click.prevent="formAction = '{{ route('project.calculate', $project->id) }}'; $nextTick(() => $el.closest('form').submit())">
                         {{ __('محاسبه') }}
                     </x-secondary-button>
-                    <x-primary-button class="w-1/2 md:w-1/6" type="button"
-                        @click.prevent="formAction = '{{ route('project.store') }}'; $nextTick(() => $el.closest('form').submit())">
+                    <x-primary-button class="w-1/2 md:w-1/6" type="button" x-data=""
+                        x-on:click.prevent="$dispatch('open-modal', 'store-project')">
                         {{ __('ذخیره') }}
                     </x-primary-button>
                 </div>
+
+                <x-modal name="store-project" focusable>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <h2 class="text-lg font-bold text-text">
+                                {{ __('ذخیره پروژه') }}
+                            </h2>
+
+                            <p class="mt-1 text-sm text-text-600 dark:text-gray-400">
+                                {{ __('نام پروژه و در صورت نیاز، توضیحات مربوط به آن را وارد نمایید.') }}
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    {{ __('نام') }}
+                                </label>
+                                <x-text-input type="text" name="name" class="w-full" value="{{ old('name') }}"
+                                    placeholder="{{ __('نام پروژه') }}">
+                                </x-text-input>
+                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                            </div>
+
+                            <div>
+                                <label for="description"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    {{ __('توضیحات') }}
+                                </label>
+                                <x-text-input type="text" name="description" class="w-full"
+                                    value="{{ old('description') }}" placeholder="{{ __('توضیحات پروژه') }}">
+                                </x-text-input>
+                                <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex justify-end">
+                            <x-secondary-button x-on:click="$dispatch('close')">
+                                {{ __('انصراف') }}
+                            </x-secondary-button>
+
+                            <x-primary-button class="ms-3">
+                                {{ __('تایید') }}
+                            </x-primary-button>
+                        </div>
+                    </div>
+                </x-modal>
             </form>
         </x-card>
-
-        @if (session('status') === 'project-not-created')
-            <x-toast x-data="{ show: true }" x-show="show" x-transition x-init="$el.classList.add('toast-transition-in');
-            $el.classList.remove('hidden');
-            setTimeout(() => {
-                $el.classList.remove('toast-transition-in');
-                $el.classList.add('toast-transition-out');
-                show = false;
-            }, 5000)"
-                class="hidden !bg-red-500 !divide-gray-200 text-white"
-                icon='<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round"d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" /></svg>'
-                message="{{ __('خطا در ایجاد پروژه') }}" />
-        @endif
     </div>
+
+    @if (session('status') === 'project-not-created')
+        <x-toast x-data="{ show: true }" x-show="show" x-transition x-init="$el.classList.add('toast-transition-in');
+        $el.classList.remove('hidden');
+        setTimeout(() => {
+            $el.classList.remove('toast-transition-in');
+            $el.classList.add('toast-transition-out');
+            show = false;
+        }, 5000)"
+            class="hidden !bg-red-500 !divide-gray-200 text-white"
+            icon='<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round"d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" /></svg>'
+            message="{{ __('خطا در ایجاد پروژه') }}" />
+    @endif
+
+    @if ($errors->get('name') || $errors->get('description'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                window.dispatchEvent(new CustomEvent('open-modal', {
+                    detail: 'store-project'
+                }));
+            });
+        </script>
+    @endif
 
     <script>
         function changeFormula(formulaId) {
