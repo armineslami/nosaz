@@ -80,7 +80,7 @@ class ProjectController extends Controller
             [
                 'name' => $request->name,
                 'description' => $request->description,
-                Arr::except($request->validated(), ['name', 'description']),
+                'variables' => Arr::except($request->validated(), ['name', 'description']),
             ]
         );
 
