@@ -124,6 +124,28 @@
             class="hidden !bg-red-500 !divide-gray-200 text-white"
             icon='<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round"d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" /></svg>'
             message="{{ __('خطا در ایجاد پروژه') }}" />
+    @elseif (session('status') === 'formula-pyload-corrupted')
+        <x-toast x-data="{ show: true }" x-show="show" x-transition x-init="$el.classList.add('toast-transition-in');
+        $el.classList.remove('hidden');
+        setTimeout(() => {
+            $el.classList.remove('toast-transition-in');
+            $el.classList.add('toast-transition-out');
+            show = false;
+        }, 5000)"
+            class="hidden !bg-red-500 !divide-gray-200 text-white"
+            icon='<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round"d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" /></svg>'
+            message="{{ __('اطلاعات فرمول استفاده شده صحیح نمی‌باشد') }}" />
+    @elseif (session('status') === 'project-calculation-failed')
+        <x-toast x-data="{ show: true }" x-show="show" x-transition x-init="$el.classList.add('toast-transition-in');
+        $el.classList.remove('hidden');
+        setTimeout(() => {
+            $el.classList.remove('toast-transition-in');
+            $el.classList.add('toast-transition-out');
+            show = false;
+        }, 5000)"
+            class="hidden !bg-red-500 !divide-gray-200 text-white"
+            icon='<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round"d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" /></svg>'
+            message="{{ __('خطا در انجام محساسبه') }}" />
     @endif
 
     @if ($errors->get('name') || $errors->get('description'))
