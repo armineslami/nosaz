@@ -12,7 +12,7 @@
             @endif
         </div>
         <div>
-            <x-danger-button x-data=""
+            <x-danger-button class="!h-7" x-data=""
                 x-on:click.prevent="$dispatch('open-modal', 'confirm-project-deletion')">
                 {{ __('حذف') }}
             </x-danger-button>
