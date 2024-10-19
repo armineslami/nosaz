@@ -22,6 +22,12 @@ class CalculateProjectRequest extends FormRequest
      */
     public function rules(): array
     {
+        $rules = [
+            'name' => 'nullable|string|min:3|max:50',
+            'formula' => 'required|integer|exists:formulas,id',
+            'description' => 'nullable|string|min:3|max:255'
+        ];
+
         // Exclude specific fields like _token and formula
         $data = $this->except(['_token', 'name', 'description', 'formula']);
 
