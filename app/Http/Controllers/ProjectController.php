@@ -84,7 +84,7 @@ class ProjectController extends Controller
             ]
         );
 
-        return Redirect::route('project.update', $request->id)->with('status', $updated ? 'project-updated' : 'project-not-updated');
+        return Redirect::route('project.index', $request->id)->with('status', $updated ? 'project-updated' : 'project-not-updated');
     }
 
     public function destroy(Request $request): RedirectResponse
