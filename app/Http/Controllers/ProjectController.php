@@ -97,16 +97,28 @@ class ProjectController extends Controller
         }
     }
 
-    public function calculate(CalculateProjectRequest $request)//: RedirectResponse
+    public function calculate(CalculateProjectRequest $request): View|RedirectResponse
     {
-        dd("Calculation", $request->all());
-        // $calculation = ProjectService::calculate(
-        //     Arr::except($request->validated(), ['name', 'formula']),
-        //     $request->validated()['formula'],
-        //     user_id: Auth::user()->id
-        // );
+        $result = ProjectService::calculate(
+            variables: Arr::except($request->validated(), ['name', 'description', 'formula']),
+            formulaId: $request->validated()['formula'],
+            user_id: Auth::user()->id
+        );
 
-        // return Redirect::route('project.calculate')
-        // ->with('status', isset($project) ? 'project-created' : 'project-not-created');
+        if ($result) {
+            return view(
+                'project.calculation',
+                [
+                    'labels' => $result->labels,
+                    'formula' => $result->formula,
+                    'project' => [
+                        'name' => $request->validated()['name'] ?? null,
+                        'description' => $request->validated()['description'] ?? null
+                    ]
+                ]
+            );
+        } else {
+            return redirect()->back()->with('status', 'formula-pyload-corrupted');
+        }
     }
 }
