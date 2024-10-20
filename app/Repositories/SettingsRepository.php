@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Interfaces\SettingRepositoryInterface;
+use App\Interfaces\SettingsRepositoryInterface;
 use App\Models\Setting;
 
-class SettingRepository implements SettingRepositoryInterface
+class SettingsRepository implements SettingsRepositoryInterface
 {
     public static function first(): Setting
     {
