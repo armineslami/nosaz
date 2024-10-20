@@ -48,17 +48,17 @@
                         <x-select id="label-unit-select" name="unit" class="w-full my-4">
                             <option value=""
                                 {{ !old('unit') || (old('unit') && old('unit') === '') ? 'selected' : '' }}>
-                                {{ __('ندارد') }}</option>
+                                {{ __('app.none') }}</option>
                             <option value="meter" {{ old('unit') && old('unit') === 'meter' ? 'selected' : '' }}>
-                                {{ __('متر') }}</option>
+                                {{ __('app.meter') }}</option>
                             <option value="number" {{ old('unit') && old('unit') === 'number' ? 'selected' : '' }}>
-                                {{ __('عدد') }}</option>
+                                {{ __('app.number') }}</option>
                             <option value="percent" {{ old('unit') && old('unit') === 'percent' ? 'selected' : '' }}>
-                                {{ __('درصد') }}</option>
+                                {{ __('app.percent') }}</option>
                             <option value="toman" {{ old('unit') && old('unit') === 'toman' ? 'selected' : '' }}>
-                                {{ __('تومان') }}</option>
+                                {{ __('app.toman') }}</option>
                             <option value="rial" {{ old('unit') && old('unit') === 'rial' ? 'selected' : '' }}>
-                                {{ __('ریال') }}</option>
+                                {{ __('app.rial') }}</option>
                         </x-select>
                         <x-input-error :messages="$errors->get('unit')" class="mt-2" />
                     </div>
