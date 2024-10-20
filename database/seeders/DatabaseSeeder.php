@@ -117,7 +117,7 @@ class DatabaseSeeder extends Seeder
         $labels['illegal_area_of_floor'] = $child->id;
         $child = Label::create(['name' => __('labels.total_area_of_floor'), 'is_parent' => false, 'unit' => 'meter', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
         $labels['total_area_of_floor'] = $child->id;
-        $child = Label::create(['name' => __('labels.unit_per_floor'), 'is_parent' => false, 'unit' => 'meter', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
+        $child = Label::create(['name' => __('labels.unit_per_floor'), 'is_parent' => false, 'unit' => 'number', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
         $labels['unit_per_floor'] = $child->id;
         $child = Label::create(['name' => __('labels.total_units'), 'is_parent' => false, 'unit' => 'number', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
         $labels['total_units'] = $child->id;
