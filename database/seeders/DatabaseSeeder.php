@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // self::createUsers();
-        // self::createSettings();
+        self::createUsers();
+        self::createSettings();
         $variables = self::createDefaultVariables();
         $labels = self::createDefaultLabels();
         self::createDefaultFormulaForLandPurchase($variables, $labels);
