@@ -212,7 +212,7 @@ class DatabaseSeeder extends Seeder
         $formula .= '#' . $variables['illegal_density_percentage'] . '#=<' . $labels['illegal_density_percentage'] . '>';
         $formula .= '#' . $variables['density_percentage'] . '#+#' . $variables['illegal_density_percentage'] . '#=<' . $labels['total_density'] . '>';
         $formula .= '(#' . $variables['land_area'] . '#*#' . $variables['density_percentage'] . '#)/100=<' . $labels['llegal_area_of_floor'] . '>';
-        $formula .= '(#' . $variables['land_area'] . '#*#' . $variables['illegal_density_percentage'] . '#)/100=<' . $labels['illegal_area_of_floor'] . '>';
+        $formula .= '(#' . $variables['land_area'] . '#*#' . $variables['illegal_density_percentage'] . '#)/100+#' . $variables['illegal_area_per_floor'] . '#=<' . $labels['illegal_area_of_floor'] . '>';
         $formula .= '<' . $labels['llegal_area_of_floor'] . '>+<' . $labels['illegal_area_of_floor'] . '>+#' . $variables['illegal_area_per_floor'] . '#=<' . $labels['total_area_of_floor'] . '>';
         $formula .= '<' . $labels['total_area_of_floor'] . '>*#' . $variables['floors_count'] . '#=<' . $labels['total_area'] . '>';
         $formula .= '#' . $variables['unit_per_floor'] . '#=<' . $labels['unit_per_floor'] . '>';
@@ -246,7 +246,7 @@ class DatabaseSeeder extends Seeder
         $formula .= '#' . $variables['illegal_density_percentage'] . '#=<' . $labels['illegal_density_percentage'] . '>';
         $formula .= '#' . $variables['density_percentage'] . '#+#' . $variables['illegal_density_percentage'] . '#=<' . $labels['total_density'] . '>';
         $formula .= '(#' . $variables['land_area'] . '#*#' . $variables['density_percentage'] . '#)/100=<' . $labels['llegal_area_of_floor'] . '>';
-        $formula .= '(#' . $variables['land_area'] . '#*#' . $variables['illegal_density_percentage'] . '#)/100=<' . $labels['illegal_area_of_floor'] . '>';
+        $formula .= '(#' . $variables['land_area'] . '#*#' . $variables['illegal_density_percentage'] . '#)/100+#' . $variables['illegal_area_per_floor'] . '#=<' . $labels['illegal_area_of_floor'] . '>';
         $formula .= '<' . $labels['llegal_area_of_floor'] . '>+<' . $labels['illegal_area_of_floor'] . '>+#' . $variables['illegal_area_per_floor'] . '#=<' . $labels['total_area_of_floor'] . '>';
         $formula .= '<' . $labels['total_area_of_floor'] . '>*#' . $variables['floors_count'] . '#=<' . $labels['total_area'] . '>';
         $formula .= '#' . $variables['unit_per_floor'] . '#=<' . $labels['unit_per_floor'] . '>';
