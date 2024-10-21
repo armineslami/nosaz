@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <x-card>
+        <x-card class="mt-8">
             <form method="POST" action="{{ route('project.update', $project->id) }}" x-data="{ formAction: '{{ route('project.update', $project->id) }}' }"
                 x-bind:action="formAction">
                 @csrf
@@ -54,7 +54,7 @@
                         {{ __('محاسبه') }}
                     </x-secondary-button>
                     <x-primary-button class="w-1/2 md:w-1/6" type="button" x-data=""
-                        x-on:click.prevent="$dispatch('open-modal', 'update-project')">
+                        x-on:click.prevent="formAction = '{{ route('project.update', $project->id) }}'; $dispatch('open-modal', 'update-project')">
                         {{ __('آپدیت') }}
                     </x-primary-button>
                 </div>
