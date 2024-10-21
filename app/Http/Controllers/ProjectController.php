@@ -7,7 +7,7 @@ use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Repositories\FormulaRepository;
 use App\Repositories\ProjectRepository;
-use App\Repositories\SettingRepository;
+use App\Repositories\SettingsRepository;
 use App\Services\Project\ProjectService;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -36,7 +36,7 @@ class ProjectController extends Controller
             );
         }
 
-        $projects = ProjectRepository::paginate(SettingRepository::first()->app_paginate_number);
+        $projects = ProjectRepository::paginate(SettingsRepository::first()->app_paginate_number);
         return view('project.index', ['projects' => $projects]);
     }
 

@@ -6,7 +6,7 @@ use App\Http\Requests\CreateFormulaRequest;
 use App\Repositories\FormulaRepository;
 use App\Repositories\LabelRepository;
 use App\Repositories\VariableRepository;
-use App\Repositories\SettingRepository;
+use App\Repositories\SettingsRepository;
 use App\Services\Formula\FormulaService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -31,7 +31,7 @@ class FormulaController extends Controller
             return view('formula.update', ['formula' => $formula, 'variables' => $variables, 'labels' => $labels]);
         }
 
-        $formulas = FormulaRepository::paginate(SettingRepository::first()->app_paginate_number);
+        $formulas = FormulaRepository::paginate(SettingsRepository::first()->app_paginate_number);
         return view('formula.index', ['formulas' => $formulas]);
     }
 
