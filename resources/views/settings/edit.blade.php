@@ -1,12 +1,11 @@
 <x-app-layout>
-    <x-card>
-        <div class="mb-6">
-            <p class="text-text text-lg font-bold mb-2">{{ __('نرم افزار') }}</p>
-            <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
-                {{ __('تنظیمات پیش فرض نرم افزار را تغییر دهید.') }}
-            </p>
-        </div>
-
+    <div>
+        <p class="text-text text-lg font-bold mb-2">{{ __('نرم افزار') }}</p>
+        <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
+            {{ __('تنظیمات پیش فرض نرم افزار را تغییر دهید.') }}
+        </p>
+    </div>
+    <x-card class="mt-8 max-w-7xl mx-auto">
         <form method="post" action="{{ route('settings.update') }}">
             @csrf
             @method('PATCH')
@@ -44,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-end my-4">
+            <div class="flex justify-end mt-4">
                 <x-primary-button class="justify-end">
                     {{ __('آپدیت') }}
                 </x-primary-button>
