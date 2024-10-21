@@ -179,7 +179,7 @@
         </x-modal>
 
         @if (session('status') === 'formula-not-deleted')
-            <x-toast x-data="{ show: true }" x-show="show" x-transition x-init="$el.classList.add('toast-transition-in');
+            <x-toast x-data="{ show: true }" x-show="show" x-init="$el.classList.add('toast-transition-in');
             $el.classList.remove('hidden');
             setTimeout(() => {
                 $el.classList.remove('toast-transition-in');
