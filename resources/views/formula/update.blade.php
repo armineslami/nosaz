@@ -1,12 +1,12 @@
 <x-app-layout>
-    <div>
+    <div class="max-w-7xl mx-auto">
         <div>
             <p class="text-text text-lg font-bold mb-2">{{ __('آپدیت فرمول‌') }}</p>
             <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
                 {{ __('اطلاعات مربوط به فرمول خود را مشاهده کرده و در صورت نیاز آن را تغییر داده و یا حذف کنید.') }}
             </p>
         </div>
-        <x-card>
+        <x-card class="mt-8">
             <form id="formulaForm" method="POST" action="{{ route('formula.update', $formula->id) }}">
                 @csrf
 

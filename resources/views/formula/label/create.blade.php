@@ -1,10 +1,10 @@
 <x-app-layout>
-    <div>
+    <div class="max-w-7xl mx-auto">
         <p class="text-text text-lg font-bold mb-2">{{ __('ایجاد برچسب') }}</p>
         <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
             {{ __('برچسب‌ها علاوه بر اینکه اجازه ذخیره‌سازی عملیات ریاضی در فرمول را به شما میدهند، امکان دسته بندی اطلاعات محاسبه شده‌ی پروژه را نیز فراهم می‌کنند.') }}
         </p>
-        <x-card>
+        <x-card class="mt-8">
             <form x-data="{
                 selectedType: '',
                 showCategory: false,
@@ -95,7 +95,7 @@
                 {{ __('برچسب‌ها ساخته شده را مشاهده و یا حذف کنید.') }}
             </p>
 
-            <x-card id="labelsCard" class="min-h-28 {{ empty($labels) ? 'flex justify-center' : '' }}">
+            <x-card id="labelsCard" class="mt-8 min-h-28 {{ empty($labels) ? 'flex justify-center' : '' }}">
                 <div id="labelsEmptyState" class="{{ empty($labels) ? 'flex' : 'hidden' }} items-center">
                     <p class="text-text-600 dark:text-gray-400 text-xs justify-center">
                         {{ __('برچسبی نساخته‌اید! یک برچسب جدید ') }}

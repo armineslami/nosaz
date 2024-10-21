@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="text-text">
+    <div class="max-w-7xl mx-auto text-text">
         @if (isset($project['name']))
             <p class="text-text text-lg font-bold mb-2">{{ $project['name'] }}</p>
         @else
@@ -11,7 +11,7 @@
         @if (isset($project['description']))
             <p class="text-text text-sm my-4">{{ $project['description'] }}</p>
         @endif
-        <x-card>
+        <x-card class="mt-8">
             @foreach ($labels as $label => $data)
                 @if (!is_array($data))
                     <div class="flex gap-4 items-center mb-2 ">

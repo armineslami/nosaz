@@ -1,11 +1,10 @@
 <x-app-layout>
-    <div>
+    <div class="max-w-7xl mx-auto">
         <p class="text-text text-lg font-bold mb-2">{{ __('ساخت پروژه') }}</p>
         <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
             {{ __('پروژه‌ خود را با وارد کردن اطلاعات توسط یک فرمول محاسبه و در صورت نیاز ذخیره کنید.') }}
         </p>
-        <x-card>
-
+        <x-card class="mt-8">
             <form method="POST" action="{{ route('project.store') }}" x-data="{ formAction: '{{ route('project.store') }}' }"
                 x-bind:action="formAction">
                 @csrf

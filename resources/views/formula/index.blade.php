@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div>
+    <div class="max-w-7xl mx-auto">
         @if (count($formulas) > 0)
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
                 <div class="p-4 md:p-6 overflow-x-auto">

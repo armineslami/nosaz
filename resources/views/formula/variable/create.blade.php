@@ -1,10 +1,10 @@
 <x-app-layout>
-    <div>
+    <div class="max-w-7xl mx-auto">
         <p class="text-text text-lg font-bold mb-2">{{ __('ایجاد متغیر') }}</p>
         <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
             {{ __('متغیرهای مورد نیاز در فرمول خود را در این بخش ایجاد کنید. سپس از این متغیرها در بخش ساخت فرمول استفاده کرده و در هنگام محاسبه پروژه، مقادیر آن‌ها را وارد کنید.') }}
         </p>
-        <x-card>
+        <x-card class="mt-8">
             <form method="POST" action="{{ route('formula.variable.store') }}">
                 @csrf
                 <x-input-label for="name" :value="__('نام متغیر')" />
@@ -26,7 +26,7 @@
                 {{ __('متغیرهای ساخته شده را مشاهده و یا حذف کنید.') }}
             </p>
 
-            <x-card id="variablesCard" class="min-h-28 {{ empty($variables) ? 'flex justify-center' : '' }}">
+            <x-card id="variablesCard" class="mt-8 min-h-28 {{ empty($variables) ? 'flex justify-center' : '' }}">
                 <div id="variablesEmptyState" class="{{ empty($variables) ? 'flex' : 'hidden' }} items-center">
                     <p class="text-text-600 dark:text-gray-400 text-xs justify-center">
                         {{ __('متغیری نساخته‌اید! یک متغیر جدید ') }}
