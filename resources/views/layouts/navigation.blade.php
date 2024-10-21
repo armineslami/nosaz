@@ -101,23 +101,21 @@
             <div class="hidden md:block bg-gray-200 dark:bg-gray-700 w-0.5 h-8 ms-0 me-2"></div>
 
             <!-- User Icon -->
-            <a href="{{ route('profile.edit') }}">
-                <button type="button"
-                    class="flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                    aria-expanded="false" data-dropdown-toggle="md-dropdown">
-                    <span class="sr-only">Open user menu</span>
-                    {{--                <img --}}
-                    {{--                    class="w-8 h-8 rounded-full" --}}
-                    {{--                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" --}}
-                    {{--                    alt="user photo" --}}
-                    {{--                /> --}}
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                    </svg>
-                </button>
-            </a>
+            <button type="button"
+                class="flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                aria-expanded="false" data-dropdown-toggle="md-dropdown">
+                <span class="sr-only">Open user menu</span>
+                {{--                <img --}}
+                {{--                    class="w-8 h-8 rounded-full" --}}
+                {{--                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" --}}
+                {{--                    alt="user photo" --}}
+                {{--                /> --}}
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+            </button>
 
             <!-- Notifications -->
             {{--            <button --}}
