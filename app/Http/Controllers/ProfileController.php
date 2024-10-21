@@ -42,9 +42,11 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
+        if (!Auth::user()->google_id && !Auth::user()->twitter_id) {
+            $request->validateWithBag('userDeletion', [
+                'password' => ['required', 'current_password'],
+            ]);
+        }
 
         $user = $request->user();
 
