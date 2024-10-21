@@ -12,6 +12,8 @@ class Setting extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'app_paginate_number'
+        'app_paginate_number',
+        'app_theme',
+        'user_id'
     ];
 }

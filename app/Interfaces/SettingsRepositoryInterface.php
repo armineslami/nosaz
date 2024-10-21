@@ -7,5 +7,5 @@ use App\Models\Setting;
 interface SettingsRepositoryInterface
 {
     public static function first(): Setting;
-    public static function update(Setting $old_setting, array $new_setting): bool;
+    public static function update(mixed $settings): bool;
 }

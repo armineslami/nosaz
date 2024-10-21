@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\SettingsRepositoryInterface;
 use App\Models\Setting;
+use Auth;
 
 class SettingsRepository implements SettingsRepositoryInterface
 {
@@ -12,8 +13,8 @@ class SettingsRepository implements SettingsRepositoryInterface
         return Setting::first();
     }
 
-    public static function update(Setting $old_setting, array $new_setting): bool
+    public static function update(mixed $settings): bool
     {
-        return $old_setting->fill($new_setting)->save();
+        return Auth::user()->settings()->update($settings);
     }
 }

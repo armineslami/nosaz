@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class SettingFactory extends Factory
     public function definition(): array
     {
         return [
-            'app_paginate_number' => 20
+            'app_paginate_number' => 20,
+            'app_theme' => 'system',
+            'user_id' => User::first()->id
         ];
     }
 }

@@ -45,6 +45,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
+        Schema::dropIfExists(table: 'settings');
         Schema::dropIfExists('projects');
         Schema::dropIfExists('formulas');
         Schema::dropIfExists('variables');
