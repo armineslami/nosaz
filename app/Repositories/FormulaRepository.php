@@ -16,9 +16,9 @@ class FormulaRepository implements FormulaRepositoryInterface
         return $includeDefaults ? Formula::where('id', $id)->first() : Auth::user()->formulas()->where('id', $id)->first();
     }
 
-    public static function all(): Collection
+    public static function all(string $column = 'id', string $direction = 'DESC'): Collection
     {
-        return Auth::user()->formulas()->get();
+        return Auth::user()->formulas()->orderBy($column, direction: $direction)->get();
     }
 
     public static function defaults(): Collection
@@ -26,9 +26,9 @@ class FormulaRepository implements FormulaRepositoryInterface
         return Formula::where(['user_id' => null, 'created_at' => Carbon::create(1990, 1, 1)])->get();
     }
 
-    public static function paginate($count = 20): LengthAwarePaginator
+    public static function paginate($count = 20, string $column = 'id', string $direction = 'DESC'): LengthAwarePaginator
     {
-        return Auth::user()->formulas()->paginate($count);
+        return Auth::user()->formulas()->orderBy($column, direction: $direction)->paginate($count);
     }
 
     public static function create(string $name, string $payload, int $user_id): Formula
