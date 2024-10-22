@@ -43,17 +43,19 @@
     </div>
 
     <script>
+        const key = 'theme-{{ Auth::user()->email }}';
+
         // Applies the app theme
         function applyTheme(theme) {
             if (theme === 'dark') {
                 document.documentElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark'); // Save user preference
+                localStorage.setItem(key, 'dark'); // Save user preference
             } else if (theme === 'light') {
                 document.documentElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light'); // Save user preference
+                localStorage.setItem(key, 'light'); // Save user preference
             } else {
                 // Handle system theme preference
-                localStorage.setItem('theme', 'system');
+                localStorage.setItem(key, 'system');
                 if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                     document.documentElement.classList.add('dark');
                 } else {
@@ -64,7 +66,8 @@
 
         // Immediately check the user's stored theme or system preference
         (function() {
-            const theme = localStorage.getItem('theme') || 'system';
+            // The settings are provided with AppServiceProvider
+            const theme = '{{ $settings->app_theme }}'; // localStorage.getItem(key) || 'system';
             applyTheme(theme);
 
             // If the theme is set to 'system', listen for system theme changes
