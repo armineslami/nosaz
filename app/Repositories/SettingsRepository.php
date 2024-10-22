@@ -10,7 +10,7 @@ class SettingsRepository implements SettingsRepositoryInterface
 {
     public static function first(): Setting
     {
-        return Setting::first();
+        return Auth::user()->settings()->first();
     }
 
     public static function update(mixed $settings): bool
