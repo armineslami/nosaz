@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth\OAuth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use App\Repositories\UserRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -22,23 +23,27 @@ class OAuthController extends Controller
     {
         try {
             $oAuthUser = Socialite::driver('google')->user();
-            if (! empty($oAuthUser)) {
+            if (!empty($oAuthUser)) {
                 $user = UserRepository::updateOrCreate([
                     'google_id' => $oAuthUser->id,
                 ], [
                     'name' => $oAuthUser->name,
                     'email' => $oAuthUser->email,
-                    'password' => Hash::make(Str::random(8))
+                    'email_verified_at' => now(),
+                    'password' => Hash::make(Str::random(8)),
                 ]);
 
-                Auth::login($user);
+                Setting::updateOrCreate([
+                    'user_id' => $user->id
+                ]);
+
+                Auth::login($user, true);
 
                 return redirect()->route('/dashboard');
             }
 
             return redirect()->route("/login");
-        }
-        catch(\Exception) {
+        } catch (\Exception) {
             return redirect()->intended();
         }
     }
@@ -53,26 +58,30 @@ class OAuthController extends Controller
         try {
             $oAuthUser = self::xApi()->user();
 
-            if (! empty($oAuthUser)) {
+            if (!empty($oAuthUser)) {
                 $user = UserRepository::updateOrCreate([
                     'twitter_id' => $oAuthUser->getId(),
                 ], [
                     'name' => $oAuthUser->getName(),
                     'email' => $oAuthUser->getEmail(),
+                    'email_verified_at' => now(),
                     'password' => Hash::make(Str::random(50)),
-//                    'avatar_url' => $oAuthUser->getAvatar(),
+                    //                    'avatar_url' => $oAuthUser->getAvatar(),
                     'twitter_token' => $oAuthUser->token,
                     'twitter_refresh_token' => $oAuthUser->refreshToken,
                 ]);
 
-                Auth::login($user);
+                Setting::updateOrCreate([
+                    'user_id' => $user->id
+                ]);
+
+                Auth::login($user, true);
 
                 return redirect()->route('dashboard');
             }
 
             return redirect()->route("/login");
-        }
-        catch(\Exception) {
+        } catch (\Exception) {
             return redirect()->route('oauth.error');
         }
     }
@@ -83,7 +92,7 @@ class OAuthController extends Controller
          * Check urlAuthorization method in {@link Twitter}.
          * Because x does not return email for oAuth v2, the above method is modified to use v1.
          */
-//        return Socialite::driver('twitter-oauth-2');
+        //        return Socialite::driver('twitter-oauth-2');
         return Socialite::driver('twitter');
     }
 
