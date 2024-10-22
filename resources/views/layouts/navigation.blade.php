@@ -87,7 +87,7 @@
             <!-- Settings -->
             <a href="{{ route('settings.edit') }}">
                 <button type="button"
-                    class="hidden md:block p-2 me-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                    class="hidden md:block p-2 me-2 rounded-lg {{ Route::is('settings.*') ? 'text-text-900 bg-primary dark:text-text-100 dark:bg-primary' : 'text-gray-500 hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary' }} focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                     <span class="sr-only">Settings</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
@@ -102,7 +102,7 @@
 
             <!-- User Icon -->
             <button type="button"
-                class="flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                class="flex text-sm p-2 text-gray-500 rounded-lg {{ Route::is('profile.*') ? 'text-text-900 bg-primary dark:text-text-100 dark:bg-primary' : 'hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary' }} focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                 aria-expanded="false" data-dropdown-toggle="md-dropdown">
                 <span class="sr-only">Open user menu</span>
                 {{--                <img --}}
