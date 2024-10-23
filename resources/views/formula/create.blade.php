@@ -412,8 +412,8 @@
                 modal = new Modal(modalElement, options);
                 modal.show();
 
-                const event = new CustomEvent('modal-open');
-                document.querySelector('[x-data]').dispatchEvent(event);
+                const event = new CustomEvent('modal-open-label');
+                document.getElementById('label-modal-x-data').dispatchEvent(event);
 
                 const modalCloseButton = document.getElementById('create-new-label-modal-close-button');
                 modalCloseButton.addEventListener('click', function(e) {
@@ -553,8 +553,8 @@
                 modal = new Modal(modalElement, options);
                 modal.show();
 
-                const event = new CustomEvent('modal-open');
-                document.querySelector('[x-data]').dispatchEvent(event);
+                const event = new CustomEvent('modal-open-variable');
+                document.getElementById('variable-modal-x-data').dispatchEvent(event);
 
                 const modalCloseButton = document.getElementById('create-new-variable-modal-close-button');
                 modalCloseButton.addEventListener('click', function(e) {

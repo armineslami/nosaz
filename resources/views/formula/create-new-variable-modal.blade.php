@@ -22,11 +22,12 @@
 
             <!-- Modal body -->
             <div class="p-4 md:p-5">
-                <div class="space-y-4" x-data="{
-                    initialize() {
+                <div id="variable-modal-x-data" class="space-y-4" x-data="{
+                    initializeVariableModal() {
                         this.variableName = '';
                     }
-                }" x-init="initialize()" @modal-open="initialize()">
+                }" x-init="initializeVariableModal()"
+                    @modal-open-variable="initializeVariableModal()">
 
                     <div>
                         <label for="variable-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

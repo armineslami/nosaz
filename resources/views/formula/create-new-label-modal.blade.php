@@ -22,18 +22,19 @@
 
             <!-- Modal body -->
             <div class="p-4 md:p-5">
-                <div class="space-y-4" x-data="{
+                <div id="label-modal-x-data" class="space-y-4" x-data="{
                     selectedType: '',
                     showCategory: false,
                     optionsCount: 0,
                     labelName: '',
-                    initialize() {
+                    initializeLabelModal() {
                         this.optionsCount = this.$refs.labelCategory.options.length;
                         this.showCategory = false;
                         this.selectedType = '';
                         this.labelName = '';
                     }
-                }" x-init="initialize()" @modal-open="initialize()">
+                }" x-init="initializeLabelModal()"
+                    @modal-open-label="initializeLabelModal()">
 
                     <div>
                         <label for="label-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
