@@ -114,6 +114,7 @@ class ProjectService
             try {
                 // Evaluate the mathematical expression
                 $evalResult = eval ('return ' . $expression . ';');
+                $evalResult = self::truncate_number($evalResult, 2);
             } catch (\Throwable $e) {
                 // Log::error('Failed to evaluate expression: ' . $expression);
                 // Log::error('Error message: ' . $e->getMessage());
@@ -142,5 +143,11 @@ class ProjectService
     static public function search(?string $query, int $count, string $direction = 'DESC'): LengthAwarePaginator
     {
         return ProjectRepository::search(query: $query, count: $count, direction: $direction);
+    }
+
+    static function truncate_number($number, $decimals)
+    {
+        $factor = pow(10, $decimals);  // Calculate 10^decimals
+        return floor($number * $factor) / $factor;
     }
 }
