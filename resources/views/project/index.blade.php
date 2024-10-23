@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto">
-        @if (count($projects) > 0)
+        @if ((isset($projects) && count($projects) > 0) || (isset($search_result) && count($search_result) > 0))
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
                 <div class="p-4 md:p-6 overflow-x-auto">
                     <table class="border-collapse table-auto w-full text-sm">
@@ -21,48 +21,89 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-slate-800 text-start">
-                            @foreach ($projects as $project)
-                                <tr class="md:hover:bg-gray-100 md:dark:hover:bg-gray-700 cursor-pointer"
-                                    onclick="location.href='{{ route('project.index', ['id' => $project->id]) }}'">
-                                    <td
-                                        class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
-                                        {{ $loop->index + 1 + ($projects->currentPage() - 1) * $projects->perPage() }}
-                                    </td>
-                                    <td
-                                        class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
-                                        {{ $project->name }}
-                                    </td>
-                                    <td
-                                        class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
-                                        {{ $project->formula !== null ? $project->formula->name : __('پیشفرض') }}
-                                    </td>
-                                    <td
-                                        class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
-                                        @if ($project->updated_at->isToday())
-                                            {{ __('app.today') }}
-                                        @elseif ($project->updated_at->isYesterday())
-                                            {{ __('app.yesterday') }}
-                                        @elseif (now()->diffInDays($project->updated_at) <= 7)
-                                            {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInDays($project->updated_at, false)) : (int) now()->diffInDays($project->updated_at)) . ' ' . __('app.day_ago') }}
-                                        @elseif (now()->diffInWeeks($project->updated_at) <= 4)
-                                            {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInWeeks($project->updated_at)) : (int) now()->diffInWeeks($project->updated_at)) . ' ' . __('app.week_ago') }}
-                                        @elseif (now()->diffInMonths($project->updated_at) <= 12)
-                                            {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInMonths($project->updated_at)) : (int) now()->diffInMonths($project->updated_at)) . ' ' . __('app.month_ago') }}
-                                        @else
-                                            {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInYears($project->updated_at)) : (int) now()->diffInYears($project->updated_at)) . ' ' . __('app.year_ago') }}
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
+                            @if (isset($projects))
+                                @foreach ($projects as $project)
+                                    <tr class="md:hover:bg-gray-100 md:dark:hover:bg-gray-700 cursor-pointer"
+                                        onclick="location.href='{{ route('project.index', ['id' => $project->id]) }}'">
+                                        <td
+                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                            {{ $loop->index + 1 + ($projects->currentPage() - 1) * $projects->perPage() }}
+                                        </td>
+                                        <td
+                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                            {{ $project->name }}
+                                        </td>
+                                        <td
+                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                            {{ $project->formula !== null ? $project->formula->name : __('پیشفرض') }}
+                                        </td>
+                                        <td
+                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                            @if ($project->updated_at->isToday())
+                                                {{ __('app.today') }}
+                                            @elseif ($project->updated_at->isYesterday())
+                                                {{ __('app.yesterday') }}
+                                            @elseif (now()->diffInDays($project->updated_at) <= 7)
+                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInDays($project->updated_at, false)) : (int) now()->diffInDays($project->updated_at)) . ' ' . __('app.day_ago') }}
+                                            @elseif (now()->diffInWeeks($project->updated_at) <= 4)
+                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInWeeks($project->updated_at)) : (int) now()->diffInWeeks($project->updated_at)) . ' ' . __('app.week_ago') }}
+                                            @elseif (now()->diffInMonths($project->updated_at) <= 12)
+                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInMonths($project->updated_at)) : (int) now()->diffInMonths($project->updated_at)) . ' ' . __('app.month_ago') }}
+                                            @else
+                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInYears($project->updated_at)) : (int) now()->diffInYears($project->updated_at)) . ' ' . __('app.year_ago') }}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @elseif (isset($search_result))
+                                @foreach ($search_result as $project)
+                                    <tr class="md:hover:bg-gray-100 md:dark:hover:bg-gray-700 cursor-pointer"
+                                        onclick="location.href='{{ route('project.index', ['id' => $project->id]) }}'">
+                                        <td
+                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                            {{ $loop->index + 1 + ($search_result->currentPage() - 1) * $search_result->perPage() }}
+                                        </td>
+                                        <td
+                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                            {{ $project->name }}
+                                        </td>
+                                        <td
+                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                            {{ $project->formula !== null ? $project->formula->name : __('پیشفرض') }}
+                                        </td>
+                                        <td
+                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                            @if ($project->updated_at->isToday())
+                                                {{ __('app.today') }}
+                                            @elseif ($project->updated_at->isYesterday())
+                                                {{ __('app.yesterday') }}
+                                            @elseif (now()->diffInDays($project->updated_at) <= 7)
+                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInDays($project->updated_at, false)) : (int) now()->diffInDays($project->updated_at)) . ' ' . __('app.day_ago') }}
+                                            @elseif (now()->diffInWeeks($project->updated_at) <= 4)
+                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInWeeks($project->updated_at)) : (int) now()->diffInWeeks($project->updated_at)) . ' ' . __('app.week_ago') }}
+                                            @elseif (now()->diffInMonths($project->updated_at) <= 12)
+                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInMonths($project->updated_at)) : (int) now()->diffInMonths($project->updated_at)) . ' ' . __('app.month_ago') }}
+                                            @else
+                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInYears($project->updated_at)) : (int) now()->diffInYears($project->updated_at)) . ' ' . __('app.year_ago') }}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
                         </tbody>
                     </table>
                     <div class="table-nav mt-4 text-slate-400 dark:text-slate-200">
-                        {{ $projects->links() }}
+                        {{ isset($projects) ? $projects->links() : $search_result->links() }}
                     </div>
                 </div>
             </div>
         @else
-            @include('project.empty')
+            @if (isset($projects))
+                @include('project.empty')
+            @else
+                @include('project.empty-search')
+            @endif
         @endif
         @if (session('status') === 'project-destroyed')
             <x-toast x-data="{ show: true }" x-show="show" x-init="$el.classList.add('toast-transition-in');
