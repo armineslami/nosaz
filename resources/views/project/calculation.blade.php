@@ -13,7 +13,8 @@
         @endif
         <x-card class="mt-8">
             @foreach ($labels as $label => $data)
-                @if (!is_array($data))
+                {{-- {{ dd($labels, $label, $data) }} --}}
+                @if (isset($labels[$label]['value']))
                     <div class="flex gap-4 items-center mb-2 ">
                         <x-label-darken-text class="w-[fit-content] !truncate">
                             {{ $label }}
@@ -22,8 +23,10 @@
                         </div>
                         <div class="w-[fit-content] text-text">
                             {{ convert_digits_to_persian(format_number_with_commas($data['value'], $settings->app_max_decimal_place)) }}
-                            <x-label-darken-text
-                                class="!text-text">{{ __('app.' . $data['unit']) }}</x-label-darken-text>
+                            @if (isset($data['unit']))
+                                <x-label-darken-text
+                                    class="!text-text">{{ __('app.' . $data['unit']) }}</x-label-darken-text>
+                            @endif
                         </div>
                     </div>
                 @else
@@ -37,14 +40,16 @@
                             </div>
                             <div class="w-[fit-content] text-text">
                                 {{ convert_digits_to_persian(format_number_with_commas($d['value'], $settings->app_max_decimal_place)) }}
-                                <x-label-darken-text
-                                    class="!text-text">{{ __('app.' . $d['unit']) }}</x-label-darken-text>
-                            </div>
+                                @if (isset($d['unit']))
+                                    <x-label-darken-text
+                                        class="!text-text">{{ __('app.' . $d['unit']) }}</x-label-darken-text>
+                                @endauth
                         </div>
-                    @endforeach
-                @endif
-                <div class="mb-8"></div>
-            @endforeach
-        </x-card>
-    </div>
+                    </div>
+                @endforeach
+            @endif
+            <div class="mb-8"></div>
+        @endforeach
+    </x-card>
+</div>
 </x-app-layout>
