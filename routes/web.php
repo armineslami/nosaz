@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
-        return redirect('dashboard');
-    });
-    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+        return redirect('/project');
+    })->name('home');
+
+    // Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     Route::get('/formula/create', [FormulaController::class, 'create'])->name('formula.create');
     Route::get('/formula/{id?}', [FormulaController::class, 'index'])->name('formula.index');
@@ -38,9 +39,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/project/{id}/update', [ProjectController::class, 'update'])->name('project.update');
     Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
-    Route::get('/reports', function () {
-        return redirect('dashboard');
-    })->name('reports');
+    // Route::get('/reports', function () {
+    //     return redirect('dashboard');
+    // })->name('reports');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

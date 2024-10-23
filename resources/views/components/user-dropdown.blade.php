@@ -13,9 +13,9 @@
         {{ __('پروفایل') }}
     </x-dropdown-link>
 
-    <x-dropdown-link :href="route('settings.edit')" class="block md:hidden">
+    {{-- <x-dropdown-link :href="route('settings.edit')" class="block md:hidden">
         {{ __('تنظیمات') }}
-    </x-dropdown-link>
+    </x-dropdown-link> --}}
 
     <form method="POST" action="{{ route('logout') }}">
         @csrf

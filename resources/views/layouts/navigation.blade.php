@@ -1,52 +1,7 @@
 <nav
     class="bg-background border-b-4 border-gray-200 dark:border-gray-700 px-2 md:px-4 py-3.5 fixed right-0 md:right-[16rem] left-0 z-20 w-full md:w-[calc(100%-16rem)]">
     <div class="flex flex-wrap flex-row items-center">
-        <div class="flex basis-3/4 items-center">
-            <!-- Hamburger Button -->
-            {{--            <button --}}
-            {{--                data-drawer-target="drawer-navigation" --}}
-            {{--                data-drawer-toggle="drawer-navigation" --}}
-            {{--                aria-controls="drawer-navigation" --}}
-            {{--                class="md:hidden p-2 text-gray-500 dark:text-gray-400 rounded-lg cursor-pointer hover:text-text-900 hover:bg-primary dark:hover:text-text-100 dark:hover:bg-primary focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:hover:bg-gray-700 dark:hover:text-white" --}}
-            {{--            > --}}
-            {{--                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> --}}
-            {{--                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" /> --}}
-            {{--                </svg> --}}
-            {{--                <span class="sr-only">Toggle sidebar</span> --}}
-            {{--            </button> --}}
-
-            {{--            <a href="{{ route('dashboard') }}" class="flex items-center justify-between mr-4"> --}}
-            {{--                <x-application-logo class="w-12 h-12 text-black" /> --}}
-            {{--                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">{{ __('خانه') }}</span> --}}
-            {{--            </a> --}}
-
-            {{--            <a href="https://flowbite.com" class="flex items-center justify-between mr-4"> --}}
-            {{--                <img --}}
-            {{--                    src="https://flowbite.s3.amazonaws.com/logo.svg" --}}
-            {{--                    class="mr-3 h-8" --}}
-            {{--                    alt="Flowbite Logo" --}}
-            {{--                /> --}}
-            {{--                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span> --}}
-            {{--            </a> --}}
-
-            <!-- User Icon (sm) -->
-            {{--            <button --}}
-            {{--                type="button" --}}
-            {{--                class="md:hidden flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" --}}
-            {{--                aria-expanded="false" --}}
-            {{--                data-dropdown-toggle="sm-dropdown" --}}
-            {{--            > --}}
-            {{--                <span class="sr-only">Open user menu</span> --}}
-            {{--                <img --}}
-            {{--                    class="w-8 h-8 rounded-full" --}}
-            {{--                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" --}}
-            {{--                    alt="user photo" --}}
-            {{--                /> --}}
-            {{--                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"> --}}
-            {{--                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /> --}}
-            {{--                </svg> --}}
-            {{--            </button> --}}
-
+        <div class="flex basis-10/12 items-center">
             <!-- Search -->
             <form action="{{ route('project.search') }}" method="GET" class=" w-full block">
                 <label for="top-bar-search" class="sr-only">{{ __('جستجو') }}</label>
@@ -81,7 +36,7 @@
         </div>
 
         <!-- Nav Icons -->
-        <div class="flex justify-end basis-1/4 items-center lg:order-2">
+        <div class="flex justify-end basis-2/12 items-center lg:order-2">
 
             <!-- Search -->
             {{--            <button --}}
@@ -97,7 +52,7 @@
             {{--            </button> --}}
 
             <!-- Settings -->
-            <a href="{{ route('settings.edit') }}">
+            {{-- <a href="{{ route('settings.edit') }}">
                 <button type="button"
                     class="hidden md:block p-2 me-2 rounded-lg {{ Route::is('settings.*') ? 'text-text-900 bg-primary dark:text-text-100 dark:bg-primary' : 'text-gray-500 hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary' }} focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                     <span class="sr-only">Settings</span>
@@ -108,9 +63,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     </svg>
                 </button>
-            </a>
+            </a> --}}
 
-            <div class="hidden md:block bg-gray-200 dark:bg-gray-700 w-0.5 h-8 ms-0 me-2"></div>
+            {{-- <div class="hidden md:block bg-gray-200 dark:bg-gray-700 w-0.5 h-8 ms-0 me-2"></div> --}}
 
             <!-- User Icon -->
             <button type="button"
