@@ -171,7 +171,7 @@
                     const isNumberKey = key >= '0' && key <= '9';
                     const validKeys = [
                         'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp',
-                        'ArrowDown', 'Tab'
+                        'ArrowDown', 'Tab', '.'
                     ];
 
                     // Allow Ctrl/Command key combinations
