@@ -129,16 +129,20 @@ class DatabaseSeeder extends Seeder
         $labels['total_area_of_warehouses'] = $child->id;
         $child = Label::create(['name' => __('labels.total_area'), 'is_parent' => false, 'unit' => 'meter', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
         $labels['total_area'] = $child->id;
+        $child = Label::create(['name' => __('labels.builder_percentage'), 'is_parent' => false, 'unit' => 'percent', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
+        $labels['builder_percentage'] = $child->id;
         $child = Label::create(['name' => __('labels.builder_share_of_area'), 'is_parent' => false, 'unit' => 'meter', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
         $labels['builder_share_of_area'] = $child->id;
+        $child = Label::create(['name' => __('labels.construction_cost_per_meter'), 'is_parent' => false, 'unit' => 'toman', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
+        $labels['construction_cost_per_meter'] = $child->id;
         $child = Label::create(['name' => __('labels.selling_price_per_meter'), 'is_parent' => false, 'unit' => 'toman', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
         $labels['selling_price_per_meter'] = $child->id;
         $child = Label::create(['name' => __('labels.total_value_of_units'), 'is_parent' => false, 'unit' => 'toman', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
         $labels['total_value_of_units'] = $child->id;
 
         $label = Label::create(['name' => __('labels.expenses'), 'is_parent' => true, 'parent_id' => null, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
-        $child = Label::create(['name' => __('labels.construction_cost_per_meter'), 'is_parent' => false, 'unit' => 'toman', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
-        $labels['construction_cost_per_meter'] = $child->id;
+        $child = Label::create(['name' => __(key: 'labels.tota_cost_of_illegal_area'), 'is_parent' => false, 'unit' => 'toman', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
+        $labels['tota_cost_of_illegal_area'] = $child->id;
         $child = Label::create(['name' => __(key: 'labels.over'), 'is_parent' => false, 'unit' => 'toman', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
         $labels['over'] = $child->id;
         $child = Label::create(['name' => __('labels.real_estate_commission_fee'), 'is_parent' => false, 'unit' => 'toman', 'parent_id' => $label->id, 'user_id' => null, 'created_at' => Carbon::create(1990, 1, 1), 'updated_at' => Carbon::create(1990, 1, 1)]);
@@ -213,24 +217,24 @@ class DatabaseSeeder extends Seeder
         $formula .= '#' . $variables['density_percentage'] . '#+#' . $variables['illegal_density_percentage'] . '#=<' . $labels['total_density'] . '>';
         $formula .= '(#' . $variables['land_area'] . '#*#' . $variables['density_percentage'] . '#)/100=<' . $labels['llegal_area_of_floor'] . '>';
         $formula .= '(#' . $variables['land_area'] . '#*#' . $variables['illegal_density_percentage'] . '#)/100+#' . $variables['illegal_area_per_floor'] . '#=<' . $labels['illegal_area_of_floor'] . '>';
-        $formula .= '<' . $labels['llegal_area_of_floor'] . '>+<' . $labels['illegal_area_of_floor'] . '>+#' . $variables['illegal_area_per_floor'] . '#=<' . $labels['total_area_of_floor'] . '>';
+        $formula .= '<' . $labels['llegal_area_of_floor'] . '>+<' . $labels['illegal_area_of_floor'] . '>=<' . $labels['total_area_of_floor'] . '>';
         $formula .= '<' . $labels['total_area_of_floor'] . '>*#' . $variables['floors_count'] . '#=<' . $labels['total_area'] . '>';
         $formula .= '#' . $variables['unit_per_floor'] . '#=<' . $labels['unit_per_floor'] . '>';
         $formula .= '#' . $variables['unit_per_floor'] . '#*#' . $variables['floors_count'] . '#=<' . $labels['total_units'] . '>';
         $formula .= '<' . $labels['total_area_of_floor'] . '>/#' . $variables['required_area_of_each_parking'] . '#=<' . $labels['llegal_parking_count'] . '>';
         $formula .= '#' . $variables['area_of_each_warehouse'] . '#*#' . $variables['number_of_warehouses'] . '#=<' . $labels['total_area_of_warehouses'] . '>';
         $formula .= '#' . $variables['selling_price_per_meter'] . '#=<' . $labels['selling_price_per_meter'] . '>';
-        $formula .= '((<' . $labels['total_area'] . '>+<' . $labels['total_area_of_warehouses'] . '>)*#' . $variables['construction_cost_per_meter'] . '#)+(#' . $variables['cost_per_illegal_meter'] . '#*(#' . $variables['illegal_area_per_floor'] . '#+<' . $labels['illegal_area_of_floor'] . '>)*#' . $variables['floors_count'] . '#)=<' . $labels['total_construction_cost'] . '>';
         $formula .= '<' . $labels['total_area'] . '>+<' . $labels['total_area_of_warehouses'] . '>=<' . $labels['total_area_of_units'] . '>';
         $formula .= '<' . $labels['total_area_of_units'] . '>*#' . $variables['selling_price_per_meter'] . '#=<' . $labels['total_value_of_units'] . '>';
         $formula .= '<' . $labels['llegal_area_of_floor'] . '>/#' . $variables['unit_per_floor'] . '#+((<' . $labels['illegal_area_of_floor'] . '>+#' . $variables['illegal_area_per_floor'] . '#)/#' . $variables['unit_per_floor'] . '#)=<' . $labels['unit_area'] . '>';
         $formula .= '#' . $variables['area_of_each_warehouse'] . '#=<' . $labels['warehouse_area'] . '>';
         $formula .= '<' . $labels['unit_area'] . '>+<' . $labels['warehouse_area'] . '>=<' . $labels['total_area_per_unit'] . '>';
         $formula .= '#' . $variables['construction_cost_per_meter'] . '#=<' . $labels['construction_cost_per_meter'] . '>';
-        // $formula .= '#' . $variables['over'] . '#=<' . $labels['over'] . '>';
         $formula .= '#' . $variables['real_estate_commission_fee'] . '#=<' . $labels['real_estate_commission_fee'] . '>';
+        $formula .= '#' . $variables['cost_per_illegal_meter'] . '#*<' . $labels['illegal_area_of_floor'] . '>*#' . $variables['floors_count'] . '#=<' . $labels['tota_cost_of_illegal_area'] . '>';
         $formula .= '#' . $variables['other_expenses'] . '#=<' . $labels['other_expenses'] . '>';
-        $formula .= '<' . $labels['total_construction_cost'] . '>+<' . $labels['land_total_price'] . '>+<' . $labels['other_expenses'] . '>+<' . $labels['real_estate_commission_fee'] . '>=<' . $labels['total_expense'] . '>';
+        $formula .= '(<' . $labels['total_area'] . '>+<' . $labels['total_area_of_warehouses'] . '>)*#' . $variables['construction_cost_per_meter'] . '#=<' . $labels['total_construction_cost'] . '>';
+        $formula .= '<' . $labels['total_construction_cost'] . '>+<' . $labels['land_total_price'] . '>+<' . $labels['other_expenses'] . '>+<' . $labels['real_estate_commission_fee'] . '>+(#' . $variables['cost_per_illegal_meter'] . '#*<' . $labels['illegal_area_of_floor'] . '>*#' . $variables['floors_count'] . '#)=<' . $labels['total_expense'] . '>';
         $formula .= '<' . $labels['total_value_of_units'] . '>-<' . $labels['total_expense'] . '>=<' . $labels['total_profit'] . '>';
 
         self::addFormulaToDatabase(__('app.land_purchase'), $formula);
@@ -247,14 +251,13 @@ class DatabaseSeeder extends Seeder
         $formula .= '#' . $variables['density_percentage'] . '#+#' . $variables['illegal_density_percentage'] . '#=<' . $labels['total_density'] . '>';
         $formula .= '(#' . $variables['land_area'] . '#*#' . $variables['density_percentage'] . '#)/100=<' . $labels['llegal_area_of_floor'] . '>';
         $formula .= '(#' . $variables['land_area'] . '#*#' . $variables['illegal_density_percentage'] . '#)/100+#' . $variables['illegal_area_per_floor'] . '#=<' . $labels['illegal_area_of_floor'] . '>';
-        $formula .= '<' . $labels['llegal_area_of_floor'] . '>+<' . $labels['illegal_area_of_floor'] . '>+#' . $variables['illegal_area_per_floor'] . '#=<' . $labels['total_area_of_floor'] . '>';
+        $formula .= '<' . $labels['llegal_area_of_floor'] . '>+<' . $labels['illegal_area_of_floor'] . '>=<' . $labels['total_area_of_floor'] . '>';
         $formula .= '<' . $labels['total_area_of_floor'] . '>*#' . $variables['floors_count'] . '#=<' . $labels['total_area'] . '>';
         $formula .= '#' . $variables['unit_per_floor'] . '#=<' . $labels['unit_per_floor'] . '>';
         $formula .= '#' . $variables['unit_per_floor'] . '#*#' . $variables['floors_count'] . '#=<' . $labels['total_units'] . '>';
         $formula .= '<' . $labels['total_area_of_floor'] . '>/#' . $variables['required_area_of_each_parking'] . '#=<' . $labels['llegal_parking_count'] . '>';
         $formula .= '#' . $variables['area_of_each_warehouse'] . '#*#' . $variables['number_of_warehouses'] . '#=<' . $labels['total_area_of_warehouses'] . '>';
         $formula .= '#' . $variables['selling_price_per_meter'] . '#=<' . $labels['selling_price_per_meter'] . '>';
-        $formula .= '((<' . $labels['total_area'] . '>+<' . $labels['total_area_of_warehouses'] . '>)*#' . $variables['construction_cost_per_meter'] . '#)+(#' . $variables['cost_per_illegal_meter'] . '#*(#' . $variables['illegal_area_per_floor'] . '#+<' . $labels['illegal_area_of_floor'] . '>)*#' . $variables['floors_count'] . '#)=<' . $labels['total_construction_cost'] . '>';
         $formula .= '<' . $labels['total_area'] . '>+<' . $labels['total_area_of_warehouses'] . '>=<' . $labels['total_area_of_units'] . '>';
         $formula .= '<' . $labels['total_area_of_units'] . '>*#' . $variables['selling_price_per_meter'] . '#=<' . $labels['total_value_of_units'] . '>';
         $formula .= '<' . $labels['llegal_area_of_floor'] . '>/#' . $variables['unit_per_floor'] . '#+((<' . $labels['illegal_area_of_floor'] . '>+#' . $variables['illegal_area_per_floor'] . '#)/#' . $variables['unit_per_floor'] . '#)=<' . $labels['unit_area'] . '>';
@@ -263,10 +266,13 @@ class DatabaseSeeder extends Seeder
         $formula .= '#' . $variables['construction_cost_per_meter'] . '#=<' . $labels['construction_cost_per_meter'] . '>';
         $formula .= '#' . $variables['over'] . '#=<' . $labels['over'] . '>';
         $formula .= '#' . $variables['real_estate_commission_fee'] . '#=<' . $labels['real_estate_commission_fee'] . '>';
+        $formula .= '#' . $variables['cost_per_illegal_meter'] . '#*<' . $labels['illegal_area_of_floor'] . '>*#' . $variables['floors_count'] . '#=<' . $labels['tota_cost_of_illegal_area'] . '>';
         $formula .= '#' . $variables['other_expenses'] . '#=<' . $labels['other_expenses'] . '>';
+        $formula .= '(<' . $labels['total_area'] . '>+<' . $labels['total_area_of_warehouses'] . '>)*#' . $variables['construction_cost_per_meter'] . '#=<' . $labels['total_construction_cost'] . '>';
+        $formula .= '#' . $variables['builder_percentage'] . '#=<' . $labels['builder_percentage'] . '>';
         $formula .= '(<' . $labels['total_area_of_units'] . '>*#' . $variables['builder_percentage'] . '#)/100=<' . $labels['builder_share_of_area'] . '>';
-        $formula .= '<' . $labels['total_construction_cost'] . '>+<' . $labels['other_expenses'] . '>+<' . $labels['real_estate_commission_fee'] . '>+<' . $labels['over'] . '>=<' . $labels['total_expense'] . '>';
-        $formula .= '<' . $labels['total_value_of_units'] . '>-<' . $labels['total_expense'] . '>-(<' . $labels['builder_share_of_area'] . '>*#' . $variables['selling_price_per_meter'] . '#)=<' . $labels['total_profit'] . '>';
+        $formula .= '<' . $labels['total_construction_cost'] . '>+<' . $labels['other_expenses'] . '>+<' . $labels['real_estate_commission_fee'] . '>+<' . $labels['over'] . '>+(#' . $variables['cost_per_illegal_meter'] . '#*<' . $labels['illegal_area_of_floor'] . '>*#' . $variables['floors_count'] . '#)=<' . $labels['total_expense'] . '>';
+        $formula .= '(<' . $labels['builder_share_of_area'] . '>*#' . $variables['selling_price_per_meter'] . '#)-<' . $labels['total_expense'] . '>=<' . $labels['total_profit'] . '>';
 
         self::addFormulaToDatabase(__('app.participation'), $formula);
     }
