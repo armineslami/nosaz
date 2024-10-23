@@ -21,7 +21,7 @@
                         <div class="grow h-0 border-b border-dashed border-b-slate-500">
                         </div>
                         <div class="w-[fit-content] text-text">
-                            {{ convert_digits_to_persian(format_number_with_commas($data['value'], 2)) }}
+                            {{ convert_digits_to_persian(format_number_with_commas($data['value'], $settings->app_max_decimal_place)) }}
                             <x-label-darken-text
                                 class="!text-text">{{ __('app.' . $data['unit']) }}</x-label-darken-text>
                         </div>
@@ -36,7 +36,7 @@
                             <div class="grow h-0 border-b border-dashed border-b-slate-500">
                             </div>
                             <div class="w-[fit-content] text-text">
-                                {{ convert_digits_to_persian(format_number_with_commas($d['value'], 2)) }}
+                                {{ convert_digits_to_persian(format_number_with_commas($d['value'], $settings->app_max_decimal_place)) }}
                                 <x-label-darken-text
                                     class="!text-text">{{ __('app.' . $d['unit']) }}</x-label-darken-text>
                             </div>

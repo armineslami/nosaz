@@ -14,6 +14,7 @@ class Setting extends Model
     protected $fillable = [
         'app_paginate_number',
         'app_theme',
+        'app_max_decimal_place',
         'user_id'
     ];
 }

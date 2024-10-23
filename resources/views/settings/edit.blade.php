@@ -10,7 +10,7 @@
             @csrf
             @method('PATCH')
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="mb-2">
                     <label for="app_theme" class="block text-sm truncate mb-2 font-medium text-gray-900 dark:text-white">
                         {{ __('رنگ نرم افزار') }}
@@ -40,6 +40,16 @@
                         placeholder="{{ __('تعداد ردیف در جدول‌') }}" :value="old('app_paginate_number') ?? $settings->app_paginate_number">
                     </x-text-input>
                     <x-input-error :messages="$errors->get('app_paginate_number')" class="mt-2" />
+                </div>
+                <div class="mb-2">
+                    <label for="app_max_decimal_place"
+                        class="block text-sm truncate mb-2 font-medium text-gray-900 dark:text-white">
+                        {{ __('تعداد رقم اعشار در محاسبات') }}
+                    </label>
+                    <x-text-input type="number" name="app_max_decimal_place" class="w-full" required
+                        placeholder="{{ __('تعداد رقم اعشار') }}" :value="old('app_max_decimal_place') ?? $settings->app_max_decimal_place">
+                    </x-text-input>
+                    <x-input-error :messages="$errors->get('app_max_decimal_place')" class="mt-2" />
                 </div>
             </div>
 

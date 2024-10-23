@@ -5,6 +5,7 @@ use App\Models\Project;
 use App\Repositories\FormulaRepository;
 use App\Repositories\LabelRepository;
 use App\Repositories\ProjectRepository;
+use App\Repositories\SettingsRepository;
 use App\Repositories\VariableRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -114,7 +115,7 @@ class ProjectService
             try {
                 // Evaluate the mathematical expression
                 $evalResult = eval ('return ' . $expression . ';');
-                $evalResult = self::truncate_number($evalResult, 2);
+                $evalResult = self::truncate_number($evalResult, SettingsRepository::first()->app_max_decimal_place);
             } catch (\Throwable $e) {
                 // Log::error('Failed to evaluate expression: ' . $expression);
                 // Log::error('Error message: ' . $e->getMessage());

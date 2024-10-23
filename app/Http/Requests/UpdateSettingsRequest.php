@@ -24,7 +24,8 @@ class UpdateSettingsRequest extends FormRequest
     {
         return [
             'app_theme' => 'required|string|in:system,light,dark',
-            'app_paginate_number' => 'required|numeric|min:1|max:100'
+            'app_paginate_number' => 'required|numeric|min:1|max:100',
+            'app_max_decimal_place' => 'required|numeric|min:0|max:5'
         ];
     }
 }
