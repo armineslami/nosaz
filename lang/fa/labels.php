@@ -30,7 +30,7 @@ return [
     'construction_cost_per_meter' => 'هزینه ساخت هر متر',
     'real_estate_commission_fee' => 'کمیسیون مشاور املاک',
     'other_expenses' => 'سایر هزینه‌ها',
-    'total_construction_cost' => 'مجموع هزینه ساخت',
+    'total_construction_cost' => 'هزینه ساخت',
     'unit' => 'واحد',
     'over' => 'اُوِر',
     'warehouse_area' => 'متراژ انباری',
