@@ -30,6 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/formula/label/{id}', [LabelController::class, 'destroy'])->name('formula.label.destroy');
 
     Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
+    Route::get('/project/search/', [ProjectController::class, 'search'])->name('project.search');
     Route::get('/project/{id?}', [ProjectController::class, 'index'])->name('project.index');
     Route::post('/project', [ProjectController::class, 'store'])->name('project.store');
     Route::get('/project/calculate', [ProjectController::class, 'showCalculation'])->name('project.show.calculate');
