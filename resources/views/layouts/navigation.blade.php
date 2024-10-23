@@ -48,8 +48,8 @@
             {{--            </button> --}}
 
             <!-- Search -->
-            <form action="#" method="GET" class=" w-full block">
-                <label for="top-bar-search" class="sr-only">Search</label>
+            <form action="{{ route('project.search') }}" method="GET" class=" w-full block">
+                <label for="top-bar-search" class="sr-only">{{ __('جستجو') }}</label>
                 <div class="relative">
                     <div class="flex absolute inset-y-0 left-0 items-center px-3 cursor-pointer"
                         onclick="event.preventDefault(); this.closest('form').submit();">
@@ -61,9 +61,21 @@
                         </svg>
                     </div>
 
-                    <x-text-input id="search" class="block w-full"
+                    <x-text-input id="search"
+                        class="block w-full {{ !empty(request()->query('query')) ? 'ps-12' : 'ps-4' }}"
                         placeholder="{{ __('navigation.search_for_project') }}" type="text" name="query"
-                        required />
+                        :value="request()->query('query') ?: null" required />
+
+                    @if (!empty(request()->query('query')))
+                        <span class="flex absolute -inset-y-1.5 right-0 items-center px-3 h-full cursor-pointer"
+                            onclick="window.location.href = '/project'">
+                            <svg class="w-4 h-4 text-gray-800 dark:text-white mt-3" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M6 18 18 6m0 12L6 6" />
+                            </svg>
+                        </span>
+                    @endif
                 </div>
             </form>
         </div>
