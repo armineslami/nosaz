@@ -43,7 +43,7 @@
                         </li>
                         <li>
                             <a href="{{ route('project.index') }}"
-                                class="flex text-xs w-full ms-4 px-4 py-2 {{ Route::is('project.index') ? 'text-text bg-primary-200 dark:bg-primary-100' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700' }} transition duration-75 rounded-md pl-11 group">
+                                class="flex text-xs w-full ms-4 px-4 py-2 {{ Route::is('project.index') || Route::is('project.search') ? 'text-text bg-primary-200 dark:bg-primary-100' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700' }} transition duration-75 rounded-md pl-11 group">
                                 {{ __('پروژه‌ها') }}
                             </a>
                         </li>
