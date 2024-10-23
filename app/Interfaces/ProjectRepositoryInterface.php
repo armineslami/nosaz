@@ -13,4 +13,5 @@ interface ProjectRepositoryInterface
     public static function paginate($count = 20, string $column = 'id', string $direction = 'DESC'): LengthAwarePaginator;
     public static function create(string $name, string $description = null, array $variables, int $formulaId, int $user_id): Project;
     public static function update(int $id, mixed $project): bool;
+    public static function search(?string $query, int $count = 20, string $direction = 'DESC'): LengthAwarePaginator;
 }

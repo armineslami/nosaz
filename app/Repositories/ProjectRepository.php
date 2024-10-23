@@ -48,4 +48,12 @@ class ProjectRepository implements ProjectRepositoryInterface
         }
         return false;
     }
+
+    public static function search(?string $query, int $count = 20, string $direction = 'DESC'): LengthAwarePaginator
+    {
+        return Project::where("name", 'LIKE', '%' . $query . '%')
+            ->orWhere('description', 'LIKE', '%' . $query . '%')
+            ->orderBy('id', $direction)
+            ->paginate($count);
+    }
 }

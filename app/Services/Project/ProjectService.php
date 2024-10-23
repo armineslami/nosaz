@@ -7,6 +7,7 @@ use App\Repositories\LabelRepository;
 use App\Repositories\ProjectRepository;
 use App\Repositories\VariableRepository;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProjectService
 {
@@ -136,5 +137,10 @@ class ProjectService
         $collection->formula = $formula;
 
         return $collection;
+    }
+
+    static public function search(?string $query, int $count, string $direction = 'DESC'): LengthAwarePaginator
+    {
+        return ProjectRepository::search(query: $query, count: $count, direction: $direction);
     }
 }

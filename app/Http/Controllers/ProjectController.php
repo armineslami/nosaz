@@ -121,4 +121,14 @@ class ProjectController extends Controller
             return redirect()->back()->with('status', 'formula-pyload-corrupted');
         }
     }
+
+    public function search(Request $request): View|RedirectResponse
+    {
+        $query = $request->input('query');
+        if (!isset($query)) {
+            return Redirect::route('project.index');
+        }
+        $result = ProjectService::search(query: $query, count: SettingsRepository::first()->app_paginate_number);
+        return view('project.index', ['search_result' => $result, 'query' => $query]);
+    }
 }
