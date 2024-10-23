@@ -33,7 +33,7 @@
                             {{ __('نام') }}
                         </label>
                         <x-text-input type="text" name="variable-name" id="create-new-variable-modal-variable-name"
-                            x-model="variableName" class="w-full" placeholder="{{ __('نام برچسب') }}" required>
+                            x-model="variableName" class="w-full" placeholder="{{ __('نام متغیر') }}" required>
                         </x-text-input>
                         <x-input-error :messages="$errors->get('variable-name')" class="mt-2" />
                     </div>
