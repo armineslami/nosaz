@@ -59,6 +59,31 @@
                             </template>
                         </x-select>
 
+                        <div class="mt-4">
+                            <label for="create-new-label-modal-label-unit"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ __('واحد') }}
+                            </label>
+                            <x-select id="create-new-label-modal-label-unit" name="create-new-label-modal-label-unit"
+                                class="w-full">
+                                <option value=""
+                                    {{ !old('unit') || (old('unit') && old('unit') === '') ? 'selected' : '' }}>
+                                    {{ __('app.none') }}</option>
+                                <option value="meter" {{ old('unit') && old('unit') === 'meter' ? 'selected' : '' }}>
+                                    {{ __('app.meter') }}</option>
+                                <option value="number" {{ old('unit') && old('unit') === 'number' ? 'selected' : '' }}>
+                                    {{ __('app.number') }}</option>
+                                <option value="percent"
+                                    {{ old('unit') && old('unit') === 'percent' ? 'selected' : '' }}>
+                                    {{ __('app.percent') }}</option>
+                                <option value="toman" {{ old('unit') && old('unit') === 'toman' ? 'selected' : '' }}>
+                                    {{ __('app.toman') }}</option>
+                                <option value="rial" {{ old('unit') && old('unit') === 'rial' ? 'selected' : '' }}>
+                                    {{ __('app.rial') }}</option>
+                            </x-select>
+                            <x-input-error :messages="$errors->get('unit')" class="mt-2" />
+                        </div>
+
                         <div x-show="showCategory" class="mt-4">
                             <label for="create-new-label-modal-label-category"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

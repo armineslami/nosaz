@@ -427,6 +427,7 @@
                 const labelNameInput = modalElement.querySelector('#create-new-label-modal-label-name');
                 const labelType = modalElement.querySelector('#create-new-label-modal-label-type');
                 const labelCategory = modalElement.querySelector('#create-new-label-modal-label-category');
+                const labelUnitSelect = modalElement.querySelector('#create-new-label-modal-label-unit');
                 const confirmButtonText = modalElement.querySelector('#create-new-label-modal-confirm-button-text');
                 const confirmButtonSpinner = modalElement.querySelector(
                     '#create-new-label-modal-confirm-button-spinner');
@@ -438,6 +439,7 @@
                 if (confirmButtonText.classList.contains('hidden')) return;
 
                 const labelName = labelNameInput.value;
+                const labelUnit = labelUnitSelect.options[labelUnitSelect.selectedIndex].value;
                 const selectedType = labelType.value;
 
                 // If the label type is child, find its parent id
@@ -451,7 +453,7 @@
                 try {
                     confirmButtonText.classList.add('hidden');
                     confirmButtonSpinner.classList.remove('hidden');
-                    sendStoreLabelRequest(labelName, parentId === '' ? 1 : 0, parentId)
+                    sendStoreLabelRequest(labelName, parentId === '' ? 1 : 0, parentId, labelUnit)
                         .then((response) => {
                             runIfDebug(DEBUG, console.log, 'Submit Label Response', response);
                             if (response && response.status === 201 && response.data && response.data.stored ===
@@ -471,13 +473,16 @@
                 } catch (e) {}
             }
 
-            async function sendStoreLabelRequest(name, isParent, parentId) {
+            async function sendStoreLabelRequest(name, isParent, parentId, unit) {
                 const body = {
                     name,
                     type: isParent
                 };
                 if (!isParent) {
                     body.parent = parentId;
+                }
+                if (unit) {
+                    body.unit = unit;
                 }
                 return await axios.post("/formula/label", body)
                     .then((res) => {
