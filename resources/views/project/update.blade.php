@@ -37,7 +37,7 @@
                                         class="block text-sm truncate mb-2 font-medium text-gray-900 dark:text-white">
                                         {{ $variable->name }}
                                     </label>
-                                    <x-text-input type="number" name="var_{{ $variable->id }}"
+                                    <x-text-input type="number" step="any" name="var_{{ $variable->id }}"
                                         class="w-full numeric-input" placeholder="{{ $variable->name }}"
                                         value="{{ old('var_' . $variable->id) ? old('var_' . $variable->id) : $project->variables->{'var_' . $variable->id} ?? '' }}">
                                     </x-text-input>
