@@ -22,6 +22,7 @@ return [
     'total_area_of_units' => 'مجموع متراژ واحدها',
     'total_area_of_warehouses' => 'مجموع متراژ انباری‌ها',
     'total_area' => 'مجموع متراژ‌ها',
+    'builder_percentage' => 'درصد مشارکت سازنده',
     'builder_share_of_area' => 'متراژ سهم سازنده',
     'selling_price_per_meter' => 'قیمت فروش هر متر',
     'total_value_of_units' => 'ارزش کل واحدها',
@@ -33,5 +34,6 @@ return [
     'unit' => 'واحد',
     'over' => 'اُوِر',
     'warehouse_area' => 'متراژ انباری',
-    'total_area_per_unit' => 'مجموع متراژ هر واحد'
+    'total_area_per_unit' => 'مجموع متراژ هر واحد',
+    'tota_cost_of_illegal_area' => 'هزینه ساخت متراژ غیرمجاز'
 ];
