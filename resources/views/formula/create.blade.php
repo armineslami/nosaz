@@ -837,7 +837,10 @@
                         if (response && response.status === 200) {
                             if (response.data.stored === true) {
                                 showToastById('successToast');
-                                clearFormulaForm();
+                                setTimeout(() => {
+                                    redirectTo(`/formula/${response.data.id}`);
+                                    clearFormulaForm();
+                                }, 1000);
                             } else {
                                 showToastById('failToast');
                             }
@@ -881,6 +884,10 @@
                         toast.classList.remove('toast-transition-out');
                     }, 1000);
                 }, 5000);
+            }
+
+            function redirectTo(path) {
+                window.location.href = path;
             }
 
             function clearFormulaForm() {

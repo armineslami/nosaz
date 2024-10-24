@@ -42,14 +42,14 @@ class FormulaController extends Controller
         return view('formula.create', ['variables' => $variables, 'labels' => $labels]);
     }
 
-    public function store(CreateFormulaRequest $request): JsonResponse
+    public function store(CreateFormulaRequest $request): JsonResponse|RedirectResponse
     {
         $formula = FormulaService::createFormula(
             name: $request->name,
             formula: $request->formula,
             user_id: Auth::user()->id
         );
-        return response()->json(['stored' => isset($formula)]);
+        return response()->json(['stored' => isset($formula), 'id' => isset($formula) ? $formula->id : null]);
     }
 
     public function update(CreateFormulaRequest $request): JsonResponse
