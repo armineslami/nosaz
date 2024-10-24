@@ -213,6 +213,7 @@
             formulaBuilder.addEventListener('keyup', saveSelection);
             formulaBuilder.addEventListener('input', onFormulaBuilderInput);
 
+            formulaBuilder.textContent = "";
             restoreFormula(hiddenFormulaPayload.innerText);
 
             // Set onClick for create new label button
@@ -353,6 +354,9 @@
 
                 // Destroy hidden element
                 hiddenFormulaPayload.remove();
+
+                // Remove focus
+                formulaBuilder.blur();
             }
 
             function sliceAndMoveIndex(str, i, startChar, endChar) {
