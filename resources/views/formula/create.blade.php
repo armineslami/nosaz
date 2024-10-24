@@ -167,6 +167,8 @@
             formulaBuilder.addEventListener('keyup', saveSelection);
             formulaBuilder.addEventListener('input', onFormulaBuilderInput);
 
+            formulaBuilder.textContent = "";
+
             // Set onClick for create new label button
             const createNewLabelButton = document.getElementById('create-new-label-button');
             createNewLabelButton.addEventListener('click', function(e) {
