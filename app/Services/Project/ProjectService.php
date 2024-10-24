@@ -103,7 +103,7 @@ class ProjectService
                             return $calculation[$parent->name][$label->name]['value'];
                         }
                     } else if (isset($calculation[$label->name])) {
-                        return $calculation[$id]['value'];
+                        return $calculation[$label->name]['value'];
                     } else {
                         return 0; // Fallback if the calculation for <X> is not found
                     }
