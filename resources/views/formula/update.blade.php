@@ -11,6 +11,9 @@
                 @csrf
 
                 <div class="flex justify-end mb-2 gap-2">
+                    <x-secondary-button onclick="clearFormulaForm()">
+                        {{ __('پاک کردن') }}
+                    </x-secondary-button>
                     <x-secondary-button id="create-new-label-button" data-name="label">
                         <p class="w-full text-center">{{ __('برچسب جدید') }}</p>
                     </x-secondary-button>
@@ -193,15 +196,33 @@
     </div>
 
     <script>
+        let savedRange = null; // Save cursor position (range)
+        let modal = null;
+        let builderContentShadow = ''; // To be compared with formula builder content text
+        let formulaPayload = '';
+        let formulaPayloadShadow = [];
+
+        // This function is globally defined so it can be binded to on click event
+        function clearFormulaForm() {
+            const formulaNameElement = document.getElementById('formulaName');
+            const formulaNameErrorLabel = document.getElementById('formulaNameError');
+            const formulaBuilderErrorLabel = document.getElementById('formulaBuilderError');
+
+            formulaNameElement.value = '';
+            formulaNameErrorLabel.innerText = '';
+
+            formulaBuilder.textContent = '';
+            formulaBuilderErrorLabel.innerText = '';
+
+            builderContentShadow = '';
+            formulaPayload = '';
+            formulaPayloadShadow = [];
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const DEBUG = true;
             const formulaForm = document.getElementById('formulaForm');
             const formulaBuilder = document.getElementById('formulaBuilder');
-            let savedRange = null; // Save cursor position (range)
-            let modal = null;
-            let builderContentShadow = ''; // To be compared with formula builder content text
-            let formulaPayload = '';
-            let formulaPayloadShadow = [];
 
             formulaForm.onsubmit = function(e) {
                 e.preventDefault();
@@ -1010,7 +1031,6 @@
                         if (response && response.status === 200) {
                             if (response.data.updated === true) {
                                 showToastById('successToast');
-                                clearFormulaForm();
                             } else {
                                 showToastById('failToast');
                             }
