@@ -302,7 +302,7 @@
                 const selection = window.getSelection();
                 if (selection.rangeCount > 0) {
                     savedRange = selection.getRangeAt(0);
-                    if (disableTextSelection && savedRange.endOffset - savedRange.startOffset > 1) {
+                    if (disableTextSelection && savedRange.endOffset - savedRange.startOffset >= 1) {
                         selection.removeAllRanges();
                         moveCursorToEnd(formulaBuilder);
                     }
