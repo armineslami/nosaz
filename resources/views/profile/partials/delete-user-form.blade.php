@@ -1,8 +1,8 @@
 <section>
-    <x-card class="bg-red-200 dark:bg-red-900">
+    <x-card class="bg-red-200 dark:bg-red-800">
         <div class="mb-6">
             <p class="text-text text-lg font-bold mb-2">{{ __('حذف حساب کاربری') }}</p>
-            <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
+            <p class="text-text-600 dark:text-gray-300 text-sm justify-center">
                 {{ __('با حذف کردن حساب کاربری، تمام اطلاعات شما از بین خواهد رفت و برای ورود مجدد نیاز به ثبت نام خواهید داشت.') }}
             </p>
         </div>
