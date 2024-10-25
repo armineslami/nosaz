@@ -4,7 +4,7 @@
         {{ __('برای نوشتن فرمول موارد زیر را رعایت کنید:') }}
     </p>
 
-    <ul class="mt-4 p-4 text-text text-xs space-y-1 list-disc leading-6 lg:leading-5">
+    <ul class="mt-4 p-4 text-text text-xs space-y-3 list-disc leading-6 lg:leading-5">
         <li>
             {{ __('تنها مجاز به استفاده از متغیرها، برچسب‌ها، عملگرهای ریاضی و اعداد هستید. استفاده از هر کاراکتر دیگری منجر به محاسبه اشتباه می‌گردد.') }}
         </li>
