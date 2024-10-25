@@ -64,19 +64,18 @@
             </div>
             <p class="text-text"> = </p>
             <div class="shadow-md bg-accent py-1 px-1.5 rounded-md text-white text-xs select-none">
-                {{ __('متراژ کل طبقات') }}
+                {{ __('متراژ کل') }}
             </div>
         </div>
         <div class="flex items-center gap-1 text-sm mt-2">
-            <p class="text-text">(</p>
             <div class="shadow-md bg-accent py-1 px-1.5 rounded-md text-white text-xs select-none">
-                {{ __('متراژ کل طبقات') }}
+                {{ __('متراژ کل') }}
             </div>
-            <p class="text-text"> * </p>
+            <p class="text-text">*</p>
             <div class="shadow-md bg-primary py-1 px-1.5 rounded-md text-text text-xs select-none">
-                {{ __('قیمت ساخت هر متر') }}
+                {{ __('هزینه ساخت') }}
             </div>
-            <p class="text-text">) + </p>
+            <p class="text-text">+</p>
             <div class="shadow-md bg-primary py-1 px-1.5 rounded-md text-text text-xs select-none">
                 {{ __('سایر هزینه‌ها') }}
             </div>
