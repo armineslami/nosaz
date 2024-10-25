@@ -50,7 +50,7 @@
                 <span
                     class="text-xs {{ Route::is('formula.*') ? 'text-primary-500 dark:text-primary' : 'text-gray-900 dark:text-gray-100' }}">{{ __('فرمول‌ها') }}</span>
                 <span
-                    class="bg-accent rounded border-0 text-xsmall px-0.5 ms-1 text-white font-bold">{{ __('آزمایشی') }}</span>
+                    class="bg-accent rounded border-0 text-xsmall px-1 py-0.5 ms-1 text-white font-bold">{{ __('آزمایشی') }}</span>
             </div>
         </a>
         <div data-popover id="formula-menu-popover" role="tooltip"
