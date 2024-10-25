@@ -8,9 +8,9 @@
             <form id="formulaForm" method="POST" action="{{ route('formula.store') }}">
                 @csrf
 
-                <div class="flex justify-end mb-2 gap-2">
+                <div class="flex flex-wrap justify-end mb-8 md:mb-2 gap-2">
                     <x-secondary-button onclick="clearFormulaForm()">
-                        {{ __('پاک کردن') }}
+                        {{ __('پاک کن') }}
                     </x-secondary-button>
                     <x-secondary-button id="create-new-label-button" data-name="label">
                         <p class="w-full text-center">{{ __('برچسب جدید') }}</p>
@@ -33,7 +33,7 @@
 
                 <!-- Formula Building Area (contenteditable) -->
                 <div id="formulaBuilder" contenteditable="true" dir="ltr" spellcheck="false"
-                    class="formula-builder !ltr leading-10 min-h-24 p-2.5 w-full text-sm text-text bg-white rounded-md shadow-sm outline-none border-2 border-gray-300 dark:border-gray-700 focus:ring-accent focus:border-accent dark:bg-gray-800">
+                    class="formula-builder !ltr leading-10 min-h-24 p-2.5 w-full text-sm text-text bg-white rounded-md shadow-sm outline-none border-2 border-gray-300 dark:border-gray-700 focus:ring-accent dark:focus:ring-accent focus:border-accent dark:focus:border-accent dark:bg-gray-800">
                 </div>
 
                 {{-- <x-input-error :messages="$errors->get('formula')" class="mt-2"/> --}}
@@ -209,6 +209,8 @@
                     e.preventDefault();
                     const operation = this.getAttribute('data-operation');
                     insertVariable(formulaBuilder, operation, null, false, true);
+                    updateFormula(operation, operation.length, false);
+                    saveSelection();
                 });
             });
 
@@ -221,6 +223,9 @@
                     const variableId = this.getAttribute('data-id');
                     const isLabel = this.getAttribute('data-type') === 'label'
                     insertVariable(formulaBuilder, variableName, variableId, isLabel);
+                    updateFormula(isLabel ? '<' + variableId + '>' : '#' + variableId + '#',
+                        variableName.length, false);
+                    saveSelection();
                 });
             });
 
@@ -321,16 +326,6 @@
                 builder.focus(); // Refocus on the contenteditable area
                 // moveCursorToEnd(builder);
                 moveCursorForward(builder, dataToInsert)
-
-                /**
-                 * Send raw text as it is, but for label send them wrapped between <>
-                 * and for variables wrap their ids between two #
-                 */
-                updateFormula(
-                    isRawText ? data : (isLabel ? '<' + id + '>' : '#' + id + '#'),
-                    data.length,
-                    false
-                );
             }
 
             function moveCursorToEnd(contentEditableElement) {
@@ -558,6 +553,8 @@
                 div.addEventListener('click', function(e) {
                     e.preventDefault();
                     insertVariable(formulaBuilder, name, id, true, false);
+                    updateFormula('<' + id + '>', name.length, false);
+                    saveSelection();
                 });
             }
 
@@ -667,6 +664,8 @@
                 div.addEventListener('click', function(e) {
                     e.preventDefault();
                     insertVariable(formulaBuilder, name, id, false, false);
+                    updateFormula('#' + id + '#', name.length, false);
+                    saveSelection();
                 });
             }
 
@@ -686,14 +685,12 @@
             }
 
             function onFormulaBuilderInput(e) {
-                runIfDebug(DEBUG, console.log, 'Data', e);
-                runIfDebug(DEBUG, console.log, 'Payload', formulaPayload);
-                runIfDebug(DEBUG, console.log, 'Text content', formulaBuilder.textContent);
-
                 if (e.inputType === 'deleteContentBackward') {
-                    runIfDebug(DEBUG, console.log, "RANGE", savedRange.endOffset, savedRange.startOffset);
+                    // runIfDebug(DEBUG, console.log, "RANGE", savedRange.endOffset, savedRange.startOffset);
+                    runIfDebug(DEBUG, console.warn, 'Deleteing ...');
                     updateFormula(null, 0, true);
                 } else if (e.data !== null) {
+                    runIfDebug(DEBUG, console.log, 'New input', e.data);
                     updateFormula(e.data);
                 }
 
@@ -703,17 +700,22 @@
             function updateFormula(data, length = 1, isDeletion = false) {
                 const builderContent = formulaBuilder.textContent;
 
-                let position = null;
+                // Make a shallow copy of formulaPayloadShadow for initial logging
+                const initialFormulaPayloadShadow = formulaPayloadShadow.slice();
+                runIfDebug(DEBUG, console.log, "BuilderContent", builderContent);
+                runIfDebug(DEBUG, console.log, "formulaPayload", formulaPayload);
+                runIfDebug(DEBUG, console.log, 'Initial Formula Payload Shadow:', initialFormulaPayloadShadow);
 
                 // Determine the minimum length to compare both strings
                 const minLength = Math.min(builderContent.length, builderContentShadow.length);
-                runIfDebug(DEBUG, console.log, "BuilderContent", builderContent);
                 runIfDebug(
                     DEBUG, console.log,
                     'Builder Length', builderContent.length,
                     'Builder Shadow Length', builderContentShadow.length,
                     'Min Length', minLength
                 );
+
+                let position = null;
 
                 if (minLength === 0) {
                     position = minLength;
@@ -730,7 +732,7 @@
 
                 runIfDebug(DEBUG, console.log, "Position", position);
 
-                // Update shadow to latest content
+                // Update builderContentShadow to latest content
                 builderContentShadow = builderContent;
 
                 runIfDebug(DEBUG, console.log, "Deletion", isDeletion);
@@ -741,20 +743,28 @@
                         formulaPayloadShadow = [];
                     } else {
                         formulaPayload = '';
-                        let length = 0;
+                        let deletionLength = 0;
+
+                        // Make a copy to avoid affecting old logs
+                        formulaPayloadShadow = formulaPayloadShadow.slice();
+
                         for (let i = 0; i < formulaPayloadShadow.length; i++) {
                             if (formulaPayloadShadow[i].position === position) {
-                                runIfDebug(DEBUG, console.log, 'i is', i, 'TO delete:', formulaPayloadShadow[i]);
-                                length = formulaPayloadShadow[i].length;
+                                runIfDebug(DEBUG, console.log, 'i is', i, 'To delete:', formulaPayloadShadow[i]);
+                                deletionLength = formulaPayloadShadow[i].length;
                                 formulaPayloadShadow.splice(i, 1);
                             }
                         }
+
+                        // Adjust positions after deletion
                         for (let i = 0; i < formulaPayloadShadow.length; i++) {
                             if (formulaPayloadShadow[i].position > position) {
-                                let newPosition = formulaPayloadShadow[i].position - length;
+                                let newPosition = formulaPayloadShadow[i].position - deletionLength;
                                 formulaPayloadShadow[i].position = newPosition < 0 ? 0 : newPosition;
                             }
                         }
+
+                        // Rebuild formulaPayload
                         for (let i = 0; i < formulaPayloadShadow.length; i++) {
                             formulaPayload += formulaPayloadShadow[i].name;
                         }
@@ -762,24 +772,45 @@
                 } else {
                     // Break the formula into array indexes
                     const formulaArray = breakStringIntoArray(formulaPayload);
-                    runIfDebug(DEBUG, console.log, 'Array', formulaArray);
+                    const initialFormulaArray = formulaArray.slice();
+                    runIfDebug(DEBUG, console.log, 'Initial Array', initialFormulaArray);
 
                     // Insert data at calculated position
-                    formulaArray.splice(position, 0, data);
+                    // formulaArray.splice(position, 0, data);
 
-                    // Update formula payload shadow
-                    formulaPayloadShadow.splice(position, 0, {
+                    let inserted = 0;
+                    if (formulaPayloadShadow.length === 0) {
+                        formulaArray.splice(0, 0, data);
+                    } else {
+                        // Adjust positions after insertion
+                        for (let i = 0; i < formulaPayloadShadow.length; i++) {
+                            if (!inserted && formulaPayloadShadow[i].position + formulaPayloadShadow[i].length >=
+                                position) {
+                                formulaArray.splice(i + 1, 0, data);
+                                inserted = i + 1;
+                                console.warn(`inserted ${data} at index ${i+1}`, formulaArray);
+                            }
+                            if (formulaPayloadShadow[i].position >= position) {
+                                let newPosition = formulaPayloadShadow[i].position + length;
+                                formulaPayloadShadow[i].position = newPosition;
+                            }
+                        }
+                    }
+
+                    // Update formula payload shadow with a new entry
+                    formulaPayloadShadow = formulaPayloadShadow.slice();
+                    formulaPayloadShadow.splice(inserted, 0, {
                         name: data,
                         position,
                         length
-                    })
+                    });
 
                     // Create a string from the array
                     formulaPayload = formulaArray.join('');
                 }
 
                 runIfDebug(DEBUG, console.log, 'Formula Payload:', formulaPayload);
-                runIfDebug(DEBUG, console.log, 'Formula Payload Shadow:', formulaPayloadShadow);
+                runIfDebug(DEBUG, console.log, 'Updated Formula Payload Shadow:', formulaPayloadShadow);
                 runIfDebug(DEBUG, console.log, '--------------------------');
             }
 
