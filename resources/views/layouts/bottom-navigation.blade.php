@@ -92,7 +92,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
             </svg>
             <span
-                class="text-xs {{ Route::is('settings.*') ? 'text-primary-500 dark:text-primary' : 'text-gray-900 dark:text-gray-100' }}">{{ __('گزارشات') }}</span>
+                class="text-xs {{ Route::is('settings.*') ? 'text-primary-500 dark:text-primary' : 'text-gray-900 dark:text-gray-100' }}">{{ __('تنظیمات') }}</span>
         </a>
         {{-- <a href="{{ route('reports') }}" type="button"
             class="inline-flex flex-col items-center justify-center px-5 group">
