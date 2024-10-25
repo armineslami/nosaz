@@ -973,7 +973,7 @@
                                 position) {
                                 formulaArray.splice(i + 1, 0, data);
                                 inserted = i + 1;
-                                console.warn(`inserted ${data} at index ${i+1}`, formulaArray);
+                                runIfDebug(DEBUG, console.warn, `inserted ${data} at index ${i+1}`, formulaArray);
                             }
                             if (formulaPayloadShadow[i].position >= position) {
                                 let newPosition = formulaPayloadShadow[i].position + length;
