@@ -220,7 +220,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const DEBUG = true;
+            const DEBUG = false;
             const formulaForm = document.getElementById('formulaForm');
             const formulaBuilder = document.getElementById('formulaBuilder');
 
