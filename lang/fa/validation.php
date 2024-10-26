@@ -72,6 +72,7 @@ return [
     'ipv4' => ':attribute باید یک ادرس درست IPv4 باشد.',
     'ipv6' => ':attribute باید یک ادرس درست IPv6 باشد.',
     'json' => ':attribute یک مقدار درست JSON باشد.',
+    'lowercase' => ':attribute باید با حروف کوچک باشد.',
     'lt' => [
         'numeric' => ':attribute باید کمتر از :value باشد.',
         'file' => ':attribute باید کمتر از :value کیلوبایت باشد.',
