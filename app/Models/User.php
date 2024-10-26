@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at',
         'password',
         'google_id',
+        'telegram_id',
         'twitter_id',
         'twitter_token',
         'twitter_refresh_token',

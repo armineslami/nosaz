@@ -47,4 +47,10 @@ return [
         'redirect' => env('TWITTER_CALLBACK_URL'),
     ],
 
+    'telegram' => [
+        'bot' => env('TELEGRAM_BOT_USERNAME'),
+        'client_id' => null,
+        'client_secret' => env('TELEGRAM_CLIENT_SECRET'),
+        'redirect' => env('TELEGRAM_CALLBACK_URL'),
+    ],
 ];

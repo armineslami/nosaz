@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 use League\OAuth1\Client\Server\Twitter;
+use Illuminate\View\View;
 
 class OAuthController extends Controller
 {
@@ -29,6 +30,43 @@ class OAuthController extends Controller
                 ], [
                     'name' => $oAuthUser->name,
                     'email' => $oAuthUser->email,
+                    'email_verified_at' => now(),
+                    'password' => Hash::make(Str::random(8)),
+                ]);
+
+                Setting::updateOrCreate([
+                    'user_id' => $user->id
+                ]);
+
+                Auth::login($user, true);
+
+                return redirect()->route('/dashboard');
+            }
+
+            return redirect()->route("/login");
+        } catch (\Exception) {
+            return redirect()->intended();
+        }
+    }
+
+    public function redirectToTelegram(): View|RedirectResponse
+    {
+        return view('auth.telegram');
+        // return Socialite::driver('telegram')->redirect();
+        // return redirect()->to('https://oauth.telegram.org/auth?bot_id=8001536470&origin=http://127.0.0.1&return_to=http://127.0.0.1/oauth/telegram/callback');
+
+    }
+
+    public function callbackFromTelegram(): RedirectResponse
+    {
+        try {
+            $oAuthUser = Socialite::driver('telegram')->user();
+            if (!empty($oAuthUser)) {
+                $user = UserRepository::updateOrCreate([
+                    'telegram_id' => $oAuthUser->id,
+                ], [
+                    'name' => $oAuthUser->name,
+                    'email' => $oAuthUser->nickname . '@telegram.org',
                     'email_verified_at' => now(),
                     'password' => Hash::make(Str::random(8)),
                 ]);

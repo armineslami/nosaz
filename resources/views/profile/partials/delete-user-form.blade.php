@@ -25,7 +25,7 @@
                         </h2>
 
                         <p class="mt-1 text-sm text-text-600 dark:text-gray-400">
-                            @if (!Auth::user()->google_id && !Auth::user()->twitter_id)
+                            @if (!Auth::user()->google_id && !Auth::user()->twitter_id && !Auth::user()->telegram_id)
                                 {{ __('برای تایید لطفا کلمه عبور حساب کاربری خود را وارد نمایید.') }}
                             @else
                                 {{ __('آیا از حذف حساب کاربری خود اطمینان دارید؟') }}
@@ -33,7 +33,7 @@
                         </p>
                     </div>
 
-                    @if (!Auth::user()->google_id && !Auth::user()->twitter_id)
+                    @if (!Auth::user()->google_id && !Auth::user()->twitter_id && !Auth::user()->telegram_id)
                         <div class="space-y-4">
                             <div>
                                 <label for="password"

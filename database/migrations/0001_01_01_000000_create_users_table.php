@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string("google_id")->nullable();
+            $table->string("telegram_id")->nullable();
             $table->string('twitter_id')->nullable();
             $table->text('twitter_token')->nullable();
             $table->text('twitter_refresh_token')->nullable();

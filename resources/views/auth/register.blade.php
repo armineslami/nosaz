@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <div class="flex lg:items-center min-h-screen">
+    <div class="flex lg:items-center min-h-screen max-w-xl mx-auto">
         <div class="p-8 w-full">
             <h1 class="text-start text-2xl font-bold text-text">
                 {{ __('ثبت نام') }}
@@ -10,9 +10,9 @@
             {{--            <x-auth-session-status class="my-8" :status="session('status')" /> --}}
 
             <!-- oAuth Login -->
-            <div class="grid grid-cols-12 gap-4 mt-12">
+            <div class="grid grid-cols-12 gap-4 mt-12 max-w-sm mx-auto lg:max-w-full">
                 <!-- Google -->
-                <a class="col-span-6" href="{{ route('google.redirect') }}">
+                <a class="col-span-12 xl:col-span-4" href="{{ route('google.redirect') }}">
                     <x-secondary-button class="w-full items-center">
                         <span class="mx-auto flex flex-row">
                             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" class="l">
@@ -38,8 +38,23 @@
                     </x-secondary-button>
                 </a>
 
+                <!-- Telegram -->
+                <a class="col-span-12 xl:col-span-4" href="{{ route('telegram.redirect') }}">
+                    <x-secondary-button class="w-full items-center">
+                        <span class="mx-auto flex flex-row">
+                            <svg width="24" height="24" viewBox="0 0 48 48" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M41.4193 7.30899C41.4193 7.30899 45.3046 5.79399 44.9808 9.47328C44.8729 10.9883 43.9016 16.2908 43.1461 22.0262L40.5559 39.0159C40.5559 39.0159 40.3401 41.5048 38.3974 41.9377C36.4547 42.3705 33.5408 40.4227 33.0011 39.9898C32.5694 39.6652 24.9068 34.7955 22.2086 32.4148C21.4531 31.7655 20.5897 30.4669 22.3165 28.9519L33.6487 18.1305C34.9438 16.8319 36.2389 13.8019 30.8426 17.4812L15.7331 27.7616C15.7331 27.7616 14.0063 28.8437 10.7686 27.8698L3.75342 25.7055C3.75342 25.7055 1.16321 24.0823 5.58815 22.459C16.3807 17.3729 29.6555 12.1786 41.4193 7.30899Z"
+                                    fill="#00a0dc" />
+                            </svg>
+                            <span class="mt-1 ms-2 text-text">{{ __('ثبت نام با تلگرام') }}</span>
+                        </span>
+                    </x-secondary-button>
+                </a>
+
                 <!-- Twitter -->
-                <a class="col-span-6" href="{{ route('twitter.redirect') }}">
+                <a class="col-span-12 xl:col-span-4" href="{{ route('twitter.redirect') }}">
                     <x-secondary-button class="w-full items-center">
                         <span class="mx-auto flex flex-row">
                             <svg class="relative top-0.5" width="24" height="24" fill="currentColor"
@@ -47,7 +62,7 @@
                                 <path
                                     d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
                             </svg>
-                            <span class="mt-1 ms-2 text-text">{{ __('ثبت نام با x') }}</span>
+                            <span class="mt-1 ms-2 text-text">{{ __('ثبت نام با اِکس') }}</span>
                         </span>
                     </x-secondary-button>
                 </a>
