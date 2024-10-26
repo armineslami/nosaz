@@ -4,7 +4,7 @@
         <span class="block text-sm font-semibold text-gray-900 dark:text-white">
             {{ Auth::user()->name }}
         </span>
-        <span class="block text-sm text-gray-900 truncate dark:text-white">
+        <span class="block text-sm text-gray-900 break-words dark:text-white">
             {{ Auth::user()->email }}
         </span>
     </div>
