@@ -115,7 +115,7 @@ class OAuthController extends Controller
 
                 Auth::login($user, true);
 
-                return redirect()->route('dashboard');
+                return redirect()->route('home');
             }
 
             return redirect()->route("/login");
