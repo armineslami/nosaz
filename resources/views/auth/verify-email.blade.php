@@ -2,9 +2,16 @@
     <div class="flex items-center min-h-screen">
         <div class="w-full md:w-1/2 m-4 md:m-auto">
 
-            {{--            <x-application-logo class="m-auto w-24 h-24 mb-8 fill-primary" /> --}}
+            {{-- <x-application-logo class="m-auto w-24 h-24 mb-8 rounded-lg px-2 bg-primary" /> --}}
 
-            <div class="p-8 bg-white dark:bg-gray-800 rounded-lg">
+            <div>
+                <p class="text-text text-lg font-bold mb-2">{{ __('فعال سازی حساب کاربری') }}</p>
+                <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
+                    {{ __('برای ورود به پنل ایمیل خود را تایید کنید.') }}
+                </p>
+            </div>
+
+            <x-card class="mt-8 max-w-7xl mx-auto">
                 <div class="mb-8 text-sm text-text text-justify">
                     {{ __('verify-email.thanks_for_sign_up') }}
                 </div>
@@ -34,7 +41,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </x-card>
         </div>
     </div>
 </x-basic-layout>

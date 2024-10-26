@@ -2,13 +2,16 @@
     <div class="flex items-center min-h-screen">
         <div class="w-full md:w-1/2 m-4 md:m-auto">
 
-            {{--            <x-application-logo class="m-auto w-24 h-24 mb-8 fill-primary" /> --}}
+            {{-- <x-application-logo class="m-auto w-24 h-24 mb-8 rounded-lg px-2 bg-primary" /> --}}
 
-            <div class="p-8 bg-white dark:bg-gray-800 rounded-lg">
-                <div class="mb-8 text-sm text-text">
+            <div>
+                <p class="text-text text-lg font-bold mb-2">{{ __('فراموشی کلمه عبور') }}</p>
+                <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
                     {{ __('forgot-password.forgot_password_no_problem') }}
-                </div>
+                </p>
+            </div>
 
+            <x-card class="mt-8 max-w-7xl mx-auto">
                 <!-- Session Status -->
                 {{-- <x-auth-session-status class="mb-8" :status="session('status')" /> --}}
 
@@ -24,13 +27,17 @@
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
-                    <div class="flex items-center justify-end mt-8">
+                    <div class="flex items-center justify-between mt-8">
+                        <a href="{{ route('login') }}"
+                            class="text-sm text-text-600 dark:text-text-600 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 cursor-pointer">
+                            {{ __('بازگشت') }}
+                        </a>
                         <x-primary-button>
                             {{ __('forgot-password.send_reset_link') }}
                         </x-primary-button>
                     </div>
                 </form>
-            </div>
+            </x-card>
         </div>
     </div>
 
