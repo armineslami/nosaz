@@ -10,15 +10,32 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <script>
+        const systemDarkModeListener = window.matchMedia('(prefers-color-scheme: dark)');
+        systemDarkModeListener.addEventListener('change', function(e) {
+            toggleTheme();
+        });
+
+        toggleTheme();
+
+        function toggleTheme() {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+    </script>
 </head>
 
 <body class="text-text-950 dark:text-text-50 antialiased bg-background">
     <div class="flex min-h-screen">
         <div class="grid grid-cols-1 lg:grid-cols-12 w-full">
-            <div class="col-span-1 lg:col-span-5">
+            <div class="col-span-1 lg:col-span-6">
                 {{ $slot }}
             </div>
-            <div class="col-span-1 lg:col-span-7 bg-primary hidden lg:flex items-center">
+            <div class="col-span-1 lg:col-span-6 bg-primary hidden lg:flex items-center">
                 <div class="text-justify p-8 w-full">
                     <div class="flex justify-center">
                         <a href="/">
@@ -42,23 +59,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const systemDarkModeListener = window.matchMedia('(prefers-color-scheme: dark)');
-        systemDarkModeListener.addEventListener('change', function(e) {
-            toggleTheme();
-        });
-
-        toggleTheme();
-
-        function toggleTheme() {
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        }
-    </script>
 </body>
 
 </html>
