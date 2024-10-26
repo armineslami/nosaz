@@ -43,14 +43,14 @@
                                                 {{ __('app.today') }}
                                             @elseif ($project->updated_at->isYesterday())
                                                 {{ __('app.yesterday') }}
-                                            @elseif (now()->diffInDays($project->updated_at) <= 7)
-                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInDays($project->updated_at, false)) : (int) now()->diffInDays($project->updated_at)) . ' ' . __('app.day_ago') }}
-                                            @elseif (now()->diffInWeeks($project->updated_at) <= 4)
-                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInWeeks($project->updated_at)) : (int) now()->diffInWeeks($project->updated_at)) . ' ' . __('app.week_ago') }}
-                                            @elseif (now()->diffInMonths($project->updated_at) <= 12)
-                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInMonths($project->updated_at)) : (int) now()->diffInMonths($project->updated_at)) . ' ' . __('app.month_ago') }}
+                                            @elseif ($project->updated_at->diffInDays(now()) <= 7)
+                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) $project->updated_at->diffInDays(now())) : (int) $project->updated_at->diffInDays(now())) . ' ' . __('app.day_ago') }}
+                                            @elseif ($project->updated_at->diffInWeeks(now()) <= 4)
+                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) $project->updated_at->diffInWeeks(now())) : (int) $project->updated_at->diffInWeeks(now())) . ' ' . __('app.week_ago') }}
+                                            @elseif ($project->updated_at->diffInMonths(now()) <= 12)
+                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) $project->updated_at->diffInMonths(now())) : (int) $project->updated_at->diffInMonths(now())) . ' ' . __('app.month_ago') }}
                                             @else
-                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) now()->diffInYears($project->updated_at)) : (int) now()->diffInYears($project->updated_at)) . ' ' . __('app.year_ago') }}
+                                                {{ (app()->getLocale() === 'fa' ? convert_digits_to_persian((int) $project->updated_at->diffInYears(now())) : (int) $project->updated_at->diffInYears(now())) . ' ' . __('app.year_ago') }}
                                             @endif
                                         </td>
                                     </tr>
