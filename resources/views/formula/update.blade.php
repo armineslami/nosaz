@@ -479,7 +479,8 @@
 
                 if (!isRawText) {
                     const span = document.createElement('span');
-                    span.className = isLabel ? 'formula-label' : 'formula-variable';
+                    span.className = isLabel ? 'formula-label text-xs md:text-sm' :
+                        'formula-variable text-xs md:text-sm';
                     span.innerText = data;
                     span.setAttribute('contenteditable', 'false'); // Make variable non-editable
                     span.setAttribute('dir', 'ltr');
