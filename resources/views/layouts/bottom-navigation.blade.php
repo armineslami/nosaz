@@ -11,7 +11,7 @@
             <span
                 class="text-xs {{ Route::is('dashboard') ? 'text-primary-500 dark:text-primary' : 'text-gray-900 dark:text-gray-100' }}">{{ __('داشبورد') }}</span>
         </a> --}}
-        <a data-popover-target="project-menu-popover" type="button"
+        <a data-popover-target="project-menu-popover" id="project-menu-popover-button" type="button"
             class="inline-flex flex-col items-center justify-center px-5 group cursor-pointer">
             <svg class="w-5 h-5 mb-2 {{ Route::is('project.*') ? 'text-primary-500 dark:text-primary' : 'text-gray-900 dark:text-gray-100' }}"
                 fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -39,7 +39,7 @@
             </ul>
             <div data-popper-arrow></div>
         </div>
-        <a data-popover-target="formula-menu-popover" type="button"
+        <a data-popover-target="formula-menu-popover" id="formula-menu-popover-button" type="button"
             class="inline-flex flex-col items-center justify-center px-5 group cursor-pointer">
             <svg class="w-5 h-5 mb-2 {{ Route::is('formula.*') ? 'text-primary-500 dark:text-primary' : 'text-gray-900 dark:text-gray-100' }}"
                 fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -106,3 +106,38 @@
         </a> --}}
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // options with default values
+        const options = {
+            placement: 'top',
+            triggerType: 'click',
+            onHide: () => {
+                console.log('tooltip is shown');
+            },
+            onShow: () => {
+                console.log('tooltip is hidden');
+            },
+            onToggle: () => {
+                console.log('tooltip is toggled');
+            },
+        };
+
+
+        // instance options with default values
+        const instanceOptions = {
+            // id: 'tooltipContent',
+            override: true
+        };
+
+        // Tooltips
+
+        let $targetEl = document.getElementById('project-menu-popover');
+        let $triggerEl = document.getElementById('project-menu-popover-button');
+        const tooltip1 = new window.Tooltip($targetEl, $triggerEl, options, instanceOptions);
+
+        $targetEl = document.getElementById('formula-menu-popover');
+        $triggerEl = document.getElementById('formula-menu-popover-button');
+        const tooltip2 = new window.Tooltip($targetEl, $triggerEl, options, instanceOptions);
+    });
+</script>
