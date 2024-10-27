@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout class="p-0">
     <div class="max-w-7xl mx-auto">
         @if ((isset($projects) && count($projects) > 0) || (isset($search_result) && count($search_result) > 0))
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
@@ -7,16 +7,16 @@
                         <thead>
                             <tr>
                                 <th
-                                    class="border-b dark:border-slate-600 font-medium text-start p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-500">
+                                    class="border-b dark:border-slate-600 font-medium text-start p-4 pt-0 pb-3 text-slate-400 dark:text-slate-500 whitespace-nowrap">
                                     #</th>
                                 <th
-                                    class="border-b dark:border-slate-600 font-medium text-start p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-500">
+                                    class="border-b dark:border-slate-600 font-medium text-start p-4 pt-0 pb-3 text-slate-400 dark:text-slate-500 whitespace-nowrap">
                                     {{ __('نام') }}</th>
                                 <th
-                                    class="border-b dark:border-slate-600 font-medium text-start p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-500">
+                                    class="border-b dark:border-slate-600 font-medium text-start p-4 pt-0 pb-3 text-slate-400 dark:text-slate-500 whitespace-nowrap">
                                     {{ __('فرمول') }}</th>
                                 <th
-                                    class="border-b dark:border-slate-600 font-medium text-start p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-500">
+                                    class="border-b dark:border-slate-600 font-medium text-start p-4 pt-0 pb-3 text-slate-400 dark:text-slate-500 whitespace-nowrap">
                                     {{ __('تاریخ بروز رسانی') }}</th>
                             </tr>
                         </thead>
@@ -26,19 +26,19 @@
                                     <tr class="md:hover:bg-gray-100 md:dark:hover:bg-gray-700 cursor-pointer"
                                         onclick="location.href='{{ route('project.index', ['id' => $project->id]) }}'">
                                         <td
-                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 text-text whitespace-nowrap">
                                             {{ $loop->index + 1 + ($projects->currentPage() - 1) * $projects->perPage() }}
                                         </td>
                                         <td
-                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 text-text whitespace-nowrap">
                                             {{ $project->name }}
                                         </td>
                                         <td
-                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 text-text whitespace-nowrap">
                                             {{ $project->formula !== null ? $project->formula->name : __('پیشفرض') }}
                                         </td>
                                         <td
-                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 pl-8 text-text">
+                                            class="border-b border-slate-100 dark:border-slate-700 text-start p-4 text-text whitespace-nowrap">
                                             @if ($project->updated_at->isToday())
                                                 {{ __('app.today') }}
                                             @elseif ($project->updated_at->isYesterday())
