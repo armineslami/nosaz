@@ -24,6 +24,7 @@
             <div class="p-4 md:p-5">
                 <div id="label-modal-x-data" class="space-y-4" x-data="{
                     selectedType: '',
+                    selectedUnit: '',
                     showCategory: false,
                     optionsCount: 0,
                     labelName: '',
@@ -31,6 +32,7 @@
                         this.optionsCount = this.$refs.labelCategory.options.length;
                         this.showCategory = false;
                         this.selectedType = '';
+                        this.selectedUnit = '';
                         this.labelName = '';
                     }
                 }" x-init="initializeLabelModal()"
@@ -65,7 +67,7 @@
                                 {{ __('واحد') }}
                             </label>
                             <x-select id="create-new-label-modal-label-unit" name="create-new-label-modal-label-unit"
-                                class="w-full">
+                                class="w-full" x-model="selectedUnit">
                                 <option value=""
                                     {{ !old('unit') || (old('unit') && old('unit') === '') ? 'selected' : '' }}>
                                     {{ __('app.none') }}</option>
