@@ -521,9 +521,12 @@
                 div.setAttribute('dir', 'ltr');
                 div.setAttribute('data-name', name);
                 div.setAttribute('data-id', id);
-                div.setAttribute('data-is-parent', parentId ? true : false);
-                div.setAttribute('data-parent-id', parentId);
                 div.setAttribute('data-type', 'label');
+                if (parentId) {
+                    div.setAttribute('data-parent-id', parentId);
+                } else {
+                    div.setAttribute('data-is-parent', true);
+                }
 
                 p.className = 'w-full text-center';
                 p.innerText = name;
