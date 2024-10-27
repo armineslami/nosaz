@@ -259,18 +259,27 @@ blockquote {
     border: 1px dashed #666666;
 }
 
-.primary-button:hover {
+.primary-button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* .primary-button:hover,
+.primary-button:focus {
     transform: translate(0, -3px);
+    box-shadow: 0 0 80px -10px theme('colors.primary.DEFAULT');
+} */
+
+.primary-button.active {
+    transform: translate(0, -3px); /* Keep the translate on active */
     box-shadow: 0 0 80px -10px theme('colors.primary.DEFAULT');
 }
 
-.secondary-button:hover {
-    transform: translate(0, -3px);
-    /*box-shadow: 0 20px 80px -10px theme('colors.secondary.DEFAULT');*/
+.secondary-button.active {
+    transform: translate(0, -3px); /* Keep the translate on active */
 }
 
-.danger-button:hover {
-    transform: translate(0, -3px);
+.danger-button.active {
+    transform: translate(0, -3px); /* Keep the translate on active */
     box-shadow: 0 0 80px -10px theme('colors.red.500');
 }
 
