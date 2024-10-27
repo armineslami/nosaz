@@ -1,5 +1,5 @@
 <div
-    class="block md:hidden fixed bottom-0 left-0 z-10 w-full h-16 bg-background border-t border-gray-200 dark:border-gray-600">
+    class="block md:hidden fixed bottom-0 left-0 z-10 w-full h-20 bg-background border-t border-gray-200 dark:border-gray-600">
     <div class="grid h-full max-w-lg grid-cols-3 mx-auto font-medium">
         {{-- <a href="{{ route('dashboard') }}" type="button"
             class="inline-flex flex-col items-center justify-center px-5 group">
