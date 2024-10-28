@@ -3,8 +3,13 @@
     aria-label="Sidenav" id="drawer-navigation">
     <div class="relative h-full">
         <div class="flex items-center">
-            <x-application-logo class="w-12 h-12 bg-primary rounded-lg px-1 " />
-            <div class="relative ms-4">
+            <div class="hidden dark:block">
+                <x-logo width="48px" height="48px" background="" />
+            </div>
+            <div class="block dark:hidden">
+                <x-logo width="48px" height="48px" primaryColor="#5F5F5F" background="" />
+            </div>
+            <div class="relative ms-0">
                 <span class="absolute left-[0.55rem] m-auto w-[fit-content] bottom-2">🏗‍</span>
                 <p class="text-text font-bold text-xl tracking-tight">{{ __('نوســـــــــــــــــ ز') }}</p>
             </div>
