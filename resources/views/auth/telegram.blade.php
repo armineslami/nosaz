@@ -3,7 +3,9 @@
         <div class="m-auto">
             <div class="px-8 py-16 bg-white dark:bg-gray-800 rounded-lg">
                 <div class="flex w-[fit-content] relative -right-1 mx-auto items-center mb-12 ltr">
-                    <x-application-logo class="size-16 rounded-full bg-primary px-2" />
+                    <div class="bg-[#1D1E1F] rounded-full p-2">
+                        <x-logo width="36px" height="36px" back />
+                    </div>
                     <svg class="size-16 stroke-gray-400 relative -right-0.5" fill="currentColor" viewBox="0 0 24 24"
                         stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
