@@ -35,7 +35,7 @@
                 <div class="text-justify p-8 w-full">
                     <div class="flex justify-center">
                         <a href="/">
-                            <x-logo width="12rem" height="12rem" primaryColor="#5F5F5F" secondaryColor="#ffffff"
+                            <x-logo width="192px" height="192px" primaryColor="#5F5F5F" secondaryColor="#ffffff"
                                 background="" />
                         </a>
                     </div>
