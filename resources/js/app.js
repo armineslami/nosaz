@@ -1,6 +1,8 @@
 import "./bootstrap";
 import "flowbite";
 
+import { showPWAInstallPrompt } from "./pwa-install-prompt";
+
 import Alpine from "alpinejs";
 
 // https://app.haikei.app
@@ -46,3 +48,5 @@ document
             button.classList.remove("active");
         });
     });
+
+showPWAInstallPrompt();

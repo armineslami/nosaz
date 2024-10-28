@@ -417,6 +417,92 @@ blockquote {
     transform-origin: center;
 }
 
+/**
+    PWA Install Prompt
+*/
+
+@keyframes move-up {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0
+    }
+}
+
+.move-up-animation {
+    animation: move-up 2s forwards;
+}
+
+@keyframes move-down {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1
+    }
+}
+
+.move-down-animation {
+    animation: move-down 2s forwards;
+}
+
+@keyframes change-background-to-light {
+    from {
+        background: #1D1E1F;
+    }
+    to {
+        background: #EDEDED;
+    }
+}
+
+.change-background-to-light-animation {
+    animation: change-background-to-light 2s forwards;
+}
+
+@keyframes change-background-to-dark {
+    from {
+        background: #EDEDED;
+    }
+    to {
+        background: #1D1E1F;
+    }
+}
+
+.change-background-to-dark-animation{
+    animation: change-background-to-dark 2s forwards;
+}
+
+@keyframes change-stroke-to-light {
+    from {
+        stroke: #5F5F5F;
+    }
+    to {
+        stroke: #FFFFFF;
+    }
+}
+
+.change-stroke-to-light-animation {
+    animation: change-stroke-to-light 2s forwards;
+}
+
+@keyframes change-stroke-to-dark {
+    from {
+        stroke: #FFFFFF;
+    }
+    to {
+        stroke: #5F5F5F;
+    }
+}
+
+.change-stroke-to-dark-animation {
+    animation: change-stroke-to-dark 2s forwards;
+}
+
 
 
 

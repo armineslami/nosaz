@@ -55,6 +55,9 @@
             </div>
         </div>
     </div>
+
+    @include('components.pwa-install-prompt-ios')
+    @include('components.pwa-install-prompt-android')
 </body>
 
 </html>
