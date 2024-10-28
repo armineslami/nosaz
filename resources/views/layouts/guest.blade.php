@@ -52,7 +52,7 @@
                                                 <g id="sun" class="hidden">
                                                     <text font-family="AppleColorEmoji, Apple Color Emoji"
                                                         font-size="92" font-weight="normal" fill="#000000">
-                                                        <tspan x="380.355954" y="92">☀️</tspan>
+                                                        <tspan x="355.355954" y="92">☀️</tspan>
                                                     </text>
                                                 </g>
                                             </g>
