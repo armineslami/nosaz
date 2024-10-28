@@ -51,6 +51,23 @@
                     </x-text-input>
                     <x-input-error :messages="$errors->get('app_max_decimal_place')" class="mt-2" />
                 </div>
+                <div class="mb-2">
+                    <label for="app_max_decimal_place"
+                        class="block text-sm truncate mb-2 font-medium text-gray-900 dark:text-white">
+                        {{ __('زوم خودکار در صفحات کوچک') }}
+                    </label>
+                    <x-select class="w-full" name="app_scalable">
+                        <option value="0"
+                            {{ (old('app_scalable') !== null && old('app_scalable') == '0') || $settings->app_scalable === '0' ? 'selected' : '' }}>
+                            {{ __('غیرفعال') }}
+                        </option>
+                        <option value="1"
+                            {{ (old('app_scalable') !== null && old('app_scalable') == '1') || $settings->app_scalable === '1' ? 'selected' : '' }}>
+                            {{ __('فعال') }}
+                        </option>
+                    </x-select>
+                    <x-input-error :messages="$errors->get('app_scalable')" class="mt-2" />
+                </div>
             </div>
 
             <div class="flex justify-end mt-4">
