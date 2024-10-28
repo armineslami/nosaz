@@ -1,7 +1,6 @@
 <x-modal id="ios-pwa-install-prompt" maxWidth="md" name="ios-pwa-install-prompt" focusable>
-    <div class="px-4 py-12 md:px-12 md:py-12 flex flex-col items-center">
+    <div class="ios-pwa-install-prompt px-4 py-12 md:px-12 md:py-12 flex flex-col items-center">
         <div class="border-b flex flex-col items-center pb-8">
-            {{-- <x-logo class="mb-8" /> --}}
             <div id="pwa-logo-ios-prompt" style="background: #1D1E1F" class='w-[fit-content] px-2 py-2 rounded-xl mb-8'>
                 <svg width="64px" height="64px" viewBox="0 0 428.339869 272.758591" version="1.1"
                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -63,53 +62,3 @@
         </x-primary-button>
     </div>
 </x-modal>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const logo = document.getElementById('pwa-logo-ios-prompt');
-        const homes = logo.querySelector("svg").getElementById("homes");
-        const home = logo.querySelector("svg").getElementById("home");
-        const moon = logo.querySelector("svg").getElementById("moon");
-        const sun = logo.querySelector("svg").getElementById("sun");
-
-        setTimeout(() => {
-            day();
-        }, 2000);
-
-        function day() {
-            moon.classList.remove("move-down-animation");
-            moon.classList.add("move-up-animation");
-            setTimeout(() => {
-                sun.classList.add("move-down-animation");
-                sun.classList.remove("hidden");
-                // moon.classList.add("hidden");
-                // logo.style.background = "#EDEDED";
-                logo.classList.remove("change-background-to-dark-animation");
-                logo.classList.add("change-background-to-light-animation");
-                homes.classList.remove("change-stroke-to-light-animation");
-                homes.classList.add("change-stroke-to-dark-animation");
-                setTimeout(() => {
-                    night();
-                }, 3000)
-            }, 200);
-        }
-
-        function night() {
-            sun.classList.remove("move-down-animation");
-            sun.classList.add("move-up-animation");
-            setTimeout(() => {
-                moon.classList.remove("move-up-animation");
-                moon.classList.add("move-down-animation");
-                // moon.classList.remove("hidden");
-                // sun.classList.add("hidden");
-                // logo.style.background = "#EDEDED";
-                logo.classList.remove("change-background-to-light-animation");
-                logo.classList.add("change-background-to-dark-animation");
-                homes.classList.remove("change-stroke-to-dark-animation");
-                homes.classList.add("change-stroke-to-light-animation");
-                setTimeout(() => {
-                    day();
-                }, 3000)
-            }, 200);
-        }
-    });
-</script>
