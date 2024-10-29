@@ -35,10 +35,11 @@
                 <div class="text-justify p-8 w-full">
                     <div class="flex justify-center">
                         <div id="guest-logo" class='w-[fit-content] px-2 py-2 rounded-xl mb-8'>
-                            <svg width="192px" height="192px" viewBox="0 0 428.339869 272.758591" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <svg class="-mt-32" width="192px" height="272px" viewBox="0 0 428.339869 272.758591"
+                                version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <g id="Main" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                    <g id="Icons" transform="translate(-2453.644046, -119.977711)">
+                                    <g id="Icons" transform="translate(-2453.644046, 50.977711)">
                                         <g id="Black-Inner-White" transform="translate(2412.000000, 0.000000)">
                                             <g id="Group" transform="translate(41.644046, 119.977711)">
                                                 <rect id="home" fill="#ffffff" x="93.4081393" y="83.5559381"
