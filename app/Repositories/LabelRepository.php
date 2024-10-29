@@ -19,6 +19,11 @@ class LabelRepository implements LabelRepositoryInterface
         return Auth::user()->labels()->get();
     }
 
+    public static function allByUserId(int $user_ud): Collection
+    {
+        return Label::where('user_id', $user_ud)->get();
+    }
+
     public static function idIn(array $ids, bool $includeDefaults = false): Collection
     {
         return $includeDefaults ? Label::whereIn('id', $ids)->get() : Auth::user()->labels()->whereIn('id', $ids)->get();

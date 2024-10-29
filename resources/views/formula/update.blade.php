@@ -1,7 +1,19 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto">
         <div>
-            <p class="text-text text-lg font-bold mb-2">{{ __('آپدیت فرمول‌') }}</p>
+            <div class="flex justify-between">
+                <p class="text-text text-lg font-bold mb-2">{{ __('آپدیت فرمول‌') }}</p>
+
+                <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'share-formula')"
+                    type="button"
+                    class="flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                    <span class="sr-only">{{ __('اشتراک') }}</span>
+                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
+                    </svg>
+                </button>
+            </div>
             <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
                 {{ __('اطلاعات مربوط به فرمول خود را مشاهده کرده و در صورت نیاز آن را تغییر داده و یا حذف کنید.') }}
             </p>
@@ -146,7 +158,8 @@
         </x-card>
 
         @include('formula.create-new-label-modal')
-        @include('formula.create-new-variable-modal');
+        @include('formula.create-new-variable-modal')
+        @include('formula.share-formula-modal')
 
         <x-toast id="successToast" class="hidden"
             icon='<svg class="w-5 h-5 text-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" /></svg>'
@@ -192,6 +205,16 @@
                 class="hidden !bg-red-500 !divide-gray-200 !text-white" id="toast"
                 icon='<svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" /></svg>'
                 message="{{ __('خطا در حذف فرمول') }}" />
+        @elseif (session('status') === 'formula-imported')
+            <x-toast x-data="{ show: true }" x-show="show" x-init="$el.classList.add('toast-transition-in');
+            $el.classList.remove('hidden');
+            setTimeout(() => {
+                $el.classList.remove('toast-transition-in');
+                $el.classList.add('toast-transition-out');
+                show = false;
+            }, 5000)" class="hidden" id="toast"
+                icon='<svg class="w-5 h-5 text-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" /></svg>'
+                message="{{ __('فرمول با موفقیت بارگذاری شد') }}" />
         @endif
     </div>
 

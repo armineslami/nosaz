@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\ProfileController;
@@ -21,6 +20,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/formula', [FormulaController::class, 'store'])->name('formula.store');
     Route::patch('/formula/{id}', [FormulaController::class, 'update'])->name('formula.update');
     Route::delete('/formula/{id}', [FormulaController::class, 'destroy'])->name('formula.destroy');
+    Route::get('/share', [FormulaController::class, 'share'])->name('formula.share');
+    Route::post('/formula/import', [FormulaController::class, 'import'])->name('formula.import');
 
     Route::get('/formula/variable/create', [VariableController::class, 'create'])->name('formula.variable.create');
     Route::post('/formula/variable', [VariableController::class, 'store'])->name('formula.variable.store');

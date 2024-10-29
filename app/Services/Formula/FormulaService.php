@@ -55,4 +55,80 @@ class FormulaService
     {
         return FormulaRepository::update($id, $formula);
     }
+
+    public static function importFormula(int $id, int $user_id): Formula
+    {
+        $formula = FormulaRepository::byId($id, true);
+
+        $payload = $formula->payload;
+
+        // Match IDs between ##
+        preg_match_all('/#(\d+)#/', $formula->payload, $variableMatches);
+        $variableIds = $variableMatches[1]; // Extracted IDs between ##
+
+        $variables = VariableRepository::idIn($variableIds, true);
+
+        foreach ($variables as $variable) {
+            $newVariable = self::createVariable($variable->name, $user_id);
+            // replace $variable->id with $newVariable->id inside $payload (ids are between ##)
+            $payload = str_replace("#{$variable->id}#", "#{$newVariable->id}#", $payload);
+        }
+
+        // Match IDs between <>
+        preg_match_all('/<(\d+)>/', $formula->payload, $labelMatches);
+        $labelIds = $labelMatches[1]; // Extracted IDs between <>
+
+        $allOwnerUserLabels = LabelRepository::allByUserId($formula->user->id);
+
+        $createdLabelIds = [];
+
+        foreach ($labelIds as $id) {
+            $ownerLabel = $allOwnerUserLabels->where("id", $id)->first();
+            if (!isset($createdLabelIds[$id])) {
+                if ($ownerLabel->is_parent) {
+                    $newLable = self::createLabel(
+                        $ownerLabel->name,
+                        $ownerLabel->is_parent,
+                        $ownerLabel->unit,
+                        $ownerLabel->parent_id,
+                        $user_id
+                    );
+                    $createdLabelIds[$id] = $newLable->id;
+                    $payload = str_replace("<{$id}>", "<{$newLable->id}>", $payload);
+                } else {
+                    $parentId = null;
+                    $parent = $ownerLabel->parent;
+                    if (isset($createdLabelIds[$parent->id])) {
+                        $parentId = $createdLabelIds[$parent->id];
+                    } else {
+                        $newParent = self::createLabel(
+                            $parent->name,
+                            $parent->is_parent,
+                            $parent->unit,
+                            $parent->parent_id,
+                            $user_id
+                        );
+                        $parentId = $newParent->id;
+                        $createdLabelIds[$parent->id] = $newParent->id;
+                        $payload = str_replace("<{$parent->id}>", "<{$newParent->id}>", $payload);
+                    }
+                    $newLable = self::createLabel(
+                        $ownerLabel->name,
+                        $ownerLabel->is_parent,
+                        $ownerLabel->unit,
+                        $parentId,
+                        $user_id
+                    );
+                    $createdLabelIds[$id] = $newLable->id;
+                    $payload = str_replace("<{$id}>", "<{$newLable->id}>", $payload);
+                }
+            }
+        }
+
+        return self::createFormula(
+            name: $formula->name,
+            formula: $payload,
+            user_id: $user_id
+        );
+    }
 }
