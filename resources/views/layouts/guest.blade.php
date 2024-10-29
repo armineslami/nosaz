@@ -63,11 +63,17 @@
                         </div>
                     </div>
                     <div class="mt-0 text-center">
-                        <h1 class="font-bold text-4xl text-text dark:text-text-50 leading-relaxed">
-                            {{ __('محاسبات پروژه‌های خود را آسان کنید.') }}
-                        </h1>
+                        <div class="flex items-center">
+                            <div class="relative mx-auto">
+                                <span
+                                    class="text-4xl absolute left-[1.05rem] m-auto w-[fit-content] bottom-2.5">🏗‍</span>
+                                <p class="text-text font-bold text-4xl tracking-tight">
+                                    {{ __('نوســـــــــــــــــ ز') }}
+                                </p>
+                            </div>
+                        </div>
                         <p class="text-center mt-6 font-normal text-sm text-text-700 dark:text-text-200">
-                            {{ __('هزینه و سود هر پروژه را محاسبه کنید تا بهترین را از نظر سود دهی را انتخاب کنید.') }}
+                            {{ __('محاسبات پروژه‌های خود را در نوساز انجام دهید تا بهترین پروژه را انتخاب کنید.') }}
                             {{ __('لیست پروژه‌ها را همیشه به همراه خود داشته باشید تا در هر زمان و مکان به آن‌ها دسترسی داشته باشید و یا با دوستان خود به اشتراک بگذارید.') }}
                         </p>
                         <div class="text-center mt-12 font-normal text-xs text-text-700 dark:text-text-200 ltr">
