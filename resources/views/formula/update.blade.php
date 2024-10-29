@@ -80,78 +80,69 @@
                 </div>
             </form>
 
-            @if (count($variables) === 0)
-                <div class="mt-6 md:mt-8 text-center">
-                    <p class="text-text text-sm font-bold mb-2">{{ __('متغیری وجود ندارد') }}</p>
-                    <p class="text-text-600 dark:text-gray-400 text-xs justify-center">
-                        {{ __('برای ساخت فرمول، ابتدا متغیرها و برچسب‌ها را ایجاد کنید') }}
-                    </p>
+            <!-- Operation Buttons -->
+            <div class="mt-4 md:mt-4 w-full">
+                <div id="operationButtons" class="w-full lg:w-[fit-content] grid grid-cols-4 lg:grid-cols-4 gap-1">
+                    <button
+                        class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
+                        data-operation="+">+</button>
+                    <button
+                        class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
+                        data-operation="-">-</button>
+                    <button
+                        class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
+                        data-operation="/">/</button>
+                    <button
+                        class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
+                        data-operation="*">*</button>
+                    <button
+                        class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
+                        data-operation="^">^</button>
+                    <button
+                        class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
+                        data-operation=")">(</button>
+                    <button
+                        class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
+                        data-operation="(">)</button>
+                    <button
+                        class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
+                        data-operation="=">=</button>
                 </div>
-            @else
-                <!-- Operation Buttons -->
-                <div class="mt-4 md:mt-4 w-full">
-                    <div id="operationButtons" class="w-full lg:w-[fit-content] grid grid-cols-4 lg:grid-cols-4 gap-1">
-                        <button
-                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
-                            data-operation="+">+</button>
-                        <button
-                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
-                            data-operation="-">-</button>
-                        <button
-                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
-                            data-operation="/">/</button>
-                        <button
-                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
-                            data-operation="*">*</button>
-                        <button
-                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
-                            data-operation="^">^</button>
-                        <button
-                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
-                            data-operation=")">(</button>
-                        <button
-                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
-                            data-operation="(">)</button>
-                        <button
-                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
-                            data-operation="=">=</button>
+            </div>
+
+            <!-- Variables -->
+            <div id="variablesArea" class="flex flex-wrap gap-2 mt-2 md:mt-4">
+                @foreach ($variables as $variable)
+                    <div data-name="{{ $variable->name }}" data-id="{{ $variable->id }}" data-type="variable"
+                        class="variable clickable secondary-button formula-variable text-sm min-w-16">
+                        <p class="w-full text-center">{{ $variable->name }}</p>
                     </div>
-                </div>
+                @endforeach
+            </div>
 
-                <!-- Variables -->
-                <div id="variablesArea" class="flex flex-wrap gap-2 mt-2 md:mt-4">
-                    @foreach ($variables as $variable)
-                        <div data-name="{{ $variable->name }}" data-id="{{ $variable->id }}" data-type="variable"
-                            class="variable clickable secondary-button formula-variable text-sm min-w-16">
-                            <p class="w-full text-center">{{ $variable->name }}</p>
-                        </div>
-                    @endforeach
-                </div>
-
-                <!-- Labels -->
-                <div id="labelArea" class="flex flex-wrap gap-2 mt-4">
-                    @foreach ($labels as $label)
-                        @if ($label->is_parent)
-                            <div class="flex flex-row flex-wrap gap-2 bg-gray-300 dark:bg-gray-800 rounded-md p-1">
-                                <div data-is-parent="true" data-name="{{ $label->name }}"
-                                    data-id="{{ $label->id }}" data-type="label"
-                                    class="label clickable secondary-button cursor-pointer bg-accent-500 dark:bg-accent py-1 px-2 min-w-16 rounded-md text-text text-sm">
-                                    <p class="w-full text-center">{{ $label->name }}</p>
-                                </div>
-                                @foreach ($label->children as $_label)
-                                    <div data-parent-id="{{ $label->id }}" data-name="{{ $_label->name }}"
-                                        data-id="{{ $_label->id }}" data-type="label"
-                                        class="label clickable secondary-button bg-accent-400 dark:bg-accent-600 py-1 px-2 min-w-16 rounded-md text-text text-sm cursor-pointer">
-                                        <p class="w-full text-center">{{ $_label->name }}</p>
-                                    </div>
-                                @endforeach
+            <!-- Labels -->
+            <div id="labelArea" class="flex flex-wrap gap-2 mt-4">
+                @foreach ($labels as $label)
+                    @if ($label->is_parent)
+                        <div class="flex flex-row flex-wrap gap-2 bg-gray-300 dark:bg-gray-800 rounded-md p-1">
+                            <div data-is-parent="true" data-name="{{ $label->name }}" data-id="{{ $label->id }}"
+                                data-type="label"
+                                class="label clickable secondary-button cursor-pointer bg-accent-500 dark:bg-accent py-1 px-2 min-w-16 rounded-md text-text text-sm">
+                                <p class="w-full text-center">{{ $label->name }}</p>
                             </div>
-                        @endif
-                    @endforeach
-                </div>
+                            @foreach ($label->children as $_label)
+                                <div data-parent-id="{{ $label->id }}" data-name="{{ $_label->name }}"
+                                    data-id="{{ $_label->id }}" data-type="label"
+                                    class="label clickable secondary-button bg-accent-400 dark:bg-accent-600 py-1 px-2 min-w-16 rounded-md text-text text-sm cursor-pointer">
+                                    <p class="w-full text-center">{{ $_label->name }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                @endforeach
+            </div>
 
-                @include('formula.guidance')
-            @endif
+            @include('formula.guidance')
         </x-card>
 
         @include('formula.create-new-label-modal')
