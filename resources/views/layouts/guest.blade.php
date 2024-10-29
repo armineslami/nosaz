@@ -35,7 +35,7 @@
                 <div class="text-justify p-8 w-full">
                     <div class="flex justify-center">
                         <div id="guest-logo" class='w-[fit-content] px-2 py-2 rounded-xl mb-8'>
-                            <svg class="-mt-32" width="192px" height="272px" viewBox="0 0 428.339869 272.758591"
+                            <svg class="-mt-48" width="192px" height="272px" viewBox="0 0 428.339869 272.758591"
                                 version="1.1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <g id="Main" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
