@@ -35,9 +35,8 @@
                 <div class="text-justify p-8 w-full">
                     <div class="flex justify-center">
                         <div id="guest-logo" class='w-[fit-content] px-2 py-2 rounded-xl mb-8'>
-                            <svg class="pt-24 -mt-24" width="216px" height="216px" viewBox="0 0 428.339869 272.758591"
-                                version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <svg width="192px" height="192px" viewBox="0 0 428.339869 272.758591" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <g id="Main" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                     <g id="Icons" transform="translate(-2453.644046, -119.977711)">
                                         <g id="Black-Inner-White" transform="translate(2412.000000, 0.000000)">
