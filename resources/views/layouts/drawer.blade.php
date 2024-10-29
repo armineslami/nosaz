@@ -7,7 +7,7 @@
                 <x-logo width="48px" height="48px" background="" />
             </div>
             <div class="block dark:hidden">
-                <x-logo width="48px" height="48px" primaryColor="#5F5F5F" background="" />
+                <x-logo width="48px" height="48px" primaryColor="#1D1E1F" background="" />
             </div>
             <div class="relative ms-0">
                 <span class="absolute left-[0.55rem] m-auto w-[fit-content] bottom-2">🏗‍</span>

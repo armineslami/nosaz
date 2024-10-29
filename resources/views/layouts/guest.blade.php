@@ -25,7 +25,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="text-text-950 dark:text-text-50 antialiased bg-background">
+<body class="text-text-900 dark:text-text-50 antialiased bg-background">
     <div class="flex min-h-screen">
         <div class="grid grid-cols-1 lg:grid-cols-12 w-full">
             <div class="col-span-1 lg:col-span-6">
@@ -46,7 +46,7 @@
                                                     width="122.686095" height="189.202653" rx="12"></rect>
                                                 <path
                                                     d="M0,260.990242 L54.5248811,260.990242 C56.7340201,260.990242 58.5248811,259.199381 58.5248811,256.990242 L58.5248811,171.046886 C58.5248811,169.494238 59.4233813,168.081854 60.8297058,167.423852 L249.335681,79.2241232 C250.742006,78.5661205 251.640506,77.1537366 251.640506,75.6010885 L251.640506,4 C251.640506,1.790861 249.849645,-2.47250396e-15 247.640506,-1.42108547e-14 L166.64141,-1.42108547e-14 C164.432271,1.44774501e-15 162.64141,1.790861 162.64141,4 L162.64141,227.265209 C162.64141,229.474348 164.432271,231.265209 166.64141,231.265209 L340.244026,231.265209 C342.453165,231.265209 344.244026,229.474348 344.244026,227.265209 L344.244026,154.307615 C344.244026,152.928237 343.533324,151.646187 342.363503,150.915297 L259.380973,99.0688691 C257.507448,97.8983144 255.039733,98.4681846 253.869179,100.34171 C253.47942,100.965536 253.269225,101.684756 253.261705,102.420293 L251.681819,256.949349 C251.659235,259.158372 253.431693,260.967448 255.640717,260.990033 C255.654348,260.990172 255.667979,260.990242 255.68161,260.990242 L428.339869,260.990242 L428.339869,260.990242"
-                                                    id="homes" stroke="#5F5F5F" stroke-width="24"></path>
+                                                    id="homes" stroke="#1D1E1F" stroke-width="24"></path>
                                                 <ellipse id="moon" fill="#ffffff" cx="313.695561" cy="53.9916994"
                                                     rx="41.3880802" ry="40.6490074"></ellipse>
                                                 <g id="sun" class="hidden">
@@ -67,17 +67,17 @@
                             <div class="relative mx-auto">
                                 <span
                                     class="text-4xl absolute left-[1.05rem] m-auto w-[fit-content] bottom-2.5">🏗‍</span>
-                                <p class="text-text font-bold text-4xl tracking-tight">
+                                <p class="text-text-900 dark:text-text-100 font-bold text-4xl tracking-tight">
                                     {{ __('نوســـــــــــــــــ ز') }}
                                 </p>
                             </div>
                         </div>
-                        <p class="text-center mt-6 font-normal text-sm text-text-700 dark:text-text-200">
+                        <p class="text-center mt-6 font-normal text-sm text-text-700 dark:text-text-100">
                             {{ __('محاسبات پروژه‌های خود را در نوساز انجام دهید تا بهترین پروژه را انتخاب کنید.') }}
                             {{ __('لیست پروژه‌ها را همیشه به همراه خود داشته باشید تا در هر زمان و مکان به آن‌ها دسترسی داشته باشید و یا با دوستان خود به اشتراک بگذارید.') }}
                         </p>
-                        <div class="text-center mt-12 font-normal text-xs text-text-700 dark:text-text-200 ltr">
-                            <span class="ms-2 font-bold text-md text-text-950 dark:text-text-50">
+                        <div class="text-center mt-12 font-normal text-xs text-text-700 dark:text-text-100 ltr">
+                            <span class="ms-2 font-bold text-md text-text-900 dark:text-text-50">
                                 {{ __(config('app.version')) }}
                             </span>
                             <span class="">{{ __('نسخه') }}</span>
