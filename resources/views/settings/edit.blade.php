@@ -75,6 +75,12 @@
                     {{ __('آپدیت') }}
                 </x-primary-button>
             </div>
+
+            <div class="mt-4 block md:hidden">
+                <span class="text-gray-500 dark:text-gray-600 text-xs ltr">
+                    {{ config('app.version') }}
+                </span>
+            </div>
         </form>
     </x-card>
 
