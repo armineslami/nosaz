@@ -68,34 +68,31 @@
                 </div>
             @else
                 <!-- Operation Buttons -->
-                <div class="flex flex-wrap mt-4 md:mt-4 justify-between gap-2 w-full">
-                    <div id="operationButtons">
+                <div class="mt-4 md:mt-4 w-full">
+                    <div id="operationButtons" class="w-full lg:w-[fit-content] grid grid-cols-4 lg:grid-cols-4 gap-1">
                         <button
-                            class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-2 py-1 cursor-pointer"
+                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
                             data-operation="+">+</button>
                         <button
-                            class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-2 py-1 cursor-pointer"
+                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
                             data-operation="-">-</button>
                         <button
-                            class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-2 py-1 cursor-pointer"
+                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
                             data-operation="/">/</button>
                         <button
-                            class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-2 py-1 cursor-pointer"
+                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
                             data-operation="*">*</button>
                         <button
-                            class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-2 py-1 cursor-pointer"
+                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
                             data-operation="^">^</button>
                         <button
-                            class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-2 py-1 cursor-pointer"
-                            data-operation="%">%</button>
-                        <button
-                            class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-2 py-1 cursor-pointer"
+                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
                             data-operation=")">(</button>
                         <button
-                            class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-2 py-1 cursor-pointer"
+                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
                             data-operation="(">)</button>
                         <button
-                            class="secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center me-2 mb-2 px-2 py-1 cursor-pointer"
+                            class="lg:w-[fit-content] secondary-button shadow-md operationBtn min-w-12 min-h-6 bg-background-100 border border-primary rounded-md text-text text-sm text-center justify-center mb-2 px-2 py-1 cursor-pointer"
                             data-operation="=">=</button>
                     </div>
                 </div>
@@ -678,7 +675,7 @@
 
                 const validKeys = [
                     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-                    '(', ')', '=', '%', '^', '*', '/', '-', '+',
+                    '(', ')', '=', '^', '*', '/', '-', '+',
                     'Backspace', 'Meta', 'Control', 'Alt', 'Shift', 'Enter',
                     'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'
                 ];
