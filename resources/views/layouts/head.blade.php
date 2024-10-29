@@ -8,7 +8,7 @@
 
 <title>{{ config('app.name', 'Laravel') }}</title>
 
-<link rel="icon" href="{{ url('img/favicon.ico') }}">
+<link rel="icon" href="{{ url('img/favicon.png') }}">
 
 <link rel="manifest" href="{{ url('manifest.json') }}"
     media="(prefers-color-scheme: no-preference), (prefers-color-scheme: light)">
