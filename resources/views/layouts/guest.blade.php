@@ -70,10 +70,12 @@
                             {{ __('هزینه و سود هر پروژه را محاسبه کنید تا بهترین را از نظر سود دهی را انتخاب کنید.') }}
                             {{ __('لیست پروژه‌ها را همیشه به همراه خود داشته باشید تا در هر زمان و مکان به آن‌ها دسترسی داشته باشید و یا با دوستان خود به اشتراک بگذارید.') }}
                         </p>
-                        <p class="text-center mt-12 font-normal text-xs text-text-700 dark:text-text-200">
-                            {{ __('نسخه') }}<span
-                                class="ms-2 font-bold text-md text-text-950 dark:text-text-50">{{ __(config('app.version')) }}</span>
-                        </p>
+                        <div class="text-center mt-12 font-normal text-xs text-text-700 dark:text-text-200 ltr">
+                            <span class="ms-2 font-bold text-md text-text-950 dark:text-text-50">
+                                {{ __(config('app.version')) }}
+                            </span>
+                            <span class="">{{ __('نسخه') }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
