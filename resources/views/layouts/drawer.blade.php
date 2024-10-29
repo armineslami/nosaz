@@ -150,7 +150,7 @@
                         <span class="font-bold mx-1">Armin</span>
                         <span>Crafted with caffeine by</span>
                     </div>
-                    <p class="text-gray-500 dark:text-gray-600 text-center text-xs">
+                    <p class="text-gray-500 dark:text-gray-600 text-center text-xs ltr">
                         {{ config('app.version') }}
                     </p>
                 </div>
