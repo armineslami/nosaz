@@ -53,4 +53,10 @@ return [
         'client_secret' => env('TELEGRAM_CLIENT_SECRET'),
         'redirect' => env('TELEGRAM_CALLBACK_URL'),
     ],
+
+    'mailgun' => [
+        'domain' => env('MAILGUN_DOMAIN'),
+        'secret' => env('MAILGUN_SECRET'),
+        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'), // Default to US endpoint
+    ],
 ];
