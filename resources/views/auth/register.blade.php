@@ -12,7 +12,7 @@
             <!-- oAuth Login -->
             <div class="grid grid-cols-12 gap-4 mt-12 max-w-sm mx-auto lg:max-w-full">
                 <!-- Google -->
-                <a class="col-span-12 xl:col-span-4" href="{{ route('google.redirect') }}">
+                <a class="col-span-12 xl:col-span-6" href="{{ route('google.redirect') }}">
                     <x-secondary-button class="w-full items-center">
                         <span class="mx-auto flex flex-row">
                             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" class="l">
@@ -39,7 +39,7 @@
                 </a>
 
                 <!-- Telegram -->
-                <a class="col-span-12 xl:col-span-4" href="{{ route('telegram.redirect') }}">
+                <a class="col-span-12 xl:col-span-6" href="{{ route('telegram.redirect') }}">
                     <x-secondary-button class="w-full items-center">
                         <span class="mx-auto flex flex-row">
                             <svg width="24" height="24" viewBox="0 0 48 48" fill="none"
@@ -53,7 +53,7 @@
                     </x-secondary-button>
                 </a>
 
-                <!-- Twitter -->
+                {{-- <!-- Twitter -->
                 <a class="col-span-12 xl:col-span-4" href="{{ route('twitter.redirect') }}">
                     <x-secondary-button class="w-full items-center">
                         <span class="mx-auto flex flex-row">
@@ -64,7 +64,7 @@
                             </svg>
                             <span class="mt-1 ms-2 text-text">{{ __('ثبت نام با اکس') }}</span>
                         </span>
-                    </x-secondary-button>
+                    </x-secondary-button> --}}
                 </a>
             </div>
 
