@@ -48,7 +48,7 @@
         <div>
             <p class="text-text text-sm font-bold mb-2">{{ __('پروژه خود را برای محاسبه بسازید') }}</p>
             <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
-                {{ __('پروژه‌ای جدید ایجاد کرده تا هزینه و سود آن را محاسبه کنید.') }}</p>
+                {{ __('پروژه‌ای جدید ایجاد کرده تا آن را با یک فرمول محاسبه کنید.') }}</p>
             <a href="{{ route('project.create') }}">
                 <x-primary-button class="mt-4">
                     {{ __('ساخت پروژه') }}
