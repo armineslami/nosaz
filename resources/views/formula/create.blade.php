@@ -25,7 +25,7 @@
             </div>
         </div>
         <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
-            {{ __('برای محاسبه سود و هزینه پروژه‌های خود می‌توانید روش محاسباتی خود را ساخته و از آن استفاده کنید.') }}
+            {{ __('برای محاسبه پروژه‌های خود می‌توانید روش محاسباتی خود را ساخته و از آن استفاده کنید.') }}
         </p>
         <x-card class="mt-8">
             <form id="formulaForm" method="POST" action="{{ route('formula.store') }}">
