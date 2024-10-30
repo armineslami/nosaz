@@ -1,24 +1,35 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto">
-        <p class="text-text text-lg font-bold mb-2">{{ __('ساخت فرمول‌') }}</p>
+        <div class="flex justify-between">
+            <p class="text-text text-lg font-bold mb-2">{{ __('ساخت فرمول‌') }}</p>
+            <button id="helper-menu-button" aria-expanded="false" data-dropdown-toggle="helper-menu-dropdown"
+                class="text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary' }} focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                <span class="sr-only">{{ __('منو') }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                </svg>
+            </button>
+            <div id="helper-menu-dropdown"
+                class="hidden z-50 !mx-4 my-0 w-48 text-base list-none bg-white rounded-lg divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                <x-dropdown-link class="py-3 helper-menu-item" id="create-new-label-button" data-name="label">
+                    {{ __('برچسب جدید') }}
+                </x-dropdown-link>
+                <x-dropdown-link class="py-3 helper-menu-item" id="create-new-variable-button" data-name="variable">
+                    {{ __('متغیر جدید') }}
+                </x-dropdown-link>
+                <x-dropdown-link class="py-3 helper-menu-item" onclick="clearFormulaForm()">
+                    {{ __('پاک کن') }}
+                </x-dropdown-link>
+            </div>
+        </div>
         <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
             {{ __('برای محاسبه سود و هزینه پروژه‌های خود می‌توانید روش محاسباتی خود را ساخته و از آن استفاده کنید.') }}
         </p>
         <x-card class="mt-8">
             <form id="formulaForm" method="POST" action="{{ route('formula.store') }}">
                 @csrf
-
-                <div class="flex flex-wrap justify-end mb-8 md:mb-2 gap-2">
-                    <x-secondary-button onclick="clearFormulaForm()">
-                        {{ __('پاک کن') }}
-                    </x-secondary-button>
-                    <x-secondary-button id="create-new-label-button" data-name="label">
-                        <p class="w-full text-center">{{ __('برچسب جدید') }}</p>
-                    </x-secondary-button>
-                    <x-secondary-button id="create-new-variable-button" data-name="variable">
-                        <p class="w-full text-center">{{ __('متغیر جدید') }}</p>
-                    </x-secondary-button>
-                </div>
 
                 <x-input-label for="formulaName" :value="__('نام فرمول')" />
 
@@ -928,6 +939,15 @@
                     }, 1000);
                 }, 5000);
             }
+
+            // Click listener for helper menu items to close the dropdown
+            const helperMenuItems = document.querySelectorAll('.helper-menu-item');
+            helperMenuItems.forEach(function(item) {
+                item.addEventListener('click', (e) => {
+                    window.FlowbiteInstances._instances.Dropdown[
+                        'helper-menu-dropdown'].hide();
+                });
+            });
 
             function redirectTo(path) {
                 window.location.href = path;

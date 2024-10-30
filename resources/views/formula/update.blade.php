@@ -1,18 +1,42 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto">
         <div>
-            <div class="flex justify-between">
+            <div class="flex justify-between mb-1">
                 <p class="text-text text-lg font-bold mb-2">{{ __('آپدیت فرمول‌') }}</p>
 
-                <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'share-formula')"
-                    type="button"
-                    class="flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
-                    <span class="sr-only">{{ __('اشتراک') }}</span>
-                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
-                    </svg>
-                </button>
+                <div class="flex gap-0 -mt-1">
+                    <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'share-formula')"
+                        type="button"
+                        class="flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                        <span class="sr-only">{{ __('اشتراک') }}</span>
+                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
+                        </svg>
+                    </button>
+                    <button id="helper-menu-button" aria-expanded="false" data-dropdown-toggle="helper-menu-dropdown"
+                        class="text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary' }} focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                        <span class="sr-only">{{ __('منو') }}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                        </svg>
+                    </button>
+                    <div id="helper-menu-dropdown"
+                        class="hidden z-50 !mx-4 my-0 w-48 text-base list-none bg-white rounded-lg divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                        <x-dropdown-link class="py-3 helper-menu-item" id="create-new-label-button" data-name="label">
+                            {{ __('برچسب جدید') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link class="py-3 helper-menu-item" id="create-new-variable-button"
+                            data-name="variable">
+                            {{ __('متغیر جدید') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link class="py-3 helper-menu-item" onclick="clearFormulaForm()">
+                            {{ __('پاک کن') }}
+                        </x-dropdown-link>
+                    </div>
+                </div>
             </div>
             <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
                 {{ __('اطلاعات مربوط به فرمول خود را مشاهده کرده و در صورت نیاز آن را تغییر داده و یا حذف کنید.') }}
@@ -21,18 +45,6 @@
         <x-card class="mt-8">
             <form id="formulaForm" method="POST" action="{{ route('formula.update', $formula->id) }}">
                 @csrf
-
-                <div class="flex flex-wrap justify-end mb-8 md:mb-2 gap-2">
-                    <x-secondary-button onclick="clearFormulaForm()">
-                        {{ __('پاک کن') }}
-                    </x-secondary-button>
-                    <x-secondary-button id="create-new-label-button" data-name="label">
-                        <p class="w-full text-center">{{ __('برچسب جدید') }}</p>
-                    </x-secondary-button>
-                    <x-secondary-button id="create-new-variable-button" data-name="variable">
-                        <p class="w-full text-center">{{ __('متغیر جدید') }}</p>
-                    </x-secondary-button>
-                </div>
 
                 <span id="formulaId" class="hidden">{{ $formula->id }}</span>
 
@@ -125,8 +137,8 @@
                 @foreach ($labels as $label)
                     @if ($label->is_parent)
                         <div class="flex flex-row flex-wrap gap-2 bg-gray-300 dark:bg-gray-800 rounded-md p-1">
-                            <div data-is-parent="true" data-name="{{ $label->name }}" data-id="{{ $label->id }}"
-                                data-type="label"
+                            <div data-is-parent="true" data-name="{{ $label->name }}"
+                                data-id="{{ $label->id }}" data-type="label"
                                 class="label clickable secondary-button cursor-pointer bg-accent-500 dark:bg-accent py-1 px-2 min-w-16 rounded-md text-text text-sm">
                                 <p class="w-full text-center">{{ $label->name }}</p>
                             </div>
@@ -1132,6 +1144,15 @@
                     }, 1000);
                 }, 5000);
             }
+
+            // Click listener for helper menu items to close the dropdown
+            const helperMenuItems = document.querySelectorAll('.helper-menu-item');
+            helperMenuItems.forEach(function(item) {
+                item.addEventListener('click', (e) => {
+                    window.FlowbiteInstances._instances.Dropdown[
+                        'helper-menu-dropdown'].hide();
+                });
+            });
 
             function runIfDebug(debug, func, ...args) {
                 if (debug) {
