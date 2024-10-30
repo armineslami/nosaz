@@ -19,7 +19,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-touch-fullscreen" content="yes" />
-<meta name="apple-mobile-web-app-title" content="SPA" />
+<meta name="apple-mobile-web-app-title" content="Nosaz" />
+{{-- theme_color is removed from manifest and added as a meta tag here so it can be toggled by js on theme switch --}}
+<meta name="theme-color" content="ededed" />
 {{--    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> --}}
 
 <!-- Light Splash Screens -->

@@ -2,6 +2,8 @@
 <html class="dark:dark" dir="rtl" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    @include('layouts.head')
+
     <script>
         const key = 'theme-{{ Auth::user()->email }}';
 
@@ -10,16 +12,20 @@
             if (theme === 'dark') {
                 document.documentElement.classList.add('dark');
                 localStorage.setItem(key, 'dark'); // Save user preference
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#121212');
             } else if (theme === 'light') {
                 document.documentElement.classList.remove('dark');
                 localStorage.setItem(key, 'light'); // Save user preference
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ededed');
             } else {
                 // Handle system theme preference
                 localStorage.setItem(key, 'system');
                 if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                     document.documentElement.classList.add('dark');
+                    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#121212');
                 } else {
                     document.documentElement.classList.remove('dark');
+                    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ededed');
                 }
             }
         }
@@ -47,8 +53,6 @@
             });
         })();
     </script>
-
-    @include('layouts.head')
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
