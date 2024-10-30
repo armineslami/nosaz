@@ -120,7 +120,7 @@ class OAuthController extends Controller
 
             return redirect()->route("/login");
         } catch (\Exception) {
-            return redirect()->route('oauth.error');
+            return redirect()->intended();
         }
     }
 
