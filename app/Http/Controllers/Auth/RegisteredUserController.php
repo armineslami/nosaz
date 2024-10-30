@@ -47,7 +47,10 @@ class RegisteredUserController extends Controller
             'user_id' => $user->id
         ]);
 
-        event(new Registered($user));
+        try {
+            event(new Registered($user));
+        } catch (\Exception) {
+        }
 
         Auth::login($user);
 
