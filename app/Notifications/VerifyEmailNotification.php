@@ -19,7 +19,7 @@ class VerifyEmailNotification extends VerifyEmail
         $url = $this->verificationUrl($notifiable);
 
         return (new MailMessage)
-            ->subject('فعال سازی حساب کاری در ' . __('app.name'))
+            ->subject('فعال سازی حساب کاربری در ' . __('app.name'))
             ->greeting('سلام')
             ->line('این ایمیل جهت فعال سازی حساب کاربری شما ارسال شده است. برای انجام این کار کافیست روی دکمه زیر کلیک کنید.')
             ->action('تایید ایمیل', $url)
