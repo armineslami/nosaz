@@ -101,10 +101,11 @@ img {
 .header {
     padding: 25px 0;
     text-align: center;
+    margin-bottom: 16px;
 }
 
 .header a {
-    color: #3d4852;
+    color: #ebefee;
     font-size: 19px;
     font-weight: bold;
     text-decoration: none;
@@ -239,7 +240,8 @@ img {
 .button-blue,
 .button-primary {
     background-color: #7fd7c8;
-    padding: 0.5rem 1rem;
+    height: 32px;
+    padding: 4px 16px;
     border: 1px solid #3dc2ac;
     border-radius: 0.375rem;
     color: #101413;
