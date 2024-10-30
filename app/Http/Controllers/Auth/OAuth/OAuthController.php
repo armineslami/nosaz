@@ -17,7 +17,11 @@ class OAuthController extends Controller
 {
     public function redirectToGoogle(): RedirectResponse
     {
-        return Socialite::driver('google')->redirect();
+        try {
+            return Socialite::driver('google')->redirect();
+        } catch (\Exception) {
+            return redirect()->intended();
+        }
     }
 
     public function callbackFromGoogle(): RedirectResponse
@@ -88,7 +92,11 @@ class OAuthController extends Controller
 
     public function redirectToTwitter(): RedirectResponse
     {
-        return self::xApi()->redirect();
+        try {
+            return self::xApi()->redirect();
+        } catch (\Exception) {
+            return redirect()->intended();
+        }
     }
 
     public function callbackFromTwitter(): RedirectResponse
