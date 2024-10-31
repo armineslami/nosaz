@@ -76,11 +76,9 @@
                 </x-primary-button>
             </div>
 
-            <div class="mt-4 block md:hidden">
-                <span class="text-gray-500 dark:text-gray-600 text-xs ltr">
-                    {{ config('app.version') }}
-                </span>
-            </div>
+            <p class="mt-4 block md:hidden text-gray-500 dark:text-gray-600 text-end text-xs ltr">
+                {{ config('app.version') }}
+            </p>
         </form>
     </x-card>
 
