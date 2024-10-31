@@ -9,8 +9,11 @@ import Alpine from "alpinejs";
 // http://thednp.github.io/kute.js/index.html
 import KUTE from "kute.js";
 
+import html2pdf from "html2pdf.js";
+
 window.Alpine = Alpine;
 window.KUTE = KUTE;
+window.html2pdf = html2pdf;
 
 Alpine.start();
 
