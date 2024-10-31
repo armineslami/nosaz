@@ -4,7 +4,7 @@
             <div class="flex justify-between mb-1">
                 <p class="text-text text-lg font-bold mb-2">{{ __('آپدیت فرمول‌') }}</p>
 
-                <div class="flex gap-0 -mt-1">
+                <div class="flex gap-0 relative bottom-2">
                     <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'share-formula')"
                         type="button"
                         class="flex text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
