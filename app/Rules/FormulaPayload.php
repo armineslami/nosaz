@@ -16,7 +16,7 @@ class FormulaPayload implements ValidationRule
     {
         // Regular expression to match valid characters outside <>
         // Allowed characters: 1234567890-+=)(*^%/#, and <>
-        $allowedCharactersPattern = '/^[0-9\-+=)(*^%\/#<>]*$/';
+        $allowedCharactersPattern = '/^[0-9\-+=)(*^%\/#<>.]*$/';
 
         // Remove everything between <> for the check
         // The pattern finds anything between <>
@@ -24,7 +24,7 @@ class FormulaPayload implements ValidationRule
 
         // Check if the remaining text outside <> contains only allowed characters
         if (!preg_match($allowedCharactersPattern, $outsideText)) {
-//            $fail('The :attribute contains invalid characters outside <>.');
+            //            $fail('The :attribute contains invalid characters outside <>.');
             $fail(trans('validation.custom.formula.invalid'));
         }
     }

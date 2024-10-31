@@ -886,7 +886,7 @@
 
                 const validKeys = [
                     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-                    '(', ')', '=', '^', '*', '/', '-', '+',
+                    '(', ')', '=', '^', '*', '/', '-', '+', '.',
                     'Backspace', 'Meta', 'Control', 'Alt', 'Shift', 'Enter',
                     'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'
                 ];
