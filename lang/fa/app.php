@@ -12,7 +12,13 @@ return [
     'year_ago' => 'سال قبل',
     'none' => 'ندارد',
     'number' => 'عدد',
+    'millimeter' => 'میلی متر',
+    'centimeter' => 'سانتی متر',
     'meter' => 'متر',
+    'milligram' => 'میلی گرم',
+    'gram' => 'گرم',
+    'kilogram' => 'کیلوگرم',
+    'ton' => 'تن',
     'percent' => 'درصد',
     'toman' => 'تومان',
     'rial' => 'ریال'

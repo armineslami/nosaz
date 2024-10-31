@@ -49,8 +49,23 @@
                             <option value=""
                                 {{ !old('unit') || (old('unit') && old('unit') === '') ? 'selected' : '' }}>
                                 {{ __('app.none') }}</option>
+                            <option value="millimeter"
+                                {{ old('unit') && old('unit') === 'millimeter' ? 'selected' : '' }}>
+                                {{ __('app.millimeter') }}</option>
+                            <option value="centimeter"
+                                {{ old('unit') && old('unit') === 'centimeter' ? 'selected' : '' }}>
+                                {{ __('app.centimeter') }}</option>
                             <option value="meter" {{ old('unit') && old('unit') === 'meter' ? 'selected' : '' }}>
                                 {{ __('app.meter') }}</option>
+                            <option value="milligram"
+                                {{ old('unit') && old('unit') === 'milligram' ? 'selected' : '' }}>
+                                {{ __('app.milligram') }}</option>
+                            <option value="gram" {{ old('unit') && old('unit') === 'gram' ? 'selected' : '' }}>
+                                {{ __('app.gram') }}</option>
+                            <option value="kilogram" {{ old('unit') && old('unit') === 'kilogram' ? 'selected' : '' }}>
+                                {{ __('app.kilogram') }}</option>
+                            <option value="ton" {{ old('unit') && old('unit') === 'ton' ? 'selected' : '' }}>
+                                {{ __('app.ton') }}</option>
                             <option value="number" {{ old('unit') && old('unit') === 'number' ? 'selected' : '' }}>
                                 {{ __('app.number') }}</option>
                             <option value="percent" {{ old('unit') && old('unit') === 'percent' ? 'selected' : '' }}>
