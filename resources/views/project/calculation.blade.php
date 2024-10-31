@@ -1,10 +1,19 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto text-text">
-        @if (isset($project['name']))
-            <p class="text-text text-lg font-bold mb-2">{{ $project['name'] }}</p>
-        @else
-            <p class="text-text text-lg font-bold mb-2">{{ __('محاسبه پروژه') }}</p>
-        @endif
+        <div class="flex justify-between">
+            @if (isset($project['name']))
+                <p class="text-text text-lg font-bold mb-2">{{ $project['name'] }}</p>
+            @else
+                <p class="text-text text-lg font-bold mb-2">{{ __('محاسبه پروژه') }}</p>
+            @endif
+            <button onclick="window.history.back()"
+                class="flex md:hidden  text-sm p-2 relative bottom-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary">
+                <span class="sr-only">{{ __('بازگشت') }}</span>
+                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                </svg>
+            </button>
+        </div>
         <p class="text-text-600 dark:text-gray-400 text-sm">
             <span class="text-text-600 dark:text-gray-400 font-normal text-sm">{{ $formula->name }}</span>
         </p>
