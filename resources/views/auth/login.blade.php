@@ -1,4 +1,5 @@
 <x-guest-layout>
+    {!! HCaptcha::script() !!}
 
     <div class="flex lg:items-center min-h-screen max-w-xl mx-auto">
         <div class="p-8 w-full">
@@ -111,6 +112,16 @@
                             {{ __('پسورد را فراموش کرده‌اید؟') }}
                         </a>
                     @endif
+                </div>
+
+                <div class="mt-6">
+                    <div class="hidden dark:block">
+                        {!! HCaptcha::display(['data-theme' => 'dark', 'data-size' => 'normal']) !!}
+                    </div>
+                    <div class="dark:hidden">
+                        {!! HCaptcha::display(['data-theme' => 'light', 'data-size' => 'normal']) !!}
+                    </div>
+                    <x-input-error :messages="$errors->get('h-captcha-response')" class="mt-3" />
                 </div>
 
                 <x-primary-button class="w-full items-center py-3 mt-6">

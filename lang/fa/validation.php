@@ -170,6 +170,9 @@ return [
         ],
         'formula' => [
             'invalid' => 'فرمول به صورت صحیح نوشته نشده است'
+        ],
+        'h-captcha-response' => [
+            'hcaptcha' => 'لطفا کپچا را انتخاب کنید',
         ]
     ],
 
