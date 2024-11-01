@@ -10,7 +10,7 @@
             {{--            <x-auth-session-status class="my-8" :status="session('status')" /> --}}
 
             <!-- oAuth Login -->
-            <div class="grid grid-cols-12 gap-4 mt-12 max-w-sm mx-auto lg:max-w-full">
+            <div class="grid grid-cols-12 gap-4 mt-8 max-w-sm mx-auto lg:max-w-full">
                 <!-- Google -->
                 <a class="col-span-12 xl:col-span-6" href="{{ route('google.redirect') }}">
                     <x-secondary-button class="w-full items-center">
@@ -68,7 +68,7 @@
                 </a>
             </div>
 
-            <div class="grid grid-cols-12 my-8 text-center items-center">
+            <div class="grid grid-cols-12 my-6 text-center items-center">
                 <hr class="col-span-5" />
                 <small class="col-span-2 text-text font-bold">{{ __('یا') }}</small>
                 <hr class="col-span-5" />
@@ -115,7 +115,7 @@
                     </div>
                 </div>
 
-                <div class="flex mt-10">
+                <div class="flex mt-6">
                     <label for="terms_and_policy" class="inline-flex items-center">
                         <input id="terms_and_policy" type="checkbox" name="terms"
                             class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-accent shadow-sm focus:ring-accent dark:focus:ring-accent dark:focus:ring-offset-gray-800">
