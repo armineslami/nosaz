@@ -1,6 +1,6 @@
 <x-basic-layout>
-    <div class="flex items-center min-h-screen">
-        <div class="w-full md:w-1/2 m-4 md:m-auto">
+    <div class="flex md:items-center min-h-screen">
+        <div class="w-full md:w-1/2 m-4 mt-8 md:m-auto md:mt-auto">
 
             {{-- <x-application-logo class="m-auto w-24 h-24 mb-8 rounded-lg px-2 bg-primary" /> --}}
 
@@ -50,6 +50,6 @@
             show = false;
         }, 5000)" class="hidden"
             icon='<svg class="w-5 h-5 text-text" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" /></svg>'
-            message="{{ session('status') }}" />
+            message="{{ session('status') }}" class="!bottom-12" />
     @endif
 </x-basic-layout>

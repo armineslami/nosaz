@@ -1,6 +1,6 @@
 <x-basic-layout>
-    <div class="flex items-center min-h-screen">
-        <div class="w-full md:w-1/2 m-4 md:m-auto">
+    <div class="flex md:items-center min-h-screen">
+        <div class="w-full md:w-1/2 m-4 mt-8 md:m-auto md:mt-auto">
 
             {{-- <x-application-logo class="m-auto w-24 h-24 mb-8 rounded-lg px-2 bg-primary" /> --}}
 
