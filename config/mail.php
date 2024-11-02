@@ -99,6 +99,9 @@ return [
             'transport' => 'mailgun',
         ],
 
+        'mailtrap' => [
+            'transport' => 'mailtrap'
+        ],
     ],
 
     /*
