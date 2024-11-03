@@ -2,20 +2,23 @@ import "./bootstrap";
 import "flowbite";
 
 import { showPWAInstallPrompt } from "./pwa-install-prompt";
-
 import Alpine from "alpinejs";
-
 import "./sw.js";
 
 // https://app.haikei.app
 // http://thednp.github.io/kute.js/index.html
-import KUTE from "kute.js";
+// import KUTE from "kute.js";
 
-import html2pdf from "html2pdf.js";
+// Only load the package when required to reduce the the bundle size
+window.importHTML2PDF = async function importHTML2PDF() {
+    if (!window.html2pdf) {
+        const { default: html2pdf } = await import("html2pdf.js");
+        window.html2pdf = html2pdf;
+    }
+};
 
 window.Alpine = Alpine;
-window.KUTE = KUTE;
-window.html2pdf = html2pdf;
+// window.KUTE = KUTE;
 
 Alpine.start();
 

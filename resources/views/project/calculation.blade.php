@@ -91,7 +91,7 @@
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        window.createPDF = function() {
+        window.createPDF = async function() {
             const element = document.getElementById('calculation-result');
 
             // Deep cloning
@@ -156,6 +156,8 @@
                     orientation: 'portrait'
                 }
             };
+
+            await window.importHTML2PDF();
 
             // Generate PDF
             html2pdf().set(options).from(clonedElement).save();
