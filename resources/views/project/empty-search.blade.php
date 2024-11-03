@@ -59,22 +59,22 @@
     document.addEventListener('DOMContentLoaded', function() {
         const emoji = document.getElementById('animation-area-emoji');
         setTimeout(() => {
-            loadKute("#blob1", "#blob1", "#blob2", 999, 4000, true);
+            // loadKute("#blob1", "#blob1", "#blob2", 999, 4000, true);
             // loadKute("#blob3", "#blob3", "#blob4", 999, 3500, true);
             // loadKute("#blob5", "#blob5", "#blob6", 999, 3000, true);
             emoji.classList.add('search-magnifer');
         }, 150);
 
-        function loadKute(element, from, to, repeat, duration, yoyo) {
-            window.KUTE.fromTo(element, {
-                path: from
-            }, {
-                path: to
-            }, {
-                repeat,
-                duration,
-                yoyo
-            }).start(null);
-        }
+        // function loadKute(element, from, to, repeat, duration, yoyo) {
+        //     window.KUTE.fromTo(element, {
+        //         path: from
+        //     }, {
+        //         path: to
+        //     }, {
+        //         repeat,
+        //         duration,
+        //         yoyo
+        //     }).start(null);
+        // }
     });
 </script>
