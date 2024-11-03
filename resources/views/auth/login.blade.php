@@ -114,11 +114,12 @@
                     @endif
                 </div>
 
+                {{-- Using js inside guest layout, one of the below cpatcha elements is removed --}}
                 <div class="mt-6">
-                    <div class="hidden dark:block">
+                    <div id="dark-captcha" class="hidden dark:block">
                         {!! HCaptcha::display(['data-theme' => 'dark', 'data-size' => 'normal']) !!}
                     </div>
-                    <div class="dark:hidden">
+                    <div id="light-captcha" class="dark:hidden">
                         {!! HCaptcha::display(['data-theme' => 'light', 'data-size' => 'normal']) !!}
                     </div>
                     <x-input-error :messages="$errors->get('h-captcha-response')" class="mt-3" />

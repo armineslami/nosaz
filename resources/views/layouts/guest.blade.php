@@ -188,6 +188,17 @@
                     }, 5000)
                 }, 200);
             }
+
+            /**
+             * Remove one of the captcha element based on current them.
+             * This only creates a bug which is if user manually change the them, both captchas will be removed
+             */
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const captchaToRemove = systemTheme === 'light' ? 'dark' : 'light';
+            const element = document.getElementById(`${captchaToRemove}-captcha`);
+            if (element) {
+                element.remove();
+            }
         })
     </script>
 </body>
