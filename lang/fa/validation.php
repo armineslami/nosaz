@@ -173,7 +173,7 @@ return [
         ],
         'h-captcha-response' => [
             'hcaptcha' => 'لطفا کپچا را انتخاب کنید',
-        ]
+        ],
     ],
 
     /*
@@ -240,6 +240,7 @@ return [
         'parent' => 'سردسته',
         'app_theme' => 'رنگ نرم افزار',
         'app_paginate_number' => 'ردیف جدول',
-        'app_max_decimal_place' => 'رقم اعشار'
+        'app_max_decimal_place' => 'رقم اعشار',
+        'h-captcha-response' => 'کپچا'
     ],
 ];

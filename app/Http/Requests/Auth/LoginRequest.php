@@ -29,7 +29,7 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
-            'h-captcha-response' => ['hcaptcha'],
+            'h-captcha-response' => ['required', 'hcaptcha'],
         ];
     }
 
