@@ -57,7 +57,7 @@ export function showPWAInstallPrompt() {
             showPrompt("android");
         }
         // Only safari has the add to home screen option
-        else if (isSafari && isIos() && !isInStandaloneMode()) {
+        else if (isSafari() && isIos()) {
             showPrompt("ios");
         }
     }
