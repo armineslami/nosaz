@@ -52,11 +52,11 @@
                         </x-label-darken-text>
                         <div class="label-divider grow h-0 border-b border-dashed border-b-slate-500">
                         </div>
-                        <div class="w-[fit-content] text-text">
+                        <div class="label-value w-[fit-content] text-text">
                             {{ convert_digits_to_persian(format_number_with_commas($data['value'], $settings->app_max_decimal_place)) }}
                             @if (isset($data['unit']))
                                 <x-label-darken-text
-                                    class="!text-text">{{ __('app.' . $data['unit']) }}</x-label-darken-text>
+                                    class="label-unit !text-text">{{ __('app.' . $data['unit']) }}</x-label-darken-text>
                             @endif
                         </div>
                     </div>
@@ -69,11 +69,11 @@
                             </x-label-darken-text>
                             <div class="label-divider grow h-0 border-b border-dashed border-b-slate-500">
                             </div>
-                            <div class="w-[fit-content] text-text">
+                            <div class="label-value w-[fit-content] text-text">
                                 {{ convert_digits_to_persian(format_number_with_commas($d['value'], $settings->app_max_decimal_place)) }}
                                 @if (isset($d['unit']))
                                     <x-label-darken-text
-                                        class="!text-text">{{ __('app.' . $d['unit']) }}</x-label-darken-text>
+                                        class="label-unit !text-text">{{ __('app.' . $d['unit']) }}</x-label-darken-text>
                                 @endauth
                         </div>
                     </div>
@@ -83,9 +83,9 @@
         @endforeach
 
         <div id="app-data" class="mt-12 text-center hidden">
-            <p class="text-text text-sm font-bold">
+            <p class="text-[#101413] text-sm font-bold">
                 {{ app()->getLocale() === 'fa' ? config('app.name_fa') : config('app.name') }}</p>
-            <p class="text-text text-sm font-normal">{{ config('app.url') }}</p>
+            <p class="text-[#101413] text-sm font-normal">{{ config('app.url') }}</p>
         </div>
     </x-card>
 </div>
@@ -103,18 +103,18 @@
 
             if (document.getElementById('project-description')) {
                 const description = document.createElement('p');
-                description.className = "text-text text-sm mb-8";
+                description.className = "text-[#101413] text-sm mb-8";
                 description.textContent = document.getElementById('project-description').innerText;
                 clonedElement.insertBefore(description, clonedElement.firstChild);
             }
 
             const formula = document.createElement('p');
-            formula.className = "text-text-600 dark:text-gray-400 font-normal text-sm mb-8";
+            formula.className = "text-[#5b716c] font-normal text-sm mb-8";
             formula.textContent = document.getElementById('formula-name').innerText;
             clonedElement.insertBefore(formula, clonedElement.firstChild);
 
             const title = document.createElement('p');
-            title.className = "text-text text-lg font-bold mb-2"
+            title.className = "text-[#101413]text-lg font-bold mb-2"
             title.textContent = document.getElementById('project-title').innerText;
             clonedElement.insertBefore(title, clonedElement.firstChild);
 
@@ -127,6 +127,10 @@
             const labelTexts = clonedElement.getElementsByClassName('label-text');
             for (let i = 0; i < labelTexts.length; i++) {
                 labelTexts[i].classList.remove('!truncate');
+                labelTexts[i].classList.remove('text-text-600');
+                labelTexts[i].classList.remove('dark:text-text-600');
+                labelTexts[i].classList.add('!text[#5b716c]');
+
             }
             // Add '1.25rem' top margin to all elements with 'label-divider' class
             const labelDividers = clonedElement.getElementsByClassName('label-divider');
@@ -135,10 +139,25 @@
                 labelDividers[i].style.marginTop = '1.25rem'; // Set top margin to 1.25rem
             }
 
+            const labelValues = clonedElement.getElementsByClassName('label-value');
+            for (let i = 0; i < labelValues.length; i++) {
+                labelValues[i].classList.remove('!text-text');
+                labelValues[i].classList.add('!text-[#101413]');
+            }
+
+            const labelUnits = clonedElement.getElementsByClassName('label-unit');
+            for (let i = 0; i < labelUnits.length; i++) {
+                labelUnits[i].classList.remove('!text-text');
+                labelUnits[i].classList.add('!text-[#101413]');
+            }
+
             /**
              * Add app name
              */
             clonedElement.querySelector('#app-data').classList.remove('hidden');
+
+            clonedElement.classList.remove('bg-background-100');
+            clonedElement.classList.add('bg-[#e3e8e7]');
 
             const options = {
                 margin: 0.4,
