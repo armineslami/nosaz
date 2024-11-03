@@ -86,6 +86,9 @@
         <!-- Social modal -->
         @include('layouts.social-modal')
 
+        <!-- App update modal -->
+        @include('components.update-app-prompt')
+
     </div>
 </body>
 

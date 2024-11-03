@@ -31,6 +31,8 @@
     <div>
         {{ $slot }}
     </div>
+
+    @include('components.update-app-prompt')
 </body>
 
 </html>

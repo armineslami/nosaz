@@ -5,6 +5,8 @@ import { showPWAInstallPrompt } from "./pwa-install-prompt";
 
 import Alpine from "alpinejs";
 
+import "./sw.js";
+
 // https://app.haikei.app
 // http://thednp.github.io/kute.js/index.html
 import KUTE from "kute.js";

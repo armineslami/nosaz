@@ -62,4 +62,8 @@ Route::get('/privacy-policy', function () {
     return view('auth.privacy-policy');
 })->name('policy');
 
+Route::get('/offline', function () {
+    return view('offline');
+});
+
 require __DIR__ . '/auth.php';

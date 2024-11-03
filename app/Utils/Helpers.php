@@ -24,3 +24,16 @@ function format_number_with_commas($number, $decimals = 2, $decimal_point = '.',
     return number_format($truncatedNumber, $decimals, $decimal_point, $thousands_separator);
 }
 
+function asset_from_manifest($path)
+{
+    $manifestPath = public_path('build/manifest.json');
+
+    if (!file_exists($manifestPath)) {
+        throw new Exception('The Vite manifest file does not exist.');
+    }
+
+    $manifest = json_decode(file_get_contents($manifestPath), true);
+
+    return isset($manifest[$path]) ? "/build/" . $manifest[$path]['file'] : null;
+}
+
