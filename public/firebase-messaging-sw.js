@@ -24,12 +24,22 @@ const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage((payload) => {
     // console.log("Message received in background: ", payload);
+    /**
+     * If the notification is sent by Firebase panel, It has a notifcation object inside payload
+     * and firebase package automatially creates and shows a notification. But if the notification
+     * object is not present, it means the notificaiton is sent from custom panel or api so in this
+     * case the title and body will be inside data object.
+     */
+    if (!payload.notification) {
+        const notificationTitle = payload.data.title;
+        const notificationOptions = {
+            body: payload.data.body,
+            icon: payload.data.icon ?? "/img/icon-512x512.png",
+        };
 
-    const notificationTitle = payload.notification.title;
-    const notificationOptions = {
-        body: payload.notification.body,
-        icon: payload.notification.icon,
-    };
-
-    self.registration.showNotification(notificationTitle, notificationOptions);
+        self.registration.showNotification(
+            notificationTitle,
+            notificationOptions
+        );
+    }
 });
