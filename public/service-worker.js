@@ -1,4 +1,4 @@
-const VERSION = "v0.0.5";
+const VERSION = "v0.0.1";
 const CACHE_NAME = `nosaz-app-cache-${VERSION}`;
 const OFFLINE_URL = "/offline";
 const ASSET_MANIFEST_URL = "/build/manifest.json";
