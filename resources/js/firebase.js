@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 class Firebase {
-    DEBUG = true;
+    DEBUG = false;
 
     constructor() {
         this.messaging = null;
