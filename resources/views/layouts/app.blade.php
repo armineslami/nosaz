@@ -89,6 +89,9 @@
         <!-- App update modal -->
         @include('components.update-app-prompt')
 
+        <!-- Notification permission request modal -->
+        @include('components.notification-permission-request-prompt')
+
     </div>
 </body>
 

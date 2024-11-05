@@ -93,6 +93,7 @@
     @include('components.pwa-install-prompt-ios')
     @include('components.pwa-install-prompt-android')
     @include('components.update-app-prompt')
+    @include('components.notification-permission-request-prompt')
 
     <script>
         let runAnimation = true;

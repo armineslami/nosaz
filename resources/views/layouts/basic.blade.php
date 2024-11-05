@@ -33,6 +33,7 @@
     </div>
 
     @include('components.update-app-prompt')
+    @include('components.notification-permission-request-prompt')
 </body>
 
 </html>
