@@ -17,6 +17,7 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "firebase": "^11.0.1",
         "html2pdf.js": "^0.10.2"
     }
 }

@@ -1,9 +1,9 @@
-import "./bootstrap";
+import "./firebase";
+import "./sw.js";
 import "flowbite";
-
 import { showPWAInstallPrompt } from "./pwa-install-prompt";
 import Alpine from "alpinejs";
-import "./sw.js";
+import axios from "axios";
 
 // https://app.haikei.app
 // http://thednp.github.io/kute.js/index.html
@@ -19,6 +19,11 @@ window.importHTML2PDF = async function importHTML2PDF() {
 
 window.Alpine = Alpine;
 // window.KUTE = KUTE;
+window.axios = axios;
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+window.axios.defaults.headers.common["X-CSRF-TOKEN"] = document
+    .querySelector('meta[name="csrf-token"]')
+    .getAttribute("content");
 
 Alpine.start();
 
