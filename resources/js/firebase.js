@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 class Firebase {
+    DEBUG = true;
+
     constructor() {
         this.messaging = null;
         this.initializeFirebase();
@@ -14,31 +16,49 @@ class Firebase {
             projectId: "nosaz-f1a86",
             storageBucket: "nosaz-f1a86.firebasestorage.app",
             messagingSenderId: "47873885304",
-            appId: "1:47873885304:web:3a511741e8f1713056998d",
-            measurementId: "G-N8FX7TEKXL",
+            appId: "1:47873885304:web:aceadfde9151848156998d",
+            measurementId: "G-9XY26MSEC8",
         };
-
-        //   const firebaseConfig = {
-        //     apiKey: "AIzaSyDKs9rp7sGQr8TP5yUEI1_YJ3llg8LPZ1k",
-        //     authDomain: "nosaz-f1a86.firebaseapp.com",
-        //     projectId: "nosaz-f1a86",
-        //     storageBucket: "nosaz-f1a86.firebasestorage.app",
-        //     messagingSenderId: "47873885304",
-        //     appId: "1:47873885304:web:aceadfde9151848156998d",
-        //     measurementId: "G-9XY26MSEC8"
-        //   };
 
         const app = initializeApp(firebaseConfig);
         this.messaging = getMessaging(app);
     }
 
-    async register() {
+    async init() {
         try {
-            await this.registerServiceWorker();
-            await this.getFCMToken();
-            this.listenForMessages();
+            const permission = Notification.permission;
+
+            if (permission === "granted") {
+                this.runIfDebug(
+                    this.DEBUG,
+                    console.log,
+                    "Notifications permission in granted."
+                );
+                await this.registerServiceWorker();
+                await this.getFCMToken();
+                this.listenForMessages();
+            } else if (permission === "denied") {
+                this.runIfDebug(
+                    this.DEBUG,
+                    console.log,
+                    "Notifications are disabled by the user."
+                );
+            } else if (permission === "default") {
+                this.runIfDebug(
+                    this.DEBUG,
+                    console.log,
+                    "Notification permission has not been requested yet."
+                );
+                await this.requestNotificationPermission();
+                this.register();
+            }
         } catch (error) {
-            console.error("Failed to initialize Firebase:", error);
+            this.runIfDebug(
+                this.DEBUG,
+                console.log,
+                "Failed to initialize Firebase:",
+                error
+            );
         }
     }
 
@@ -48,7 +68,9 @@ class Firebase {
                 "/firebase-messaging-sw.js",
                 { scope: "fcm" }
             );
-            console.log(
+            this.runIfDebug(
+                this.DEBUG,
+                console.log,
                 "Service Worker registered with scope:",
                 registration.scope
             );
@@ -61,15 +83,24 @@ class Firebase {
                         { once: true }
                     );
                 });
-                console.log("Service Worker is now controlling the page.");
+                this.runIfDebug(
+                    this.DEBUG,
+                    console.log,
+                    "Service Worker is now controlling the page."
+                );
             }
         } catch (error) {
-            console.error("Service Worker registration failed:", error);
+            this.runIfDebug(
+                this.DEBUG,
+                console.log,
+                "Service Worker registration failed:",
+                error
+            );
         }
     }
 
     async getFCMToken(retries = 3) {
-        console.log("Getting FCM token...");
+        this.runIfDebug(this.DEBUG, console.log, "Getting FCM token...");
         try {
             const token = await getToken(this.messaging, {
                 vapidKey:
@@ -77,40 +108,49 @@ class Firebase {
             });
 
             if (token) {
-                console.log("FCM Token:", token);
-                // Optionally send this token to your server for future use
-            } else {
-                console.log(
-                    "No registration token available. Requesting permission."
-                );
-                await this.requestNotificationPermission();
+                this.runIfDebug(this.DEBUG, console.log, "FCM Token:", token);
+                // Store the token
             }
         } catch (error) {
             if (retries > 0 && error.name === "AbortError") {
-                console.log("Retrying token retrieval...");
+                this.runIfDebug(
+                    this.DEBUG,
+                    console.log,
+                    "Retrying token retrieval..."
+                );
                 setTimeout(() => this.getFCMToken(retries - 1), 1000);
             } else {
-                console.error("Failed to get FCM token:", error);
+                this.runIfDebug(
+                    this.DEBUG,
+                    console.log,
+                    "Failed to get FCM token:",
+                    error
+                );
             }
         }
     }
 
     async requestNotificationPermission() {
-        const permission = await Notification.requestPermission();
-        if (permission === "granted") {
-            console.log("Notification permission granted.");
-            await this.getFCMToken();
-        } else {
-            console.log("Unable to get permission to notify.");
-        }
+        return await Notification.requestPermission();
     }
 
     listenForMessages() {
         onMessage(this.messaging, (payload) => {
-            console.log("Message received in foreground:", payload);
+            runIfDebug(
+                DEBUG,
+                console.log,
+                "Message received in foreground:",
+                payload
+            );
             const { title, body, icon } = payload.notification;
             new Notification(title, { body, icon });
         });
+    }
+
+    runIfDebug(debug, func, ...args) {
+        if (debug) {
+            func(...args);
+        }
     }
 }
 
