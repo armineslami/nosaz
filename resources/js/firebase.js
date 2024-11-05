@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 class Firebase {
-    DEBUG = false;
+    DEBUG = true;
 
     constructor() {
         this.messaging = null;
@@ -50,7 +50,7 @@ class Firebase {
                     "Notification permission has not been requested yet."
                 );
                 await this.requestNotificationPermission();
-                this.register();
+                this.init();
             }
         } catch (error) {
             this.runIfDebug(
@@ -136,8 +136,8 @@ class Firebase {
 
     listenForMessages() {
         onMessage(this.messaging, (payload) => {
-            runIfDebug(
-                DEBUG,
+            this.runIfDebug(
+                this.DEBUG,
                 console.log,
                 "Message received in foreground:",
                 payload
