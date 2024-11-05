@@ -52,7 +52,6 @@
 
         window.addEventListener("modal-closed", (event) => {
             const modalName = event.detail;
-            console.log(event.detail);
             if (modalName === "update-app-prompt") {
                 window.location.reload();
             }
