@@ -1,7 +1,7 @@
-import "./firebase";
 import "./sw.js";
 import "flowbite";
 import { showPWAInstallPrompt } from "./pwa-install-prompt";
+import { showNotificationPermissionRequestPrompt } from "./notification";
 import Alpine from "alpinejs";
 import axios from "axios";
 
@@ -63,3 +63,4 @@ document
     });
 
 showPWAInstallPrompt();
+showNotificationPermissionRequestPrompt();
