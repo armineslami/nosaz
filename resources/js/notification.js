@@ -8,7 +8,12 @@ export function showNotificationPermissionRequestPrompt() {
     const permission = Notification.permission;
 
     if (permission === "granted") {
+        /**
+         * Sometimes like the first time installation on chrome, permission for
+         * for the domain is granted, but local storage value is not set (since it's first time installation)
+         */
         localStorage.setItem("notification-permission-requested", true);
+        new Firebase().init();
     } else if (
         localStorage.getItem("notification-permission-requested") === null ||
         (permission === "default" &&
@@ -42,10 +47,5 @@ export function showNotificationPermissionRequestPrompt() {
                 }
             });
         });
-    } else if (
-        permission === "granted" &&
-        localStorage.getItem("notification-permission-requested") === "true"
-    ) {
-        new Firebase().init();
     }
 }
