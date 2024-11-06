@@ -43,3 +43,13 @@ messaging.onBackgroundMessage((payload) => {
         );
     }
 });
+
+// Cache the offline page during installation
+self.addEventListener("install", (event) => {
+    /**
+     * By default, a new Service Worker will install but won’t take control
+     * until all tabs using the old version are closed.
+     * To activate the new version immediately, use self.skipWaiting()
+     */
+    self.skipWaiting();
+});
