@@ -7,7 +7,9 @@ export function showNotificationPermissionRequestPrompt() {
 
     const permission = Notification.permission;
 
-    if (
+    if (permission === "granted") {
+        localStorage.setItem("notification-permission-requested", true);
+    } else if (
         localStorage.getItem("notification-permission-requested") === null ||
         (permission === "default" &&
             localStorage.getItem("notification-permission-requested") ===
