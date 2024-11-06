@@ -107,7 +107,7 @@
         <div class="mt-6">
             <p class="text-text text-lg font-bold mb-2">{{ __('برچسب‌ها') }}</p>
             <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
-                {{ __('برچسب‌ها ساخته شده را مشاهده و یا حذف کنید.') }}
+                {{ __('برچسب‌های ساخته شده را مشاهده و یا حذف کنید.') }}
             </p>
 
             <x-card id="labelsCard" class="mt-8 min-h-28 {{ empty($labels) ? 'flex justify-center' : '' }}">
