@@ -37,7 +37,7 @@
                     </p>
                 </div>
                 @if (!empty($variables))
-                    <div id="variablesContainer" class="flex gap-2">
+                    <div id="variablesContainer" class="flex flex-wrap gap-2">
                         @foreach ($variables as $variable)
                             <div
                                 class="flex justify-between items-center bg-primary py-1.5 px-2.5 min-w-16 rounded-md text-text text-sm cursor-default">
