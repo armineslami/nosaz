@@ -27,7 +27,7 @@
                 <li>
                     <a href="{{ route('project.create') }}"
                         class="flex text-sm w-ful px-4 py-2 {{ Route::is('project.create') ? 'bg-primary text-text-900 dark:text-text-100 border-b border-b-primary-400' : 'text-text hover:text-text-900 hover:dark:text-text-100' }} transition duration-75 pl-11 group hover:bg-primary">
-                        {{ __('ساخت پروژه') }}
+                        {{ __('محاسبه') }}
                     </a>
                 </li>
                 <li>
