@@ -92,12 +92,20 @@
                     {{ __('آپدیت') }}
                 </x-primary-button>
             </div>
-
-            <p class="mt-4 block md:hidden text-gray-500 dark:text-gray-600 text-end text-xs ltr">
-                {{ config('app.version') }}
-            </p>
         </form>
     </x-card>
+
+    <div data-modal-target="social-modal" data-modal-toggle="social-modal" id="effect-area"
+        class="mt-4 block md:hidden relative text-gray-500 dark:text-gray-600 text-center text-xs mb-0 cursor-pointer">
+        <div class="relative text-center inline-flex">
+            <span>✨</span>
+            <span class="font-bold mx-1">Armin</span>
+            <span>Crafted with caffeine by</span>
+        </div>
+        <p class="text-gray-500 dark:text-gray-600 text-center text-xs ltr">
+            {{ config('app.version') }}
+        </p>
+    </div>
 
     @if (session('status') === 'settings-updated')
         <x-toast x-data="{ show: true }" x-show="show" x-transition x-init="$el.classList.add('toast-transition-in');
