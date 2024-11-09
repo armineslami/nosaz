@@ -26,7 +26,7 @@ class CreateLabelRequest extends FormRequest
             'name' => 'required|string|max:50',
             'type' => 'in:1,0',
             'parent' => 'integer|exists:labels,id',
-            'unit' => 'nullable|in:millimeter,centimeter,meter,milligram,gram,kilogram,ton,number,percent,toman,rial'
+            'unit' => 'nullable|in:millimeter,centimeter,meter,square_meter,lane_meter,milligram,gram,kilogram,ton,number,percent,toman,rial'
         ];
     }
 }

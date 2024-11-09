@@ -79,6 +79,12 @@
                                     {{ __('app.centimeter') }}</option>
                                 <option value="meter" {{ old('unit') && old('unit') === 'meter' ? 'selected' : '' }}>
                                     {{ __('app.meter') }}</option>
+                                <option value="square_meter"
+                                    {{ old('unit') && old('unit') === 'square_meter' ? 'selected' : '' }}>
+                                    {{ __('app.square_meter') }}</option>
+                                <option value="lane_meter"
+                                    {{ old('unit') && old('unit') === 'lane_meter' ? 'selected' : '' }}>
+                                    {{ __('app.lane_meter') }}</option>
                                 <option value="milligram"
                                     {{ old('unit') && old('unit') === 'milligram' ? 'selected' : '' }}>
                                     {{ __('app.milligram') }}</option>

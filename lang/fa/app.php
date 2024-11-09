@@ -15,6 +15,8 @@ return [
     'millimeter' => 'میلی متر',
     'centimeter' => 'سانتی متر',
     'meter' => 'متر',
+    'square_meter' => 'متر مربع',
+    'lane_meter' => 'متر طول',
     'milligram' => 'میلی گرم',
     'gram' => 'گرم',
     'kilogram' => 'کیلوگرم',

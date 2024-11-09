@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->boolean('is_parent')->default(true);
-            $table->enum('unit', ['millimeter', 'centimeter', 'meter', 'milligram', 'gram', 'kilogram', 'ton', 'number', 'percent', 'toman', 'rial'])->nullable();
+            $table->enum('unit', ['millimeter', 'centimeter', 'meter', 'square_meter', 'lane_meter', 'milligram', 'gram', 'kilogram', 'ton', 'number', 'percent', 'toman', 'rial'])->nullable();
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
