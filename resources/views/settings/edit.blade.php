@@ -1,8 +1,8 @@
 <x-app-layout>
     <div>
-        <p class="text-text text-lg font-bold mb-2">{{ __('نرم افزار') }}</p>
+        <p class="text-text text-lg font-bold mb-2">{{ __('تنظیمات') }}</p>
         <p class="text-text-600 dark:text-gray-400 text-sm justify-center">
-            {{ __('تنظیمات پیش فرض نرم افزار را تغییر دهید.') }}
+            {{ __('برای بخش‌های مختلف، تنظیمات دلخواه خود را اعمال کنید.') }}
         </p>
     </div>
     <x-card class="mt-8 max-w-7xl mx-auto">
@@ -50,6 +50,23 @@
                         placeholder="{{ __('تعداد رقم اعشار') }}" :value="old('app_max_decimal_place') ?? $settings->app_max_decimal_place">
                     </x-text-input>
                     <x-input-error :messages="$errors->get('app_max_decimal_place')" class="mt-2" />
+                </div>
+                <div class="mb-2">
+                    <label for="app_max_decimal_place"
+                        class="block text-sm truncate mb-2 font-medium text-gray-900 dark:text-white">
+                        {{ __('نمایش فرمول‌های پیش فرض') }}
+                    </label>
+                    <x-select class="w-full" name="app_show_default_formula">
+                        <option value="0"
+                            {{ (old('app_show_default_formula') !== null && old('app_show_default_formula') == '0') || $settings->app_show_default_formula === '0' ? 'selected' : '' }}>
+                            {{ __('غیرفعال') }}
+                        </option>
+                        <option value="1"
+                            {{ (old('app_show_default_formula') !== null && old('app_show_default_formula') == '1') || $settings->app_show_default_formula === '1' ? 'selected' : '' }}>
+                            {{ __('فعال') }}
+                        </option>
+                    </x-select>
+                    <x-input-error :messages="$errors->get('app_scalable')" class="mt-2" />
                 </div>
                 <div class="mb-2">
                     <label for="app_max_decimal_place"

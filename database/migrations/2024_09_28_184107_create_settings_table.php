@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->integer("app_paginate_number")->default(20);
             $table->integer("app_max_decimal_place")->default(2);
             $table->enum("app_scalable", [0, 1])->default(0);
+            $table->enum("app_show_default_formula", [0, 1])->default(1);
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

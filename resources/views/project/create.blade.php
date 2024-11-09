@@ -16,11 +16,13 @@
                             {{ __('فرمول') }}
                         </label>
                         <x-select class="w-full" name="formula" onchange="changeFormula(this.value)">
-                            @foreach ($data->formulas->defaults as $formula)
-                                <option value="{{ $formula->id }}"
-                                    {{ (old('formula') !== null && old('formula') == $formula->id) || $formula->id == $formulaId ? 'selected' : '' }}>
-                                    {{ $formula->name }}</option>
-                            @endforeach
+                            @if ($settings->app_show_default_formula === '1' || count($data->formulas->user) === 0)
+                                @foreach ($data->formulas->defaults as $formula)
+                                    <option value="{{ $formula->id }}"
+                                        {{ (old('formula') !== null && old('formula') == $formula->id) || $formula->id == $formulaId ? 'selected' : '' }}>
+                                        {{ $formula->name }}</option>
+                                @endforeach
+                            @endif
                             @foreach ($data->formulas->user as $formula)
                                 <option value="{{ $formula->id }}"
                                     {{ (old('formula') !== null && old('formula') == $formula->id) || $formula->id == $formulaId ? 'selected' : '' }}>

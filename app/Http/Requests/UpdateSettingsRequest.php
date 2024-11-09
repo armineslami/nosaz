@@ -26,7 +26,8 @@ class UpdateSettingsRequest extends FormRequest
             'app_theme' => 'required|string|in:system,light,dark',
             'app_paginate_number' => 'required|numeric|min:1|max:100',
             'app_max_decimal_place' => 'required|numeric|min:0|max:5',
-            'app_scalable' => 'required|numeric|in:0,1'
+            'app_scalable' => 'required|numeric|in:0,1',
+            'app_show_default_formula' => 'required|numeric|in:0,1'
         ];
     }
 }
