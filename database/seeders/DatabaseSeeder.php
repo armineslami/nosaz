@@ -226,7 +226,7 @@ class DatabaseSeeder extends Seeder
         $formula .= '#' . $variables['selling_price_per_meter'] . '#=<' . $labels['selling_price_per_meter'] . '>';
         $formula .= '<' . $labels['total_area'] . '>+<' . $labels['total_area_of_warehouses'] . '>=<' . $labels['total_area_of_units'] . '>';
         $formula .= '<' . $labels['total_area_of_units'] . '>*#' . $variables['selling_price_per_meter'] . '#=<' . $labels['total_value_of_units'] . '>';
-        $formula .= '<' . $labels['llegal_area_of_floor'] . '>/#' . $variables['unit_per_floor'] . '#+((<' . $labels['illegal_area_of_floor'] . '>+#' . $variables['illegal_area_per_floor'] . '#)/#' . $variables['unit_per_floor'] . '#)=<' . $labels['unit_area'] . '>';
+        $formula .= '<' . $labels['llegal_area_of_floor'] . '>/#' . $variables['unit_per_floor'] . '#+(<' . $labels['illegal_area_of_floor'] . '>/#' . $variables['unit_per_floor'] . '#)=<' . $labels['unit_area'] . '>';
         $formula .= '#' . $variables['area_of_each_warehouse'] . '#=<' . $labels['warehouse_area'] . '>';
         $formula .= '<' . $labels['unit_area'] . '>+<' . $labels['warehouse_area'] . '>=<' . $labels['total_area_per_unit'] . '>';
         $formula .= '#' . $variables['construction_cost_per_meter'] . '#=<' . $labels['construction_cost_per_meter'] . '>';
@@ -260,7 +260,7 @@ class DatabaseSeeder extends Seeder
         $formula .= '#' . $variables['selling_price_per_meter'] . '#=<' . $labels['selling_price_per_meter'] . '>';
         $formula .= '<' . $labels['total_area'] . '>+<' . $labels['total_area_of_warehouses'] . '>=<' . $labels['total_area_of_units'] . '>';
         $formula .= '<' . $labels['total_area_of_units'] . '>*#' . $variables['selling_price_per_meter'] . '#=<' . $labels['total_value_of_units'] . '>';
-        $formula .= '<' . $labels['llegal_area_of_floor'] . '>/#' . $variables['unit_per_floor'] . '#+((<' . $labels['illegal_area_of_floor'] . '>+#' . $variables['illegal_area_per_floor'] . '#)/#' . $variables['unit_per_floor'] . '#)=<' . $labels['unit_area'] . '>';
+        $formula .= '<' . $labels['llegal_area_of_floor'] . '>/#' . $variables['unit_per_floor'] . '#+(<' . $labels['illegal_area_of_floor'] . '>/#' . $variables['unit_per_floor'] . '#)=<' . $labels['unit_area'] . '>';
         $formula .= '#' . $variables['area_of_each_warehouse'] . '#=<' . $labels['warehouse_area'] . '>';
         $formula .= '<' . $labels['unit_area'] . '>+<' . $labels['warehouse_area'] . '>=<' . $labels['total_area_per_unit'] . '>';
         $formula .= '#' . $variables['construction_cost_per_meter'] . '#=<' . $labels['construction_cost_per_meter'] . '>';
