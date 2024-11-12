@@ -90,7 +90,8 @@
         <div id="app-data" class="mt-12 text-center hidden">
             <p class="text-[#101413] text-sm font-bold">
                 {{ app()->getLocale() === 'fa' ? config('app.name_fa') : config('app.name') }}</p>
-            <p class="text-[#101413] text-sm font-normal">{{ config('app.url') }}</p>
+            <p class="text-[#101413] text-sm font-normal">
+                {{ Str::replaceFirst('http://', '', Str::replaceFirst('https://', '', config('app.url'))) }}</p>
         </div>
     </x-card>
 </div>
