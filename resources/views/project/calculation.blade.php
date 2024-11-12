@@ -116,13 +116,13 @@
 
             if (document.getElementById('project-description')) {
                 const description = document.createElement('p');
-                description.className = "text-[#101413] text-sm mb-8";
+                description.className = "text-[#101413] text-sm mb-7";
                 description.textContent = document.getElementById('project-description').innerText;
                 clonedElement.insertBefore(description, clonedElement.firstChild);
             }
 
             const formula = document.createElement('p');
-            formula.className = "text-[#5b716c] font-normal text-sm mb-8";
+            formula.className = "text-[#5b716c] font-normal text-sm mb-6";
             formula.textContent = document.getElementById('formula-name').innerText;
             clonedElement.insertBefore(formula, clonedElement.firstChild);
 
