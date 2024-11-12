@@ -42,7 +42,7 @@
                     <ul id="project-dropdown" class="{{ Route::is('project.*') ? '' : 'hidden' }} py-2 space-y-1 mt-1">
                         <li>
                             <a href="{{ route('project.create') }}"
-                                class="flex text-xs w-full ms-4 px-4 py-2 {{ Route::is('project.create') ? 'text-text bg-primary-200 dark:bg-primary-100' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700' }} transition duration-75 rounded-md pl-11 group">
+                                class="flex text-xs w-full ms-4 px-4 py-2 {{ Route::is('project.create') || Route::is('project.calculate') ? 'text-text bg-primary-200 dark:bg-primary-100' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700' }} transition duration-75 rounded-md pl-11 group">
                                 {{ __('محاسبه') }}
                             </a>
                         </li>
