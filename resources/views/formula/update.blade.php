@@ -23,17 +23,56 @@
                                 d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
                         </svg>
                     </button>
+
                     <div id="helper-menu-dropdown"
                         class="hidden z-50 !mx-4 my-0 w-48 text-base list-none bg-white rounded-lg divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                         <x-dropdown-link class="py-3 helper-menu-item" id="create-new-label-button" data-name="label">
-                            {{ __('برچسب جدید') }}
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+                                </svg>
+                                <p class="ms-2">{{ __('برچسب جدید') }}</p>
+                            </div>
                         </x-dropdown-link>
                         <x-dropdown-link class="py-3 helper-menu-item" id="create-new-variable-button"
                             data-name="variable">
-                            {{ __('متغیر جدید') }}
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width=1.5 stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M4.745 3A23.933 23.933 0 0 0 3 12c0 3.183.62 6.22 1.745 9M19.5 3c.967 2.78 1.5 5.817 1.5 9s-.533 6.22-1.5 9M8.25 8.885l1.444-.89a.75.75 0 0 1 1.105.402l2.402 7.206a.75.75 0 0 0 1.104.401l1.445-.889m-8.25.75.213.09a1.687 1.687 0 0 0 2.062-.617l4.45-6.676a1.688 1.688 0 0 1 2.062-.618l.213.09" />
+                                </svg>
+                                <p class="ms-2">{{ __('متغیر جدید') }}</p>
+                            </div>
                         </x-dropdown-link>
                         <x-dropdown-link class="py-3 helper-menu-item" onclick="clearFormulaForm()">
-                            {{ __('پاک کن') }}
+                            <div class="flex items-center">
+                                <svg class="size-6" viewBox="0 0 32 29.3294124" version="1.1" stroke-width="1.5">
+                                    <g fill="none" fill-rule="evenodd">
+                                        <g transform="translate(0.000000, 0.000000)" fill="currentColor">
+                                            <path
+                                                d="M17.4801189,27.9946191 L30.9441785,14.4851765 C32.3497158,13.0743 32.3497158,10.7811252 30.9441785,9.37024871 L22.6270817,1.02512123 C21.2642578,-0.341707075 18.8856562,-0.341707075 17.5228323,1.02512123 L1.05415298,17.5471922 C-0.351384327,18.9580687 -0.351384327,21.2512435 1.05415298,22.66212 L7.69608426,29.3294124 L32,29.3294124 L32,27.9946191 L17.4801189,27.9946191 Z M18.4678659,1.96615048 C19.326138,1.10387403 20.8224412,1.10387403 21.6793785,1.96615048 L29.9964753,10.311278 C30.8841128,11.2015851 30.8841128,12.6511706 29.9964753,13.5414777 L21.7634705,21.8025132 L10.2308567,10.2311904 L18.4678659,1.96615048 Z M8.25135826,27.9946191 L2.0005214,21.719756 C1.11288388,20.8294489 1.11288388,19.3798634 2.0005214,18.4895563 L9.28715783,11.1775588 L20.8211064,22.7502164 L15.594056,27.9946191 L8.25002346,27.9946191 L8.25135826,27.9946191 Z"
+                                                id="Shape"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <p class="ms-2">{{ __('پاک کن') }}</p>
+                            </div>
+                        </x-dropdown-link>
+                        <x-dropdown-link x-data=""
+                            x-on:click.prevent="$dispatch('open-modal', 'confirm-formula-deletion')"
+                            class="py-3 helper-menu-item hover:bg-red-200 dark:hover:bg-red-900">
+                            <div class="flex items-center text-red-500">
+                                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                </svg>
+                                <p class="ms-2">{{ __('حذف') }}</p>
+                            </div>
                         </x-dropdown-link>
                     </div>
                 </div>
@@ -69,10 +108,6 @@
                 <p id="formulaBuilderError" class="text-xs text-red-600 dark:text-red-400 space-y-1 mt-2"></p>
 
                 <div class="flex justify-end my-4">
-                    <x-danger-button class="me-2" x-data=""
-                        x-on:click.prevent="$dispatch('open-modal', 'confirm-formula-deletion')">
-                        {{ __('حذف') }}
-                    </x-danger-button>
                     <x-primary-button>
                         <span id="formulaFormSubmitButtonLabel">{{ __('تایید فرمول') }}</span>
                         <div id="formulaFormSubmitButtonSpinner" role="status" class="hidden">
