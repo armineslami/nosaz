@@ -1,5 +1,5 @@
 <nav
-    class="bg-background border-b-4 border-gray-200 dark:border-gray-700 px-2 md:px-4 py-3.5 fixed right-0 md:right-[16rem] left-0 z-20 w-full md:w-[calc(100%-16rem)]">
+    class="bg-background border-b-4 border-gray-200 dark:border-gray-700 px-4 md:px-4 py-3.5 fixed right-0 md:right-[16rem] left-0 z-20 w-full md:w-[calc(100%-16rem)]">
     <div class="flex flex-wrap flex-row items-center">
         <div class="flex basis-10/12 items-center">
             <!-- Search -->
