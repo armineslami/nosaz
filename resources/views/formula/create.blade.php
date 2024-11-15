@@ -3,7 +3,7 @@
         <div class="flex justify-between">
             <p class="text-text text-lg font-bold mb-2">{{ __('ساخت فرمول‌') }}</p>
             <button id="helper-menu-button" aria-expanded="false" data-dropdown-toggle="helper-menu-dropdown"
-                class="text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary' }} focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                class="relative bottom-2 text-sm p-2 text-gray-500 rounded-lg hover:text-text-900 hover:bg-primary dark:text-gray-400 dark:hover:text-text-100 dark:hover:bg-primary' }} focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                 <span class="sr-only">{{ __('منو') }}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="size-6">
