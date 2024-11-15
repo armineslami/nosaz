@@ -10,15 +10,13 @@
                     </svg>
                 </button>
                 <div>
-                    @if (isset($project['name']))
-                        <p id="project-title" class="text-text text-lg font-bold mb-2">{{ $project['name'] }}</p>
-                    @else
-                        <p id="project-title" class="text-text text-lg font-bold mb-2">{{ __('محاسبه پروژه') }}</p>
+                    <p id="page-title" class="text-text text-lg font-bold mb-2">{{ __('محاسبه پروژه') }}</p>
+                    @if (!isset($project['name']))
+                        <p class="text-text-600 dark:text-gray-400 text-sm">
+                            <span id="formula-name"
+                                class="text-text-600 dark:text-gray-400 font-normal text-sm">{{ $formula->name }}</span>
+                        </p>
                     @endif
-                    <p class="text-text-600 dark:text-gray-400 text-sm">
-                        <span id="formula-name"
-                            class="text-text-600 dark:text-gray-400 font-normal text-sm">{{ $formula->name }}</span>
-                    </p>
                 </div>
             </div>
             <button x-data="" onclick="createPDF()"
@@ -42,11 +40,20 @@
                 </div>
             </button>
         </div>
-        <div class="ms-2">
+        @if (isset($project['name']))
+            <div class="mt-4">
+                <p id="project-title" class="text-text text-lg font-bold mb-2">{{ $project['name'] }}</p>
+                <p class="text-text-600 dark:text-gray-400 text-sm">
+                    <span id="formula-name"
+                        class="text-text-600 dark:text-gray-400 font-normal text-sm">{{ $formula->name }}</span>
+                </p>
+            </div>
             @if (isset($project['description']))
-                <p id="project-description" class="text-text text-sm my-4">{{ $project['description'] }}</p>
+                <div>
+                    <p id="project-description" class="text-text text-sm my-4">{{ $project['description'] }}</p>
+                </div>
             @endif
-        </div>
+        @endif
 
         <x-card class="mt-8" id="calculation-result">
             @foreach ($labels as $label => $data)
@@ -128,7 +135,11 @@
 
             const title = document.createElement('p');
             title.className = "text-[#101413]text-lg font-bold mb-2"
-            title.textContent = document.getElementById('project-title').innerText;
+            if (document.getElementById('project-title')) {
+                title.textContent = document.getElementById('project-title').innerText;
+            } else {
+                title.textContent = document.getElementById('page-title').innerText;
+            }
             clonedElement.insertBefore(title, clonedElement.firstChild);
 
             /**
@@ -174,7 +185,11 @@
 
             const options = {
                 margin: 0.4,
-                filename: `${document.getElementById('project-title').innerText}.pdf`,
+                filename: `${
+                    document.getElementById('project-title') ? 
+                    document.getElementById('project-title').innerText : 
+                    document.getElementById('page-title').innerText
+                }.pdf`,
                 image: {
                     type: 'jpeg',
                     quality: 0.98
