@@ -7,4 +7,4 @@
 
 ## About Nosaz
 
-Nosaz is an application for constructors and engineers to help them to calculate their projects.
+Nosaz is an application for constructors and engineers to calculate everything about their projects.
